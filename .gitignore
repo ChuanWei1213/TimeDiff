@@ -1,0 +1,9 @@
+# Backup of the previous Git repository
+/.git-old/
+
+# Local SPX experiment artifacts
+/.venv-spx/
+/datasets/spx/
+/outputs/spx/
+__pycache__/
+.pytest_cache/
