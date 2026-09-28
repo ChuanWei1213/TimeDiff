@@ -182,3 +182,29 @@ python3 notebooks/execute_in_process.py notebooks/spx_no_mixup_comparison.ipynb
 ```
 
 此輔助程式只支援本實驗的一般 Python／Matplotlib 輸出，不等同完整 Jupyter 核心或 widget 驗證。
+
+## 暴跌條件重跑（七組）
+
+在 app 終端執行以下指令，可以直接觀察 tqdm：
+
+```bash
+bash scripts/run_spx_crash.sh
+```
+
+腳本會切換至專案根目錄，依序：
+
+1. 以相同資料切分、seed 2024、AR 500 步與 diffusion 2,000 步重新訓練無 mixup 模型。
+2. 對原有四組條件，以及報酬／年化波動率 `(-10%, 40%)`、`(-20%, 60%)`、`(-30%, 80%)` 各取樣 200 條。
+3. 沿用既有 `initial/model.pt` mixup 對照，重新生成相同七組條件。
+4. 執行 [暴跌條件 notebook](notebooks/spx_crash_comparison.ipynb)，核對路徑指標、繪圖並檢查訓練資料支持。
+
+新增條件只用於推論，不會改變訓練資料或標記。本輪仍未加入條件一致性 loss 或 CFG。
+報酬與波動率同時改變，不能將結果歸因於其中一個條件。訓練窗口的局部支持亦不代表當前歷史背景下合理。
+
+所有新資料與完整進度日誌位於 `outputs/spx/crash_20260929/`；重複啟動同名實驗會中止，避免覆寫。
+第二次重跑可用 `bash scripts/run_spx_crash.sh crash_repeat2`。Notebook 由環境變數 `SPX_CRASH_RUN`
+選取資料目錄；手動開啟時也可修改第一個程式格的 `RUN_DIR`。
+Python 預設為終端的 `python3`，可用 `SPX_PYTHON=/absolute/path/to/python3` 指定已安裝依賴的直譯器。
+進度列會即時顯示，並同時寫入該輪 `run.log`。腳本不會覆寫前一輪實驗資料，會更新暴跌 notebook 的執行輸出。
+
+本節為已準備的重跑流程；實際結果以完成後的 notebook 與該輪 `summary.csv` 為準。
