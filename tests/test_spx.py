@@ -6,6 +6,7 @@ import torch
 from data_provider.spx import (Scaler, SPXWindows, load_features, market_statistics,
                                split_windows)
 from models_diffusion.DDPM import Model
+from models_diffusion.condition_loss import condition_consistency_losses
 from spx_experiment import decoder, main, model_args
 
 torch.set_num_threads(1)
@@ -127,7 +128,8 @@ def test_future_conditioning_ablation(future_mixup):
         assert torch.autograd.grad(first.sum(), clean)[0].abs().sum() > 0
 
 
-def test_cli_round_trip(tmp_path, monkeypatch):
+@pytest.mark.parametrize('lambda_condition', [0., .1])
+def test_cli_round_trip(tmp_path, monkeypatch, lambda_condition):
     data = prices_fixture(tmp_path)
     _, features = load_features(data)
     checkpoint_dir, output_dir = tmp_path/'train', tmp_path/'samples'
@@ -136,12 +138,18 @@ def test_cli_round_trip(tmp_path, monkeypatch):
         '--train-end', str(features.index[179].date()), '--val-end', str(features.index[269].date()),
         '--steps', '2', '--ar-steps', '2', '--eval-every', '2', '--val-batches', '1',
         '--channels', '8', '--batch-size', '3', '--device', 'cpu', '--no-progress',
+        '--lambda-condition', str(lambda_condition),
     ])
     main()
     ckpt = torch.load(checkpoint_dir/'model.pt', weights_only=True)
     assert ckpt['metadata']['ar_frozen']
     assert ckpt['metadata']['args']['use_future_mixup'] is False
     assert ckpt['metadata']['training_config']['steps'] == 2
+    assert ckpt['metadata']['args']['lambda_condition'] == lambda_condition
+    import json
+    timings = json.loads((checkpoint_dir/'timings.json').read_text())
+    assert timings['ar_pretraining_seconds'] > 0 and timings['validation_seconds'] > 0
+    assert sum(v for k, v in timings.items() if k.endswith('_seconds') and k != 'total_seconds') == pytest.approx(timings['total_seconds'])
     monkeypatch.setattr('sys.argv', [
         'spx_experiment.py', 'sample', '--data', str(data), '--out', str(output_dir),
         '--checkpoint', str(checkpoint_dir/'model.pt'), '--history-end', str(features.index[269].date()),
@@ -156,3 +164,56 @@ def test_cli_round_trip(tmp_path, monkeypatch):
     actual = market_statistics(paths.query('scenario == 0 and path == 0').rclose.to_numpy())
     np.testing.assert_allclose(metrics.iloc[0][['return', 'volatility']].to_numpy(dtype=float), actual)
     assert (output_dir/'condition_distributions.png').is_file()
+    assert json.loads((output_dir/'timings.json').read_text())['generation_seconds'] > 0
+
+
+def test_condition_loss_statistics_and_per_path_errors():
+    fs = {'mean': [.001, 0, 0], 'scale': [.02, 1, 1]}
+    cs = {'mean': [.005, .2], 'scale': [.05, .1]}
+    raw = np.array([[.01, -.02, .03], [-.04, .02, .01]])
+    x = torch.zeros(2, 3, 3, dtype=torch.float64)
+    x[:, 0] = torch.tensor((raw-.001)/.02)
+    x.requires_grad_()
+    labels = torch.tensor((market_statistics(raw)-np.array(cs['mean']))/np.array(cs['scale']))
+    losses = condition_consistency_losses(x, labels, fs, cs)
+    assert sum(losses).item() == pytest.approx(0., abs=1e-20)
+    # Equal and opposite per-path target errors must not cancel at batch level.
+    shifts = torch.tensor([[1., 2.], [-1., -2.]])
+    lr, lv = condition_consistency_losses(x, labels+shifts, fs, cs)
+    torch.testing.assert_close(lr, torch.tensor(1., dtype=torch.float64))
+    torch.testing.assert_close(lv, torch.tensor(4., dtype=torch.float64))
+    (lr+lv).backward()
+    assert torch.isfinite(x.grad).all() and x.grad[:, 0].abs().sum() > 0
+    assert x.grad[:, 1:].abs().sum() == 0
+
+
+@pytest.mark.parametrize('parameterization', ['x_start', 'noise', 'v'])
+def test_condition_loss_integration_and_gradient(parameterization):
+    torch.manual_seed(3)
+    args = model_args(channels=8, parameterization=parameterization)
+    args.lambda_condition = .1
+    args.condition_feature_scaler = {'mean': [.0002, 0, 0], 'scale': [.01, 1, 1]}
+    args.condition_label_scaler = {'mean': [0., .2], 'scale': [.05, .1]}
+    model = Model(args)
+    model.freeze_ar()
+    h, y, c = torch.randn(3, 63, 3), torch.randn(3, 21, 3), torch.randn(3, 2)
+    worker = model.diffusion_worker
+    worker.lambda_condition = 0.
+    torch.manual_seed(8)
+    plain = model.train_forward(h, None, decoder(h, y), None, market_condition=c)
+    worker.lambda_condition = .1
+    torch.manual_seed(8)
+    total = model.train_forward(h, None, decoder(h, y), None, market_condition=c)
+    parts = worker.last_loss_components
+    torch.testing.assert_close(total, plain + .1*(parts['return_condition_loss']+parts['volatility_condition_loss']))
+    (total-plain).backward()
+    grad = worker.nn.market_film[0].weight.grad
+    assert torch.isfinite(grad).all() and grad.abs().sum() > 0
+    assert all(p.grad is None for p in model.dlinear_model.parameters())
+
+
+def test_condition_loss_rejects_mixup():
+    args = model_args(channels=8, future_mixup=True)
+    args.lambda_condition = .1
+    with pytest.raises(ValueError, match='no mixup'):
+        Model(args)

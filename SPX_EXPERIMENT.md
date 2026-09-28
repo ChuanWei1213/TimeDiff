@@ -208,3 +208,38 @@ Python 預設為終端的 `python3`，可用 `SPX_PYTHON=/absolute/path/to/pytho
 進度列會即時顯示，並同時寫入該輪 `run.log`。腳本不會覆寫前一輪實驗資料，會更新暴跌 notebook 的執行輸出。
 
 本節為已準備的重跑流程；實際結果以完成後的 notebook 與該輪 `summary.csv` 為準。
+
+## 第 2 階段：條件一致性 loss（lambda = 0.1）
+
+在無 mixup 的模型上新增 `--lambda-condition 0.1`：
+
+`L_total = L_diffusion + lambda * (L_return + L_volatility)`。
+
+模型輸出先依 v／noise／x_start 參數化還原為 `x0_hat`，反標準化第 0 個特徵，
+逐路徑計算 `expm1(sum(rclose))` 與 `std(rclose, ddof=1)*sqrt(252)`。
+兩項誤差分別除以**訓練標記**的標準差後平方，最後跨 batch 平均；兩個 MSE 相加，沒有再除以 2。
+lambda=0.1 等同報酬與波動率兩項各乘 0.1。整個計算保留梯度，不做路徑後處理。
+
+預設 lambda=0，保持舊行為。啟用時要求市場條件存在、停用 mixup 與窗口正規化。
+使用同一次 forward 的乾淨路徑估計，不增加噪聲抽樣，也不新增隨機分支。
+時間點抽樣沿用原本設定，不額外做時點加權或權重暖身。
+這是加噪真實樣本的**單步還原** loss，不保證完整生成符合條件；仍用原本完整取樣的驗證規則選模。
+
+```bash
+python3 scripts/run_spx_consistency.py
+```
+
+腳本執行同設定 AR 500／diffusion 2,000 步與七組各 200 條取樣，
+沿用 `crash_20260929` 的無 mixup、lambda=0 結果作對照；不重訓對照、不加入 CFG。
+結果位於 `outputs/spx/condition_lambda_0p1/`，重跑須指定新的 `--tag`，避免覆寫。
+[比較 notebook](notebooks/spx_condition_loss_comparison.ipynb) 會核對設定與原始路徑，
+比較分布、逐路徑指標、loss 分量及計時。
+
+計時檔案：
+
+- `train/timings.json`：資料／模型準備、AR 預訓、diffusion 更新、驗證、其他記錄及 checkpoint I/O；子階段互不重疊。
+- `samples/timings.json`：七組個別生成秒數、總生成時間及準備／指標／繪圖／匯出時間。
+- `pipeline_timings.json`：訓練、取樣、notebook 各程序的實際 wall-clock 秒數（含 import／啟動），以及全流程耗時。
+
+`training.csv` 分別記錄 diffusion loss、兩項原始條件 MSE 與加權條件懲罰，避免將不同總 loss 直接比較。
+計時是本次機器的實測值，不以它比較舊版本速度；對照資料沿用，因此本輪對照不另計重訓時間。

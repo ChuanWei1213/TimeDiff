@@ -17,6 +17,7 @@ from utils.diffusion_utils import *
 from models_diffusion.stylized_loss import compute_stylized_loss  # 新增
 from models_diffusion.stylized_loss import energy_score, energy_score_weight
 from models_diffusion.stylized_loss import cross_asset_corr_loss
+from models_diffusion.condition_loss import condition_consistency_losses
 
 
 def cosine_beta_schedule(timesteps, s=0.008):
@@ -71,6 +72,19 @@ class Diffusion_Worker(nn.Module):
         self.eps = 1e-5
 
         self.nn = u_net
+
+        self.lambda_condition = float(getattr(args, 'lambda_condition', 0.0))
+        if not math.isfinite(self.lambda_condition) or self.lambda_condition < 0:
+            raise ValueError('lambda_condition must be finite and nonnegative')
+        if self.lambda_condition:
+            if (getattr(args, 'market_condition_dim', 0) != 2
+                    or getattr(args, 'use_future_mixup', True)
+                    or getattr(args, 'use_window_normalization', False)):
+                raise ValueError('Condition loss requires two market conditions, no mixup and no window normalization')
+            for key in ('condition_feature_scaler', 'condition_label_scaler'):
+                state = getattr(args, key, None)
+                if state is None or not np.isfinite(state['mean']).all() or not np.isfinite(state['scale']).all() or np.any(np.asarray(state['scale']) <= 0):
+                    raise ValueError(f'Missing or invalid training scaler: {key}')
 
         # ── Stylized Loss 訓練步數計數器 ──
         # 用於 Annealing 計算 progress = global_step / total_steps
@@ -212,6 +226,21 @@ class Diffusion_Worker(nn.Module):
 
         loss_vlb = (self.lvlb_weights[t] * loss).mean()
         loss = loss_simple + self.original_elbo_weight * loss_vlb
+
+        self.last_loss_components = {'diffusion_loss': loss.detach()}
+        if self.lambda_condition:
+            # SPX disables future mixup, so this forward has no clean-future
+            # conditioning. Reuse it without drawing new noise or changing t.
+            x0_hat = self._to_x0(model_out, x_k, t)
+            return_loss, volatility_loss = condition_consistency_losses(
+                x0_hat, cond_ts['market'], self.args.condition_feature_scaler,
+                self.args.condition_label_scaler)
+            weighted = self.lambda_condition * (return_loss + volatility_loss)
+            loss = loss + weighted
+            self.last_loss_components.update(
+                return_condition_loss=return_loss.detach(),
+                volatility_condition_loss=volatility_loss.detach(),
+                weighted_condition_loss=weighted.detach())
 
         if self.args.ablation_study_case == "w_pred_loss":
             pred_loss = self.get_loss(pred_out[:,:,f_dim:], x[:,:,f_dim:], mean=False).mean(dim=2).mean(dim=1)

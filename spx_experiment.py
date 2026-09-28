@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 import subprocess
+from time import perf_counter
 from itertools import islice
 from pathlib import Path
 from types import SimpleNamespace
@@ -18,6 +19,12 @@ from data_provider.spx import (SEQ_LEN, PRED_LEN, FEATURES, Scaler, SPXWindows,
 from models_diffusion.DDPM import Model
 
 ROOT = Path(__file__).resolve().parent
+
+
+def timestamp(device):
+    if torch.device(device).type == 'cuda':
+        torch.cuda.synchronize(device)
+    return perf_counter()
 
 
 def model_args(device='cpu', channels=64, conditioned=True, parameterization='v', sampler='dpm',
@@ -73,6 +80,11 @@ def validation_score(model, loader, feature_scaler, condition_scaler, max_batche
 
 
 def train(cli):
+    started = timestamp(cli.device)
+    if not np.isfinite(cli.lambda_condition) or cli.lambda_condition < 0:
+        raise ValueError('lambda_condition must be finite and nonnegative')
+    if cli.lambda_condition and (cli.future_mixup or cli.no_market_condition):
+        raise ValueError('Condition loss requires market conditions and no future mixup')
     if cli.ar_steps < 1 or cli.steps < 1 or cli.batch_size < 1 or cli.eval_every < 1 or cli.val_batches < 1:
         raise ValueError('Training steps, batch size and validation settings must be positive')
     out = Path(cli.out)
@@ -92,9 +104,15 @@ def train(cli):
     val_loader = DataLoader(val_data, batch_size=cli.batch_size, shuffle=False)
     args = model_args(cli.device, cli.channels, not cli.no_market_condition, cli.parameterization,
                       cli.sampler, future_mixup=cli.future_mixup)
+    args.lambda_condition = cli.lambda_condition
+    if cli.lambda_condition:
+        args.condition_feature_scaler = fs.state()
+        args.condition_label_scaler = cs.state()
     model = Model(args).to(args.device)
     stream = batches_forever(train_loader)
     optimizer = torch.optim.Adam(model.dlinear_model.parameters(), lr=cli.lr)
+    ar_started = timestamp(args.device)
+    setup_seconds = ar_started - started
     ar_progress = tqdm(range(cli.ar_steps), desc='AR pretraining', unit='step', disable=cli.no_progress)
     for step in ar_progress:
         h, y, _ = (v.to(args.device) for v in next(stream))
@@ -104,14 +122,17 @@ def train(cli):
         optimizer.step()
         ar_progress.set_postfix(loss=f'{loss.item():.5f}', refresh=False)
     model.freeze_ar()
+    ar_seconds = timestamp(args.device) - ar_started
     ar_snapshot = {k: v.detach().clone() for k, v in model.dlinear_model.state_dict().items()}
     tqdm.write(f'AR pretrained for {cli.ar_steps} steps and frozen; future_mixup={args.use_future_mixup}')
     optimizer = torch.optim.Adam([p for p in model.parameters() if p.requires_grad], lr=cli.lr)
     model.diffusion_worker.total_steps = cli.steps
     records, best_score, best_state, best_step = [], float('inf'), None, None
+    update_seconds, validation_seconds = 0., 0.
     out.mkdir(parents=True, exist_ok=True)
     progress = tqdm(range(1, cli.steps + 1), desc='Diffusion training', unit='step', disable=cli.no_progress)
     for step in progress:
+        update_started = timestamp(args.device)
         model.train()
         h, y, c = (v.to(args.device) for v in next(stream))
         optimizer.zero_grad()
@@ -122,9 +143,16 @@ def train(cli):
         loss.backward()
         optimizer.step()
         progress.set_postfix(loss=f'{loss.item():.5f}', best_val=f'{best_score:.5f}', refresh=False)
+        update_seconds += timestamp(args.device) - update_started
         if step == 1 or step % cli.eval_every == 0 or step == cli.steps:
+            validation_started = timestamp(args.device)
             score = validation_score(model, val_loader, fs, cs, cli.val_batches, cli.no_progress)
-            records.append({'step': step, 'train_loss': loss.item(), 'validation_condition_mse': score})
+            validation_elapsed = timestamp(args.device) - validation_started
+            validation_seconds += validation_elapsed
+            records.append({'step': step, 'train_loss': loss.item(), 'validation_condition_mse': score,
+                            **{k: float(v) for k, v in model.diffusion_worker.last_loss_components.items()},
+                            'validation_seconds': validation_elapsed,
+                            'elapsed_seconds': timestamp(args.device) - started})
             tqdm.write(str(records[-1]))
             pd.DataFrame(records).to_csv(out / 'training.csv', index=False)
             if np.isfinite(score) and score < best_score:
@@ -157,10 +185,19 @@ def train(cli):
     (out / 'metadata.json').write_text(json.dumps(metadata, indent=2) + '\n')
     pd.DataFrame(records).to_csv(out / 'training.csv', index=False)
     pd.DataFrame(raw_conditions, columns=['return', 'volatility']).to_csv(out / 'train_conditions.csv', index=False)
+    total_seconds = timestamp(args.device) - started
+    timings = dict(data_model_setup_seconds=setup_seconds, ar_pretraining_seconds=ar_seconds,
+                   diffusion_update_seconds=update_seconds, validation_seconds=validation_seconds)
+    timings['other_logging_checkpoint_seconds'] = total_seconds - sum(timings.values())
+    timings['total_seconds'] = total_seconds
+    timings['note'] = 'Wall-clock seconds within train(); phases are non-overlapping; total excludes process import/startup.'
+    (out / 'timings.json').write_text(json.dumps(timings, indent=2) + '\n')
     print(f'Saved {out / "model.pt"}; AR unchanged; test windows unused', flush=True)
 
 
 def sample(cli):
+    started = timestamp(cli.device)
+    scenario_timings = []
     if cli.n_paths < 1 or cli.batch_size < 1 or cli.return_tolerance <= 0 or cli.vol_tolerance <= 0:
         raise ValueError('Sample counts and tolerances must be positive')
     targets = np.asarray(cli.condition, dtype=float)
@@ -194,6 +231,7 @@ def sample(cli):
     import matplotlib.pyplot as plt
     fig, axes = plt.subplots(1, 2, figsize=(11, 4))
     for scenario, target in enumerate(tqdm(targets, desc='Scenarios', unit='scenario', disable=cli.no_progress)):
+        scenario_started = timestamp(args.device)
         torch.manual_seed(cli.seed)  # Same noise across conditions, to isolate condition effects.
         generated = []
         with torch.no_grad():
@@ -206,6 +244,7 @@ def sample(cli):
                                 market_condition=c if args.market_condition_dim else None)[0][:, 0]
                 generated.append(fs.inverse(outputs.cpu().numpy()))
         raw = np.concatenate(generated)
+        scenario_timings.append({'scenario': scenario, 'seconds': timestamp(args.device) - scenario_started})
         actual = market_statistics(raw[:, :, 0])
         if not np.isfinite(raw).all() or not np.isfinite(actual).all():
             raise RuntimeError('Non-finite generated samples; inspect training before interpreting metrics')
@@ -262,11 +301,18 @@ def sample(cli):
         'checkpoint': str(Path(cli.checkpoint).resolve()), 'conditions': targets.tolist(),
         'market_condition_enabled': bool(args.market_condition_dim),
         'future_mixup_in_training': getattr(args, 'use_future_mixup', True),
+        'lambda_condition': getattr(args, 'lambda_condition', 0.0),
         'batch_size': cli.batch_size,
         'data_sha256': hashlib.sha256(Path(cli.data).read_bytes()).hexdigest(),
         'note': 'Finite-sample scenario diagnostics; not RL or forecasting performance.',
     }, indent=2) + '\n')
     print(pd.DataFrame(summaries).to_string(index=False))
+    total_seconds = timestamp(args.device) - started
+    generation_seconds = sum(row['seconds'] for row in scenario_timings)
+    (out / 'timings.json').write_text(json.dumps(dict(
+        generation_seconds=generation_seconds, per_scenario=scenario_timings,
+        setup_metrics_plot_export_seconds=total_seconds-generation_seconds, total_seconds=total_seconds,
+        note='Wall-clock within sample(); total excludes process startup/import.'), indent=2) + '\n')
 
 
 def main():
@@ -294,6 +340,8 @@ def main():
     t.add_argument('--sampler', choices=['dpm', 'none'], default='dpm')
     t.add_argument('--no-market-condition', action='store_true')
     t.add_argument('--future-mixup', action='store_true', help='Opt in to the original mixup baseline; default disabled')
+    t.add_argument('--lambda-condition', type=float, default=0.,
+                   help='Weight on EACH standardized per-path return/volatility MSE; requires no mixup')
     s = sub.add_parser('sample')
     s.add_argument('--data', type=Path, default=data_default)
     s.add_argument('--checkpoint', type=Path, required=True)
