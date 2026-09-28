@@ -1,0 +1,72 @@
+{
+  "Mixup": {
+    "sample": "outputs/spx/crash_20260929/mixup_samples",
+    "train": "outputs/spx/initial",
+    "paths_sha256": "3b4009957f1c053707b24b2b8994f4a55933d9d0c2a7d2ad13c9e98325512272",
+    "best_step": 100,
+    "best_validation_condition_mse": 1.0491022748028627
+  },
+  "No mixup": {
+    "sample": "outputs/spx/crash_20260929/no_mixup_samples",
+    "train": "outputs/spx/crash_20260929/train",
+    "paths_sha256": "6d824277b649739a01c1f2853c8e6032dd37e6b026b65299f7ac496e8a64ca9f",
+    "best_step": 900,
+    "best_validation_condition_mse": 0.4857472749254157
+  },
+  "No mixup + loss": {
+    "sample": "outputs/spx/condition_lambda_0p1/samples",
+    "train": "outputs/spx/condition_lambda_0p1/train",
+    "paths_sha256": "ba178ca6ba7e72e123ce0211e53e2215cca0110939bb4acbd63edad6801b4e63",
+    "best_step": 2000,
+    "best_validation_condition_mse": 0.3322936454080718
+  },
+  "common": {
+    "history_end": "2023-12-29",
+    "seed": 2024,
+    "n_paths": 200,
+    "conditions": [
+      [
+        -0.05,
+        0.15
+      ],
+      [
+        0.05,
+        0.15
+      ],
+      [
+        -0.05,
+        0.35
+      ],
+      [
+        0.05,
+        0.35
+      ],
+      [
+        -0.1,
+        0.4
+      ],
+      [
+        -0.2,
+        0.6
+      ],
+      [
+        -0.3,
+        0.8
+      ]
+    ],
+    "data_sha256": "5682954512d1bd2c4dd1031dccb4bebacce3101814298914889254ad89454e1c",
+    "return_tolerance": 0.02,
+    "volatility_tolerance": 0.05,
+    "batch_size": 32
+  },
+  "support_windows": [
+    324,
+    648,
+    47,
+    22,
+    21,
+    2,
+    5
+  ],
+  "validation": "All 4200 paths recomputed; all saved metrics match within 1e-10."
+}
