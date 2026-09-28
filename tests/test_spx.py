@@ -101,6 +101,32 @@ def test_legacy_unconditioned_api_and_required_condition():
         conditioned(h, None, decoder(h), None, sample_times=1)
 
 
+@pytest.mark.parametrize('future_mixup', [False, True, None])
+def test_future_conditioning_ablation(future_mixup):
+    """At fixed x_t, labels affect conditioning only in the explicit/legacy baseline."""
+    torch.manual_seed(7)
+    args = model_args(channels=8, future_mixup=future_mixup)
+    if future_mixup is None:
+        del args.use_future_mixup  # Older checkpoints retain original behavior.
+    net = Model(args).diffusion_worker.nn.eval()
+    noisy = torch.randn(2, 3, 21)
+    condition = {'history': torch.randn(2, 3, 84), 'market': torch.randn(2, 2)}
+    timestep = torch.tensor([10, 80])
+    clean = torch.randn_like(noisy, requires_grad=True)
+    torch.manual_seed(9)
+    first, _ = net(noisy, timestep, condition, y_clean=clean)
+    torch.manual_seed(9)
+    second, _ = net(noisy, timestep, condition, y_clean=clean + 10)
+    if future_mixup is False:
+        torch.testing.assert_close(first, second, rtol=0, atol=0)
+        inference = net(noisy, timestep, condition, y_clean=None)
+        torch.testing.assert_close(first, inference, rtol=0, atol=0)
+        assert torch.autograd.grad(first.sum(), clean, allow_unused=True)[0] is None
+    else:
+        assert not torch.allclose(first, second)
+        assert torch.autograd.grad(first.sum(), clean)[0].abs().sum() > 0
+
+
 def test_cli_round_trip(tmp_path, monkeypatch):
     data = prices_fixture(tmp_path)
     _, features = load_features(data)
@@ -109,16 +135,18 @@ def test_cli_round_trip(tmp_path, monkeypatch):
         'spx_experiment.py', 'train', '--data', str(data), '--out', str(checkpoint_dir),
         '--train-end', str(features.index[179].date()), '--val-end', str(features.index[269].date()),
         '--steps', '2', '--ar-steps', '2', '--eval-every', '2', '--val-batches', '1',
-        '--channels', '8', '--batch-size', '3', '--device', 'cpu',
+        '--channels', '8', '--batch-size', '3', '--device', 'cpu', '--no-progress',
     ])
     main()
     ckpt = torch.load(checkpoint_dir/'model.pt', weights_only=True)
     assert ckpt['metadata']['ar_frozen']
+    assert ckpt['metadata']['args']['use_future_mixup'] is False
+    assert ckpt['metadata']['training_config']['steps'] == 2
     monkeypatch.setattr('sys.argv', [
         'spx_experiment.py', 'sample', '--data', str(data), '--out', str(output_dir),
         '--checkpoint', str(checkpoint_dir/'model.pt'), '--history-end', str(features.index[269].date()),
         '--condition', '-0.05', '0.3', '--condition', '0.05', '0.3',
-        '--n-paths', '5', '--batch-size', '3', '--device', 'cpu',
+        '--n-paths', '5', '--batch-size', '3', '--device', 'cpu', '--no-progress',
     ])
     main()
     paths = pd.read_csv(output_dir/'paths.csv')

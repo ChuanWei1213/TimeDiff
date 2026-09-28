@@ -2,6 +2,8 @@
 import argparse
 import hashlib
 import json
+import subprocess
+from itertools import islice
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -9,6 +11,7 @@ import numpy as np
 import pandas as pd
 import torch
 from torch.utils.data import DataLoader
+from tqdm.auto import tqdm
 
 from data_provider.spx import (SEQ_LEN, PRED_LEN, FEATURES, Scaler, SPXWindows,
                                download_spx, load_features, market_statistics, split_windows)
@@ -17,12 +20,14 @@ from models_diffusion.DDPM import Model
 ROOT = Path(__file__).resolve().parent
 
 
-def model_args(device='cpu', channels=64, conditioned=True, parameterization='v', sampler='dpm'):
+def model_args(device='cpu', channels=64, conditioned=True, parameterization='v', sampler='dpm',
+               future_mixup=False):
     return SimpleNamespace(
         device=torch.device(device), num_vars=3, seq_len=SEQ_LEN, label_len=21,
         pred_len=PRED_LEN, diff_steps=100, sampling_steps=20, UNet_Type='CNN',
         type_sampler=sampler, parameterization=parameterization, features='M',
         market_condition_dim=2 if conditioned else 0, vis_ar_part=False,
+        use_future_mixup=future_mixup,
         use_window_normalization=False, ddpm_inp_embed=channels,
         ddpm_dim_diff_steps=channels, ddpm_channels_conv=channels,
         ddpm_channels_fusion_I=channels, ddpm_layers_inp=5, ddpm_layers_I=5,
@@ -46,7 +51,7 @@ def batches_forever(loader):
 
 
 @torch.no_grad()
-def validation_score(model, loader, feature_scaler, condition_scaler, max_batches):
+def validation_score(model, loader, feature_scaler, condition_scaler, max_batches, no_progress=False):
     """Full generation, never teacher forcing. Real labels specify the scenario."""
     model.eval()
     scores = []
@@ -54,9 +59,9 @@ def validation_score(model, loader, feature_scaler, condition_scaler, max_batche
     devices = [model.device.index or 0] if model.device.type == 'cuda' else []
     with torch.random.fork_rng(devices=devices):
         torch.manual_seed(1729)
-        for i, (history, _, conditions) in enumerate(loader):
-            if i >= max_batches:
-                break
+        for history, _, conditions in tqdm(
+                islice(loader, max_batches), total=min(len(loader), max_batches), desc='Validation',
+                unit='batch', leave=False, disable=no_progress):
             history, conditions = history.to(model.device), conditions.to(model.device)
             supplied = conditions if model.args.market_condition_dim else None
             samples = model(history, None, decoder(history), None,
@@ -85,23 +90,28 @@ def train(cli):
     val_data = SPXWindows(features, splits['validation'], fs, cs)
     train_loader = DataLoader(train_data, batch_size=cli.batch_size, shuffle=True)
     val_loader = DataLoader(val_data, batch_size=cli.batch_size, shuffle=False)
-    args = model_args(cli.device, cli.channels, not cli.no_market_condition, cli.parameterization, cli.sampler)
+    args = model_args(cli.device, cli.channels, not cli.no_market_condition, cli.parameterization,
+                      cli.sampler, future_mixup=cli.future_mixup)
     model = Model(args).to(args.device)
     stream = batches_forever(train_loader)
     optimizer = torch.optim.Adam(model.dlinear_model.parameters(), lr=cli.lr)
-    for step in range(cli.ar_steps):
+    ar_progress = tqdm(range(cli.ar_steps), desc='AR pretraining', unit='step', disable=cli.no_progress)
+    for step in ar_progress:
         h, y, _ = (v.to(args.device) for v in next(stream))
         optimizer.zero_grad()
         loss = model.pretrain_forward(h, None, decoder(h, y), None)
         loss.backward()
         optimizer.step()
+        ar_progress.set_postfix(loss=f'{loss.item():.5f}', refresh=False)
     model.freeze_ar()
     ar_snapshot = {k: v.detach().clone() for k, v in model.dlinear_model.state_dict().items()}
-    print(f'AR pretrained for {cli.ar_steps} steps and frozen', flush=True)
+    tqdm.write(f'AR pretrained for {cli.ar_steps} steps and frozen; future_mixup={args.use_future_mixup}')
     optimizer = torch.optim.Adam([p for p in model.parameters() if p.requires_grad], lr=cli.lr)
     model.diffusion_worker.total_steps = cli.steps
     records, best_score, best_state, best_step = [], float('inf'), None, None
-    for step in range(1, cli.steps + 1):
+    out.mkdir(parents=True, exist_ok=True)
+    progress = tqdm(range(1, cli.steps + 1), desc='Diffusion training', unit='step', disable=cli.no_progress)
+    for step in progress:
         model.train()
         h, y, c = (v.to(args.device) for v in next(stream))
         optimizer.zero_grad()
@@ -111,10 +121,12 @@ def train(cli):
             raise RuntimeError(f'Non-finite training loss at step {step}')
         loss.backward()
         optimizer.step()
+        progress.set_postfix(loss=f'{loss.item():.5f}', best_val=f'{best_score:.5f}', refresh=False)
         if step == 1 or step % cli.eval_every == 0 or step == cli.steps:
-            score = validation_score(model, val_loader, fs, cs, cli.val_batches)
+            score = validation_score(model, val_loader, fs, cs, cli.val_batches, cli.no_progress)
             records.append({'step': step, 'train_loss': loss.item(), 'validation_condition_mse': score})
-            print(records[-1], flush=True)
+            tqdm.write(str(records[-1]))
+            pd.DataFrame(records).to_csv(out / 'training.csv', index=False)
             if np.isfinite(score) and score < best_score:
                 best_score, best_step = score, step
                 best_state = {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}
@@ -125,7 +137,11 @@ def train(cli):
     saved_args = vars(args).copy()
     saved_args['device'] = str(args.device)
     metadata = {
-        'format_version': 1, 'ticker': '^GSPC', 'features': FEATURES,
+        'format_version': 2, 'ticker': '^GSPC', 'features': FEATURES,
+        'training_config': {k: str(v) if isinstance(v, Path) else v for k, v in vars(cli).items()},
+        'code_commit': subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=ROOT,
+                                      capture_output=True, text=True).stdout.strip() or None,
+        'runtime_versions': {'torch': str(torch.__version__), 'numpy': np.__version__, 'pandas': pd.__version__},
         'condition_order': ['cumulative_return_21d', 'annualized_log_return_volatility'],
         'volatility_ddof': 1, 'annualization': 252, 'args': saved_args,
         'feature_scaler': fs.state(), 'condition_scaler': cs.state(),
@@ -177,11 +193,12 @@ def sample(cli):
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
     fig, axes = plt.subplots(1, 2, figsize=(11, 4))
-    for scenario, target in enumerate(targets):
+    for scenario, target in enumerate(tqdm(targets, desc='Scenarios', unit='scenario', disable=cli.no_progress)):
         torch.manual_seed(cli.seed)  # Same noise across conditions, to isolate condition effects.
         generated = []
         with torch.no_grad():
-            for start in range(0, cli.n_paths, cli.batch_size):
+            for start in tqdm(range(0, cli.n_paths, cli.batch_size), desc=f'Scenario {scenario} sampling',
+                              unit='batch', leave=False, disable=cli.no_progress):
                 n = min(cli.batch_size, cli.n_paths-start)
                 h = torch.tensor(fs.transform(history.to_numpy()), device=args.device).unsqueeze(0).repeat(n, 1, 1)
                 c = torch.tensor(cs.transform(target), device=args.device).unsqueeze(0).repeat(n, 1)
@@ -244,6 +261,9 @@ def sample(cli):
         'return_tolerance': cli.return_tolerance, 'volatility_tolerance': cli.vol_tolerance,
         'checkpoint': str(Path(cli.checkpoint).resolve()), 'conditions': targets.tolist(),
         'market_condition_enabled': bool(args.market_condition_dim),
+        'future_mixup_in_training': getattr(args, 'use_future_mixup', True),
+        'batch_size': cli.batch_size,
+        'data_sha256': hashlib.sha256(Path(cli.data).read_bytes()).hexdigest(),
         'note': 'Finite-sample scenario diagnostics; not RL or forecasting performance.',
     }, indent=2) + '\n')
     print(pd.DataFrame(summaries).to_string(index=False))
@@ -273,6 +293,7 @@ def main():
     t.add_argument('--parameterization', choices=['v', 'noise', 'x_start'], default='v')
     t.add_argument('--sampler', choices=['dpm', 'none'], default='dpm')
     t.add_argument('--no-market-condition', action='store_true')
+    t.add_argument('--future-mixup', action='store_true', help='Opt in to the original mixup baseline; default disabled')
     s = sub.add_parser('sample')
     s.add_argument('--data', type=Path, default=data_default)
     s.add_argument('--checkpoint', type=Path, required=True)
@@ -284,6 +305,7 @@ def main():
     s.add_argument('--return-tolerance', type=float, default=.02, help='Absolute return units: .02 = 2 percentage points')
     s.add_argument('--vol-tolerance', type=float, default=.05)
     for p in (t, s):
+        p.add_argument('--no-progress', action='store_true', help='Disable tqdm bars for non-interactive logs')
         p.add_argument('--seed', type=int, default=2024)
         p.add_argument('--device', choices=['cpu', 'cuda'], default='cuda' if torch.cuda.is_available() else 'cpu')
     cli = parser.parse_args()

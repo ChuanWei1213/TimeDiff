@@ -13,7 +13,9 @@
    - 年化波動率：`std(rclose, ddof=1) * sqrt(252)`。
 4. 條件 scaler 僅以訓練 target 擬合；特徵 scaler 僅以訓練期間資料擬合，兩者隨 checkpoint 保存。
 5. 條件經 MLP 產生 FiLM 的 scale/shift，注入每一步去噪 CNN。
-6. F(H) 與 AR 分支保留。主訓練仍使用 future mixup，驗證及生成皆不提供真實未來。
+6. F(H) 與 AR 分支保留。SPX 預設移除 future mixup：真實未來只用於加噪與 loss target，
+   不混入去噪網路的條件。訓練加上 `--future-mixup` 可重現原本的對照設定。
+   舊 checkpoint／其他 runner 未設定此旗標時維持原本行為。
 
 預設 `v`、100 級噪聲、20 步 DPM-Solver、64 個隱藏通道；CPU/CUDA 皆可。
 為隔離市場條件的作用，本入口不啟用 stylized-facts 輔助損失、GARCH、白化或振幅校正。
@@ -30,14 +32,14 @@ python3 spx_experiment.py download --start 2000-01-01 --end 2025-01-01
 python3 spx_experiment.py train \
   --train-end 2021-12-31 --val-end 2023-12-31 \
   --ar-steps 500 --steps 2000 \
-  --out outputs/spx/initial
+  --out outputs/spx/no_mixup
 
 python3 spx_experiment.py sample \
-  --checkpoint outputs/spx/initial/model.pt \
+  --checkpoint outputs/spx/no_mixup/model.pt \
   --history-end 2023-12-29 \
   --condition -0.05 0.15 --condition 0.05 0.15 \
   --condition -0.05 0.35 --condition 0.05 0.35 \
-  --n-paths 200 --out outputs/spx/initial_samples
+  --n-paths 200 --out outputs/spx/no_mixup_samples
 ```
 
 `--condition -0.05 0.35` 表示未來 21 個交易日累積報酬 -5%、年化波動率 35%。
@@ -45,6 +47,9 @@ python3 spx_experiment.py sample \
 `--history-end` 必須是 CSV 內的交易日，且有至少 63 列歷史特徵。
 `--data` 可指定具 `date,Close,High,Low` 欄位的價格 CSV；不會 forward-fill 缺失價格。
 `--device cpu` 可指定 CPU。`--threads` 是全域選項，放在子命令之前。
+AR 預訓、diffusion 訓練、驗證及取樣皆顯示 tqdm 進度；`--no-progress` 可關閉。
+訓練進度顯示當前 loss 與最佳驗證分數，每次驗證後即寫入 `training.csv`。
+metadata 保存完整訓練 CLI、程式 commit、套件版本及 mixup 開關。
 
 只有整段 target 都位於同一切分區間才會使用；驗證／測試可回看切分前的歷史，
 但 target 不跨區間。範例將 2024 年留作測試，訓練與選模不使用它。
@@ -92,9 +97,9 @@ python3 -m pytest -p no:cacheprovider tests/test_spx.py -q
 為讓本入口可測試，亦修正共用 sampler 的 CPU 裝置選擇、非 100 步時間索引、
 DDPM 的 v 還原，以及訓練奇數 batch 的噪聲步數配對。
 
-## 第一輪實跑結果
+## 第一輪實跑結果（原始 mixup 對照）
 
-下載了 6,289 筆 SPX 日價格。上述範例已完成 AR 500 步及 diffusion 2,000 步訓練，
+下載了 6,289 筆 SPX 日價格。先前啟用 mixup 的版本已完成 AR 500 步及 diffusion 2,000 步訓練，
 依驗證條件誤差選中第 100 步 checkpoint；AR 權重經檢查未變。
 固定 2023-12-29 截止的歷史，每個條件取樣 200 條：
 

@@ -296,13 +296,12 @@ class CNN_DiffusionUnet(nn.Module):
             
         return_pred_out = pred_out
 
-        if y_clean is not None:
+        # Keep legacy callers/checkpoints compatible; SPX explicitly disables mixup.
+        # y_clean still selects the training return type, but cannot enter conditioning
+        # when mixup is disabled. The true future remains the diffusion loss target.
+        if y_clean is not None and getattr(self.args, 'use_future_mixup', True):
             y_clean = y_clean[:,:,-self.pred_len:]
-
             rand_for_mask = torch.rand_like(y_clean).to(x.device)
-                
-        # ==================================================================================
-        if y_clean is not None:
             pred_out = rand_for_mask * pred_out + (1-rand_for_mask) * y_clean
         inp = torch.cat([x, pred_out, cond_info[:,:,self.ori_seq_len:]], dim=1)
 
