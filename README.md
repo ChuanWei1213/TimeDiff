@@ -2,6 +2,7 @@
 
 新增 SPX 單一指數實驗：固定預訓 AR，以未來 21 天的累積報酬與波動率控制生成。
 操作與驗證方式見 [SPX_EXPERIMENT.md](SPX_EXPERIMENT.md)，入口為 `spx_experiment.py`。
+SPX 預設停用 future mixup；分布對照見 [實驗 notebook](notebooks/spx_no_mixup_comparison.ipynb)。
 
 以 conditional diffusion 生成 Dow 10 個股的多變量日報酬序列，並以一套 τ 校準的
 stylized-facts 框架評估生成品質。

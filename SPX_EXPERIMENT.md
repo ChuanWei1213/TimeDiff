@@ -116,3 +116,69 @@ DDPM 的 v 還原，以及訓練奇數 batch 的噪聲步數配對。
 不能因修正後價格合法就認為生成品質合格。
 這只是單一歷史窗口、單一種子的開發診斷，尚未完成多窗口測試或 RL 評估。
 詳細數值及分布圖位於 `outputs/spx/initial_samples/`。
+
+## 第 1 階段：移除 mixup
+
+本階段只改變 future mixup，尚未新增條件一致性 loss 或 CFG。使用前述 `no_mixup`
+指令，保持原始資料、切分、模型大小、學習率、訓練步數、seed、取樣條件與樣本數。
+每組依同一驗證規則選擇 checkpoint，最佳步數可能不同。
+
+原始對照已保存在 `outputs/spx/initial`；若在全新 checkout 重跑對照，使用：
+
+```bash
+python3 spx_experiment.py train --future-mixup \
+  --train-end 2021-12-31 --val-end 2023-12-31 \
+  --ar-steps 500 --steps 2000 --out outputs/spx/initial
+python3 spx_experiment.py sample \
+  --checkpoint outputs/spx/initial/model.pt --history-end 2023-12-29 \
+  --condition -0.05 0.15 --condition 0.05 0.15 \
+  --condition -0.05 0.35 --condition 0.05 0.35 \
+  --n-paths 200 --out outputs/spx/initial_samples
+```
+
+既有輸出資料夾不會被覆寫，重跑時請指定新路徑並更新 notebook 的 `RUNS`。
+
+開啟 [spx_no_mixup_comparison.ipynb](notebooks/spx_no_mixup_comparison.ipynb)，
+由上而下執行可重算並比較：
+
+- 每條路徑的報酬／波動率分布與目標容許區間。
+- 二維條件分布、MAE、聯合命中率、OHLC 符號修正比例。
+- 訓練與驗證曲線、最佳 checkpoint、固定編號的路徑樣貌。
+
+Notebook 會檢查兩組資料指紋、歷史、已記錄的設定與樣本數，從 `paths.csv` 重算並
+核對已保存指標。圖表與比較 CSV 匯出至 `outputs/spx/no_mixup_comparison/`。
+Notebook 保留執行結果於 Git；大型資料與 checkpoint 維持本機保存。
+
+條件指定的是兩個統計量，不是完整機率分布。沒有假設生成路徑應符合常態分布；
+分位數是樣本分布範圍，不是信賴區間。移除 mixup 改變亂數消耗，同 seed 不代表
+所有訓練噪聲與 batch 順序完全配對。本輪只是一個歷史窗口、一個訓練 seed 的診斷。
+
+### 本輪結果
+
+程式版本 `2005511` 完成 AR 500 步、diffusion 2,000 步，選中第 900 步 checkpoint。
+最佳驗證條件 MSE 為 0.485747（原始 mixup：1.049102）。兩組預訓 AR 權重逐項相同，
+本輪訓練後 AR 權重亦保持不變。以下各組皆為 200 條完整生成路徑：
+
+| 目標報酬 | 目標年化波動率 | 無 mixup 平均報酬 | 無 mixup 平均波動率 | 原始命中率 | 無 mixup 命中率 |
+|---:|---:|---:|---:|---:|---:|
+| -5% | 15% | -4.34% | 14.89% | 25.5% | 42.5% |
+| +5% | 15% | +2.64% | 14.23% | 25.5% | 28.5% |
+| -5% | 35% | -4.74% | 28.76% | 0% | 14.5% |
+| +5% | 35% | +4.33% | 26.25% | 0% | 5.5% |
+
+四組等權平均：報酬 MAE 由 6.41 降至 3.71 個百分點，波動率 MAE 由 10.38 降至
+4.66 個百分點，聯合命中率由 12.75% 提升至 22.75%。四組的兩種 MAE 都降低，
+但 35% 波動率仍明顯偏低；+5%／15% 這組的平均報酬雖更偏離目標，逐路徑 MAE 仍下降，
+顯示平均值與分布誤差必須一起看。不能將這輪改善直接推論為 RL 表現提升。
+
+原始結果：`outputs/spx/no_mixup_samples/summary.csv`；notebook 會從 `paths.csv` 獨立重算核對。
+
+本環境的 Jupyter TCP 核心無法啟動，因此本輪以 IPython 同程序模式由上而下執行
+全部 8 格 Python 程式，保存表格及 4 張圖，指標核對全部通過，並人工檢查匯出圖表。
+一般 Jupyter 環境仍可直接 Run All；若同樣受限於本機連接埠，可使用：
+
+```bash
+python3 notebooks/execute_in_process.py notebooks/spx_no_mixup_comparison.ipynb
+```
+
+此輔助程式只支援本實驗的一般 Python／Matplotlib 輸出，不等同完整 Jupyter 核心或 widget 驗證。
