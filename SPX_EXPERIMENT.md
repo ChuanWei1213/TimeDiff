@@ -297,3 +297,18 @@ notebook 全部 10 格程式已以 IPython 同程序模式執行，原始路徑�
 全流程 **558.55 秒（約 9 分 19 秒）**，不含程式開發、測試及完成後人工檢視時間。
 
 計時來自本輪 `train/timings.json`、`samples/timings.json` 與 `pipeline_timings.json`；不是舊版本速度基準比較。
+## 三種模型合併比較 notebook
+
+[spx_three_way_comparison.ipynb](notebooks/spx_three_way_comparison.ipynb) 將 Mixup、No mixup、
+No mixup + 條件一致性 loss（λ=0.1）放在同一份 notebook 比較，沿用已保存的七組各 200 條路徑。
+內容包含設定與原始路徑核對、報酬／波動率分布、聯合命中率、訓練／驗證曲線、範例路徑、
+三組總覽與差值、歷史支持、High／Low 修正率、條件 loss 分項及已有的階段計時。
+缺少的舊實驗計時標示「未記錄」，不推估。只讀取既有實驗，不重新訓練或取樣。
+
+```bash
+MPLCONFIGDIR=/private/tmp/timediff-spx-mpl IPYTHONDIR=/private/tmp/timediff-spx-ipython \
+python3 notebooks/execute_in_process.py notebooks/spx_three_way_comparison.ipynb
+```
+
+10 格程式已依序用 IPython 同程序模式執行，保存 5 張圖的 notebook 輸出，並核對 4,200 條原始路徑。
+圖表與比較 CSV 匯出至獨立目錄 `outputs/spx/three_way_comparison/`，不覆蓋先前的比較結果。
