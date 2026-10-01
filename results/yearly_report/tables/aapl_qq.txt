@@ -1,0 +1,12 @@
+# aapl_qq
+Dashed y=x means perfect match. Slope<1 = amplitude too small; upturned ends = tails too heavy.
+======================================================================
+
+AAPL quantile comparison (x = real quantile, y = synthetic quantile)
+
+TimeDiff(Baseline)       q01=-0.0089 (真實 -0.0509)   q99=+0.0095 (真實 +0.0497)
+TimeDiff(v-prediction)   q01=-0.0407 (真實 -0.0509)   q99=+0.0433 (真實 +0.0497)
+DVA                      q01=-0.0286 (真實 -0.0509)   q99=+0.0445 (真實 +0.0497)
+CN-Diff                  q01=-0.0150 (真實 -0.0509)   q99=+0.0125 (真實 +0.0497)
+NS-Diff                  q01=-0.0176 (真實 -0.0509)   q99=+0.0186 (真實 +0.0497)
+ARMD                     q01=-0.0061 (真實 -0.0509)   q99=+0.0089 (真實 +0.0497)

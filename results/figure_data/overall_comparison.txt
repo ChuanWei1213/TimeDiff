@@ -1,0 +1,19 @@
+# overall_comparison
+FIGURE 6 — Overall Model Comparison（primary window only；2020/2022 僅作 regime robustness，不參與排名）。
+#===============================================================================
+
+                                   Stylized Facts  Cross-Asset  Overall
+Method                                                                 
+ARMD                                       0.2917       0.2140   0.2529
+Baseline (TimeDiff walk-forward)           0.2383       0.3754   0.3069
+CN-Diff                                    0.1642       0.3102   0.2372
+NS-Diff                                    0.2802       0.3980   0.3391
+TimeDiff (v-prediction)                    0.3208       0.0255   0.1732
+[NULL] GARCH+Sigma+t                       0.4238       0.3044   0.3641
+[NULL] Gaussian(Sigma)                     0.3142       0.5771   0.4457
+v + 4-Layer (corr-fixed)                   0.4374       0.5145   0.4759
+v + Cross Loss                             0.3235       0.0728   0.1982
+v + Cross-Asset Whitening                  0.3137       0.6096   0.4616
+v + High-Noise Cross Loss                  0.2430       0.1003   0.1717
+v + Whiten + VolScale                      0.3398       0.2712   0.3055
+v + Whiten + VolScale + HeavyTail          0.4414       0.2419   0.3417

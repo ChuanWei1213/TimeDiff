@@ -1,0 +1,20 @@
+# stylized_scores
+FIGURE 1 — Stylized Facts Score Heatmap. 每格 = 該模型在該 stylized fact 上的 fidelity score（1 = 與真實資料一致）。
+#===============================================================================
+
+                                   Heavy Tail (Hill alpha)  Negative Skewness  Jump Behaviour  Volatility Clustering  Leverage Effect  SF Score
+ARMD                                                0.3627             0.4151          0.0045                 0.3138           0.2654    0.2917
+CN-Diff                                             0.2348             0.3853          0.0052                 0.0106           0.0392    0.1642
+Baseline (TimeDiff walk-forward)                    0.1332             0.5938          0.0062                 0.2179           0.1152    0.2383
+TimeDiff (v-prediction)                             0.0713             0.5408          0.2372                 0.3493           0.4200    0.3208
+[NULL] GARCH+Sigma+t                                0.4297             0.4894          0.3842                 0.3955           0.3844    0.4238
+[NULL] Gaussian(Sigma)                              0.0676             0.5296          0.2334                 0.3451           0.4112    0.3142
+NS-Diff                                             0.2498             0.4574          0.0443                 0.2949           0.2814    0.2802
+v + Whiten + VolScale                               0.1705             0.5191          0.2678                 0.3799           0.3566    0.3398
+v + Whiten + VolScale + HeavyTail                   0.4908             0.4935          0.4037                 0.3961           0.3721    0.4414
+v + 4-Layer (corr-fixed)                            0.4782             0.4913          0.4035                 0.3970           0.3693    0.4374
+v + Cross Loss                                      0.0939             0.5035          0.1976                 0.4194           0.4280    0.3235
+v + High-Noise Cross Loss                           0.2106             0.3170          0.1947                 0.2459           0.2260    0.2430
+v + Cross-Asset Whitening                           0.0643             0.5339          0.2279                 0.3463           0.4109    0.3137
+
+⚠ low statistical power (|θ_real|/τ = 0.89 < 1): Leverage Effect

@@ -1,0 +1,242 @@
+====================================================================================================
+FINANCIAL FIDELITY EVALUATION — METHODOLOGY REPORT
+====================================================================================================
+
+1. PRIMARY EVALUATION WINDOW
+----------------------------------------------------------------------------------------------------
+   PRIMARY_EVAL_START = 2018-01-02
+   PRIMARY_EVAL_END   = 2024-12-31
+   T = 1761 trading days, 10 tickers: AAPL, AMGN, CRM, CSCO, IBM, INTC, MSFT, NKE, VZ, WMT
+   Robustness windows (NOT used for ranking): 2020 Crisis 2020-01-01~2020-12-31; 2022 Bear 2022-01-01~2022-12-31
+
+2. WHY THIS TIME WINDOW WAS SELECTED
+----------------------------------------------------------------------------------------------------
+   選擇準則完全基於真實市場資料的統計性質，在計算任何模型分數之前固定：
+   (a) Regime 覆蓋完整：2018 市場修正、2020 COVID 危機、2022 升息熊市、2023-24 復甦。
+   (b) 訊噪比：五個 stylized fact 的真實值皆須高於其自身重抽噪音 tau。單一年度視窗
+       （2024）的 skewness 噪音尺度 tau=1.30 大於真實訊號 |−0.96|；其 ACF(r^2) 曲線
+       平均僅 −0.008、leverage 僅 −0.001，等於用一個本身不具該性質的期間評估模型。
+   (c) 估計可靠度：Hill 尾部樣本 k 由 6 (T=252) 提升至 42 (T=1761)，相對 SE 40% -> 15%；
+       5% 尾部曝險由 12 筆提升至 88 筆，tail dependence 方可估計。
+   (d) 資料完整性：10 檔於該期間零缺值。
+   (e) 與 rolling generation 的生成期完全一致，不需截斷、不引入未來資料。
+   ANTI-CHERRY-PICKING：window 的選擇未使用任何模型的 fidelity 分數，
+   且刻意排除「某模型在該期間表現較好」這一類理由。所有 Method 使用同一 window。
+
+3. STYLIZED FACTS DEFINITIONS (Level 1, univariate)
+----------------------------------------------------------------------------------------------------
+   五個 fact 屬於三種不同數學性質，因此使用三種不同的 distance：
+     distribution-level : Heavy Tail, Negative Skewness
+     event-level        : Jump Behaviour
+     temporal-dynamics  : Volatility Clustering, Leverage Effect
+
+4. EACH METRIC'S REAL / SYNTHETIC CALCULATION
+----------------------------------------------------------------------------------------------------
+   [Heavy Tail]  左尾 Hill 指數。x = sort(|r| for r<0) 由大到小，
+                 k = ceil(n_neg^(2/3))（本 window 平均 k≈92），u = x_(k)
+                 alpha_hat = [ (1/k) * sum_{j=1..k} log(x_(j)/u) ]^(-1)
+                 P(X>x) ~ x^(-alpha)；alpha 小 => 尾巴厚。只用負報酬（下跌尾部才是風險關心對象）。
+   [Skewness]    g1 = m3 / m2^(3/2)，小樣本偏誤修正（bias=False）。
+   [Jump]        門檻 u_i = q_{0.95}(|r_real,i|)，**由真實資料定義並套用於 synthetic**。
+                 frequency f = #{|r_t| > u_i} / T；magnitude m = E[|r_t| | |r_t| > u_i]。
+                 無超越事件時 magnitude 記為 undefined 且該子分數 = 0（不得靜默丟棄）。
+   [Vol.Clust.]  rho(k) = Corr(r_t^2, r_{t+k}^2)，k = 1..20。
+   [Leverage]    L(k)   = Corr(r_t, r_{t+k}^2)，k = 1..20。
+   K = 20 的三個理由：(i) 約一個交易月，是波動聚集在實務上最相關的水平；
+                 (ii) Bartlett SE ≈ 1/sqrt(T)，更長的 lag 已落在噪音帶內；
+                 (iii) **walk-forward 的 PRED_LEN = 21**：lag >= 21 的相依性
+                 有一部分來自真實 condition 而非模型，納入會系統性高估模型。
+
+5. RAW DISTANCE FORMULAS
+----------------------------------------------------------------------------------------------------
+   D_tail  = |log(alpha_syn / alpha_real)|
+             （log-ratio 而非相對誤差：高估 2 倍與低估 2 倍距離相同；相對誤差偏袒低估）
+   D_skew  = |skew_syn - skew_real|
+             （絕對距離：skewness 無量綱且可跨零，相對距離無定義）
+   D_jump_freq = |f_syn - f_real| ;  D_jump_mag = |log(m_syn / m_real)|
+   D_VC    = (1/K) * sum_k |rho_syn(k) - rho_real(k)|      (L1 curve distance)
+   D_LE    = (1/K) * sum_k |L_syn(k)  - L_real(k)|         (L1 curve distance)
+   D_corr  = mean_{i<j} |C_real(i,j) - C_syn(i,j)|         (off-diagonal only)
+   D_PCA   = 0.5 * sum_k |EVR_real,k - EVR_syn,k|          (total variation distance)
+   D_tailD = mean_{i!=j} |lambdaL_real(i,j) - lambdaL_syn(i,j)|
+
+6. NORMALIZATION METHOD
+----------------------------------------------------------------------------------------------------
+   所有 metric 共用同一個尺度化方式：以「真實資料自身的重抽噪音」為單位。
+     tau_m = E_b [ D_m( theta_hat(X_real^{b1}), theta_hat(X_real^{b2}) ) ]
+   其中 X_real^{b} 由 stationary block bootstrap（Politis-Romano，B=500，
+   平均 block 長度 = T^(1/3)）產生。tau **只使用真實資料**，不接觸任何 synthetic 輸出，
+   因此不存在 circularity；calibration 也未使用模型結果決定門檻。
+   jump frequency 的 tau 改用二項閉式解 sqrt(2 f(1-f)/T)（比例的精確方法）。
+
+   **Heavy Tail 的 tau 是例外**：Hill 是極值順序統計量，一般 bootstrap 對它不一致
+   （Athreya 1987）—— 重抽會重複抽到同一批極端觀測，低估尾部的真實變異，使 tau 偏大、
+   分數偏鬆。因此改用**不重疊**的 m-out-of-n subsampling：在多個子樣本長度 m 上計算
+   tau(m)，擬合 log tau = a + b log m，再外推到 n。兩個實作要點缺一不可：
+     (i)  兩個子樣本必須不重疊 —— 否則 m 大時兩組共用大部分觀測，tau 被人為壓向 0；
+     (ii) m 必須滿足 2m << n —— 否則不重疊子樣本的位置幾乎唯一，等於只比較一組固定切分。
+   由 k = ceil(n^(2/3)) 可推得 SE(alpha_hat) ~ n^(-1/3)，故理論上 b = -1/3。
+   在 primary window 上實證擬合得到 b = -0.332，與理論值吻合，驗證了外推的正當性。
+   T ~ 252 的 robustness window 因網格跨度不足無法可靠擬合，改用理論值 b = -1/3。
+
+   本 window 的 tau（10 檔平均）：
+     tau_heavy_tail       = 0.10904
+     tau_skewness         = 0.51374
+     tau_jump_freq        = 0.00734
+     tau_jump_mag         = 0.06442
+     tau_vol_clustering   = 0.04607
+     tau_leverage         = 0.03208
+     tau_correlation      = 0.06685
+     tau_pca              = 0.05476
+     tau_tail_dep_copula  = 0.05999
+     tau_tail_dep_absolute = 0.07037
+
+   為何不用其他做法：
+     score = 1 - D      需要 D in [0,1]，只有 TV distance 滿足，其餘 metric 無界。
+     score = exp(-D)    等於把 tau 任意設為 1/ln2，無依據。
+     D / |theta_real|   leverage effect 真實值僅 -0.03、jump frequency 0.05，
+                        分母近零會產生假的巨大相對誤差（§23 問題）。本框架改除以
+                        **標準誤**而非 metric 值，因此近零不構成問題。
+
+7. SCORE TRANSFORMATION
+----------------------------------------------------------------------------------------------------
+   Score = 2 ^ ( - D / tau )   in (0, 1]
+     D = 0    -> Score = 1      完全一致
+     D = tau  -> Score = 0.5    誤差恰等於真實估計量自身的重抽誤差
+     D -> inf -> Score -> 0
+   敏感度：另以 Gaussian kernel exp(-0.5*(D/tau)^2) 重算，確認排名不依賴 kernel 選擇。
+
+8. 10-STOCK AGGREGATION METHOD
+----------------------------------------------------------------------------------------------------
+   for ticker in TICKERS:  real metric -> syn metric -> distance -> score
+   Score_metric = (1/10) * sum_i Score_metric,i
+   **絕不先把 10 檔 concatenate 再計算 univariate metric** —— 那會製造 9 個假的跨股票
+   斷點污染所有時序 metric，並把不同尺度的資產混成一個混合分布。
+   per-ticker 的原始 metric、distance、score 全部保存於 results/tables/asset_level_*.csv。
+
+9. STYLIZED FACTS WEIGHTING
+----------------------------------------------------------------------------------------------------
+   採用 hierarchical weighting（w_distribution = 0.5, w_dynamics = 0.5）：
+     Distribution = (Score_HeavyTail + Score_Skew) / 2
+     Dynamics     = (Score_Jump + Score_VC + Score_LE) / 3
+     SF Score     = 0.5 * Distribution + 0.5 * Dynamics
+   理由：等權方案下 Dynamics 會拿到 60% 總權重，但該 60/40 純粹來自「我們碰巧定義了
+   3 個 dynamics 與 2 個 distribution 指標」，是指標數量的產物而非金融判斷。
+   Hierarchical 讓權重反映兩個概念軸的對等地位，且未來新增指標時保持穩定。
+   權重在看到任何模型分數之前固定；附錄同時報 equal weighting 以證明結論不依賴權重。
+
+10. CROSS-ASSET METRICS (Level 2, multivariate)
+----------------------------------------------------------------------------------------------------
+   [Correlation]  Pearson 相關矩陣的 off-diagonal MAE（另報 Spearman 作穩健性）。
+   [PCA]          **相關矩陣**（非共變異矩陣）的特徵值 -> explained variance ratio。
+                  用相關矩陣的兩個理由：(i) 共變異的特徵值會被變異數尺度差異主導，
+                  而尺度誤差已在 univariate 層評過，重複計分會扭曲 Overall；
+                  (ii) 金融 RMT / 因子結構文獻（Laloux 1999、Plerou 2002）的標準做法。
+                  PCA 在此**不是用來預測**，而是檢查 synthetic market 是否保留真實市場的
+                  共同潛在因子結構（PC1 = 市場因子強度）。
+   [Tail Dep.]    Copula / rank-based：lambdaL(i,j) = P(U_j < 0.05 | U_i < 0.05)，U = 經驗 CDF。
+                  為何用下尾相依而非單純相關：相關係數是平均的線性共動，對常態分布才是
+                  完整刻畫；金融危機的本質是尾部共動 —— 平時相關 0.4 的兩檔可能在崩盤時
+                  同時重挫。這正是投資組合分散化失效的機制，也是 VaR/CVaR 最關鍵的輸入。
+                  為何用 copula 版為主：lambdaL 依定義是 copula 泛函，對邊際的單調變換不變；
+                  邊際尺度誤差已在 univariate 層懲罰過，用真實絕對門檻會重複計分，且
+                  變異數收縮嚴重的模型會因曝險數為 0 而 undefined。
+                  絕對門檻版保留為 supplementary analysis（見表格中的 [suppl.] 欄）。
+
+11. CROSS-ASSET DISTANCE FORMULAS
+----------------------------------------------------------------------------------------------------
+   同第 5 節的 D_corr / D_PCA / D_tailD。
+   D_PCA 使用 total variation distance：EVR 是機率向量（和為 1），0.5*L1 即 TV，
+   天然有界於 [0,1] 且有明確機率意義。
+
+12. CROSS-ASSET WEIGHTING
+----------------------------------------------------------------------------------------------------
+   CrossAsset = (Score_corr + Score_PCA + Score_tailDep) / 3   （等權）
+   理由：三者分別對應線性共動水平、共同因子結構、極端共動，無理論依據認定何者更重要。
+   REDUNDANCY RULE（事先設定，不依結果調整）：corr 與 PCA 並非資訊獨立，EVR spectrum
+   是相關矩陣的函數。若兩者 score 在所有模型上的相關係數 > 0.9，則改為
+   corr+PCA 合計 0.5、tail dep 0.5，以免相關結構被雙重計分。
+   本次檢查：n = 503, corr = 0.9855770069841472 -> 重複資訊 -> 依事先規則改為 corr+pca 合計 0.5、tail dep 0.5
+
+13. OVERALL SCORE FORMULA
+----------------------------------------------------------------------------------------------------
+   Overall = 0.5 * SF_Score + 0.5 * CrossAsset_Score
+   採 50/50 且未偏離：univariate fidelity 與 multivariate fidelity 是兩個互補且不可
+   互相取代的品質軸 —— 邊際分布完美但股票間互相獨立的生成器，與相關結構完美但邊際
+   是高斯的生成器，作為 synthetic market 都同樣不可用。
+
+14. STATISTICAL RELIABILITY
+----------------------------------------------------------------------------------------------------
+   Hill alpha         : m-out-of-n **subsampling**。一般 bootstrap 對極值順序統計量
+                        不一致（Athreya 1987），不可直接使用。
+   Skewness           : stationary block bootstrap。高階動差收斂慢，CI 會很寬（誠實反映）。
+   Jump frequency     : **Wilson score interval**（比例的精確方法，優於 bootstrap）。
+   Jump magnitude     : block bootstrap，條件於超越事件；超越事件 < 10 筆時標記不可靠。
+   VC / LE curve      : stationary block bootstrap，保留時序相依。
+   Corr / PCA / TailD : block bootstrap，**整列一起重抽**以保留橫斷面相依。
+   Tail dependence    : 另檢查曝險數；< 20 筆時標記不可靠。
+   多路徑模型          : 額外報告跨路徑的離散度 —— 這是**生成不確定性**，
+                        與估計不確定性是不同的東西，必須分開呈現。
+   訊噪比 |theta_real|/tau < 1.0 的 metric 在表格中標記為 low statistical power。
+
+15. LIMITATIONS
+----------------------------------------------------------------------------------------------------
+   (a) synthetic 序列**不是 free-running simulation**：walk-forward 每 21 個交易日就
+       重新錨定到一段真實的 63 日 condition。因此超過 21 個 lag 的時間相依性有一部分
+       來自真實 condition 而非模型本身。這是本框架把 K 限制在 20 的直接原因，
+       也意味著本評估**不能**推論模型的長期自主模擬能力。
+   (b) 目前只有 walk-forward 協定的模型涵蓋 primary window；32 個單次 2024 生成的配置
+       必須以相同協定重新生成後才能進入主表（Option 1）。
+   (c) 尺度（VolRatio）刻意不納入 fidelity score，因為它是尺度而非 stylized fact；
+       但它獨立報告，且它解釋了 absolute-threshold jump / tail dependence 的行為。
+   (d) tau 由真實資料的單一實現估得，本身帶有估計誤差；B 增大可降低但無法消除。
+   (e) 2020 / 2022 robustness window 的 T ≈ 252，部分 metric 的統計功效不足，
+       表格已標記；這些 window 不參與主要排名。
+   (f) **Heavy Tail 的 tau 混入了 regime 變異**。其餘四個 metric 的 tau 用 stationary
+       block bootstrap，兩組重抽都從整段期間取樣，因此量到的是純粹的抽樣噪音。
+       但 Hill 是極值順序統計量、一般 bootstrap 對它不一致（Athreya 1987），
+       故改用不重疊的子區間 —— 而兩段不重疊的子區間必然來自**不同的時間段**
+       （例如拿 2020 COVID 那段與 2023 平靜期相比），所以 tau_heavy_tail 同時包含了
+       抽樣噪音**與** regime 之間的真實差異，會比純抽樣噪音大，使 Heavy Tail 的
+       評分偏寬鬆。這是兩害相權的結果：另一個選項（一般 bootstrap）在理論上就是錯的。
+       影響範圍：tau 與模型無關，故 Heavy Tail 一欄的**模型排名不受影響**，
+       只有絕對水準偏高。若要消除此偏誤，需改用能分離 regime 效應的估計方式
+       （例如在 regime 內部做 subsampling），屬未來工作。
+
+16. POTENTIAL REVIEWER CONCERNS
+----------------------------------------------------------------------------------------------------
+   Q: Score 的 normalization 是不是為了讓數字好看而挑的？
+   A: tau 完全由真實資料的 block bootstrap 決定，未使用任何 synthetic 輸出；
+      raw distance 與 score 分別以獨立表格（SF-2 / SF-1）呈現，可直接檢核。
+   Q: 為什麼不是五個 stylized fact 等權？
+   A: 等權會讓權重被指標數量決定（3 vs 2）。附錄同時報等權結果與排名。
+   Q: 五個 metric 的 tau 為什麼不是用同一種方法算？
+   A: 四個用 stationary block bootstrap；Heavy Tail 例外，因為 Hill 是極值順序統計量，
+      一般 bootstrap 對它不一致，改用不重疊子區間的 m-out-of-n subsampling。
+      這個例外的代價已在 Limitations (f) 完整揭露。
+   Q: Jump 分數這麼低是不是指標壞了？
+   A: 不是。門檻由真實資料定義，多數模型因變異數收縮而幾乎不產生超越事件，
+      這是模型的真實缺陷。另附標準化版本作為診斷，區分「尺度錯」與「形狀錯」。
+   Q: 為什麼 tail dependence 用各序列自身的分位數？
+   A: lambdaL 依定義是 copula 泛函，對邊際單調變換不變；使用真實絕對門檻會與
+      univariate 層的尺度懲罰重複計分，且會使多數模型 undefined。絕對門檻版
+      仍以 supplementary 形式完整報告。
+   Q: 有沒有 look-ahead？
+   A: 無。condition 一律取 origin 之前的真實資料；價格重建由單一 2017 seed 全段累積，
+      生成第 t 日的價格接的是生成第 t-1 日的價格，不接真實價格；評估只用生成期。
+
+17. WHY THE EVALUATION FRAMEWORK IS FINANCIALLY MEANINGFUL
+----------------------------------------------------------------------------------------------------
+   本框架評估的不是「synthetic price 是否跟 real price 長得像」——
+   逐日 price trajectory correlation 刻意**不**作為 fidelity metric，因為在
+   近乎不可預測的報酬序列上，它衡量的是預測能力而非模擬品質。
+   本框架評估的是 synthetic market 是否保留真實市場的：
+     (1) 分布性質   —— 尾部厚度決定極端損失機率，負偏度決定下檔風險不對稱；
+     (2) 事件性質   —— 跳躍的頻率與幅度決定 gap risk 與避險成本；
+     (3) 時序動態   —— 波動聚集決定風險預測，leverage effect 決定波動率曲面的偏斜；
+     (4) 橫斷面結構 —— 相關與共同因子決定分散化效果，尾部相依決定危機時的同時虧損。
+   這四者正是把 synthetic data 用於風險管理、投組建構、壓力測試時真正被依賴的性質。
+
+====================================================================================================
+Generated by evaluation/run_all.py  |  bootstrap B=500, seed=20240816
+====================================================================================================

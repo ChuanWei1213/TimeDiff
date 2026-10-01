@@ -1,0 +1,2 @@
+model,window,path,d_correlation,d_correlation_frobenius,d_correlation_spearman,d_pca,d_tail_dep_copula,d_tail_dep_absolute,score_correlation,score_pca,score_tail_dep_copula,score_tail_dep_absolute,evr1_real,evr1_syn,n_exceed_abs_syn,n_exceed_abs_real,vol_ratio
+cndiff,2018-2024 (Primary),0,0.12642560185734456,1.434317974559925,0.08631549302001594,0.07070354524543922,0.11919191919191918,,0.2696006056468673,0.40860652540770126,0.2522599302069513,,0.4658243018043187,0.4540138130273042,0.1,88.0,0.2178226822068901

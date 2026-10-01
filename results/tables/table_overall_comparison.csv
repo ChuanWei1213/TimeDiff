@@ -1,0 +1,40 @@
+,Method,Time,T,Paths,Stylized Facts,Cross-Asset,Overall,Role,Low-power metrics
+0,ARMD,2018-2024 (Primary),1761,1,0.29173442223755075,0.21401201443036422,0.2528732183339575,PRIMARY (ranking),Leverage Effect
+1,ARMD,2020 Crisis,253,1,0.4126098900784493,0.2087874049785162,0.31069864752848275,robustness only,"Negative Skewness, Leverage Effect"
+2,ARMD,2022 Bear,251,1,0.39928137337177616,0.41353641213743614,0.4064088927546061,robustness only,"Negative Skewness, Volatility Clustering, Leverage Effect"
+3,Baseline (TimeDiff walk-forward),2018-2024 (Primary),1761,50,0.23829037080660917,0.37543724140119694,0.306863806103903,PRIMARY (ranking),Leverage Effect
+4,Baseline (TimeDiff walk-forward),2020 Crisis,253,50,0.3429422607629744,0.5407180951959922,0.4418301779794833,robustness only,"Negative Skewness, Leverage Effect"
+5,Baseline (TimeDiff walk-forward),2022 Bear,251,50,0.3424513110981905,0.1593364612915398,0.25089388619486513,robustness only,"Negative Skewness, Volatility Clustering, Leverage Effect"
+6,CN-Diff,2018-2024 (Primary),1761,1,0.16417623098227327,0.3101556870871733,0.23716595903472326,PRIMARY (ranking),Leverage Effect
+7,CN-Diff,2020 Crisis,253,1,0.21588359641768207,0.3621648289522035,0.28902421268494277,robustness only,"Negative Skewness, Leverage Effect"
+8,CN-Diff,2022 Bear,251,1,0.25284428743007636,0.21805861405191093,0.23545145074099366,robustness only,"Negative Skewness, Volatility Clustering, Leverage Effect"
+9,NS-Diff,2018-2024 (Primary),1761,1,0.28021438866846066,0.39797399636922787,0.33909419251884426,PRIMARY (ranking),Leverage Effect
+10,NS-Diff,2020 Crisis,253,1,0.34246881526043804,0.227072357345403,0.2847705863029205,robustness only,"Negative Skewness, Leverage Effect"
+11,NS-Diff,2022 Bear,251,1,0.3935319277082,0.40888739933041335,0.40120966351930665,robustness only,"Negative Skewness, Volatility Clustering, Leverage Effect"
+12,TimeDiff (v-prediction),2018-2024 (Primary),1761,50,0.3207782831330332,0.02552590282873319,0.1731520929808832,PRIMARY (ranking),Leverage Effect
+13,TimeDiff (v-prediction),2020 Crisis,253,50,0.3369483288613646,0.0680695185941854,0.202508923727775,robustness only,"Negative Skewness, Leverage Effect"
+14,TimeDiff (v-prediction),2022 Bear,251,50,0.4731184732319824,0.10202914092281797,0.2875738070774002,robustness only,"Negative Skewness, Volatility Clustering, Leverage Effect"
+15,[NULL] GARCH+Sigma+t,2018-2024 (Primary),1761,50,0.42378892146202823,0.3043986765562446,0.3640937990091364,PRIMARY (ranking),Leverage Effect
+16,[NULL] GARCH+Sigma+t,2020 Crisis,253,50,0.4108911358412758,0.20955959930166196,0.3102253675714689,robustness only,"Negative Skewness, Leverage Effect"
+17,[NULL] GARCH+Sigma+t,2022 Bear,251,50,0.48214629325189096,0.29041829975335764,0.3862822965026242,robustness only,"Negative Skewness, Volatility Clustering, Leverage Effect"
+18,[NULL] Gaussian(Sigma),2018-2024 (Primary),1761,50,0.314244880820309,0.5771060645407359,0.44567547268052243,PRIMARY (ranking),Leverage Effect
+19,[NULL] Gaussian(Sigma),2020 Crisis,253,50,0.32450569983785194,0.3953102781959952,0.3599079890169235,robustness only,"Negative Skewness, Leverage Effect"
+20,[NULL] Gaussian(Sigma),2022 Bear,251,50,0.4824556492594278,0.4826279928110891,0.48254182103525833,robustness only,"Negative Skewness, Volatility Clustering, Leverage Effect"
+21,v + 4-Layer (corr-fixed),2018-2024 (Primary),1761,50,0.437350838585934,0.51446475649794,0.475907797541937,PRIMARY (ranking),Leverage Effect
+22,v + 4-Layer (corr-fixed),2020 Crisis,253,50,0.41543093455412333,0.30523347072265566,0.3603322026383895,robustness only,"Negative Skewness, Leverage Effect"
+23,v + 4-Layer (corr-fixed),2022 Bear,251,50,0.489692793132121,0.46546257545319647,0.47757768429265873,robustness only,"Negative Skewness, Volatility Clustering, Leverage Effect"
+24,v + Cross Loss,2018-2024 (Primary),1761,50,0.3235129623779885,0.0727926731844365,0.19815281778121252,PRIMARY (ranking),Leverage Effect
+25,v + Cross Loss,2020 Crisis,253,50,0.39890984901798837,0.3200014686724362,0.35945565884521224,robustness only,"Negative Skewness, Leverage Effect"
+26,v + Cross Loss,2022 Bear,251,50,0.46523090519899457,0.13060290793071022,0.29791690656485237,robustness only,"Negative Skewness, Volatility Clustering, Leverage Effect"
+27,v + Cross-Asset Whitening,2018-2024 (Primary),1761,50,0.3137432671212637,0.6095509728461446,0.46164711998370406,PRIMARY (ranking),Leverage Effect
+28,v + Cross-Asset Whitening,2020 Crisis,253,50,0.33047535527774563,0.3655292974670424,0.348002326372394,robustness only,"Negative Skewness, Leverage Effect"
+29,v + Cross-Asset Whitening,2022 Bear,251,50,0.4809869378066086,0.5052907182863713,0.4931388280464899,robustness only,"Negative Skewness, Volatility Clustering, Leverage Effect"
+30,v + High-Noise Cross Loss,2018-2024 (Primary),1761,50,0.24300438470502686,0.10034231675700685,0.17167335073101683,PRIMARY (ranking),Leverage Effect
+31,v + High-Noise Cross Loss,2020 Crisis,253,50,0.4073429135823592,0.18992048716455656,0.2986317003734579,robustness only,"Negative Skewness, Leverage Effect"
+32,v + High-Noise Cross Loss,2022 Bear,251,50,0.42689276247372687,0.15540866952566543,0.29115071599969616,robustness only,"Negative Skewness, Volatility Clustering, Leverage Effect"
+33,v + Whiten + VolScale,2018-2024 (Primary),1761,50,0.3397957995831598,0.27118464424217464,0.30549022191266717,PRIMARY (ranking),Leverage Effect
+34,v + Whiten + VolScale,2020 Crisis,253,50,0.3658311285247957,0.19535727708431902,0.2805942028045573,robustness only,"Negative Skewness, Leverage Effect"
+35,v + Whiten + VolScale,2022 Bear,251,50,0.47670959978138666,0.2770967056831026,0.37690315273224456,robustness only,"Negative Skewness, Volatility Clustering, Leverage Effect"
+36,v + Whiten + VolScale + HeavyTail,2018-2024 (Primary),1761,50,0.44140398829666916,0.24190500025293685,0.341654494274803,PRIMARY (ranking),Leverage Effect
+37,v + Whiten + VolScale + HeavyTail,2020 Crisis,253,50,0.4168765596618977,0.1869771797404105,0.3019268697011541,robustness only,"Negative Skewness, Leverage Effect"
+38,v + Whiten + VolScale + HeavyTail,2022 Bear,251,50,0.49087555801883487,0.26647815582006434,0.37867685691944963,robustness only,"Negative Skewness, Volatility Clustering, Leverage Effect"

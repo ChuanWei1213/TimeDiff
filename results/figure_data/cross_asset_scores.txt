@@ -1,0 +1,18 @@
+# cross_asset_scores
+FIGURE 2 — Cross-Asset Score Heatmap.
+#===============================================================================
+
+                                   Corr Score  PCA Score  Tail Dep. Score (copula)  Cross-Asset Score
+ARMD                                   0.1890     0.1551                    0.2979             0.2140
+CN-Diff                                0.2696     0.4086                    0.2523             0.3102
+Baseline (TimeDiff walk-forward)       0.4822     0.4514                    0.1927             0.3754
+TimeDiff (v-prediction)                0.0160     0.0110                    0.0495             0.0255
+[NULL] GARCH+Sigma+t                   0.3881     0.3573                    0.1677             0.3044
+[NULL] Gaussian(Sigma)                 0.7032     0.7163                    0.3118             0.5771
+NS-Diff                                0.4973     0.4974                    0.1992             0.3980
+v + Whiten + VolScale                  0.3523     0.3140                    0.1472             0.2712
+v + Whiten + VolScale + HeavyTail      0.3098     0.2723                    0.1436             0.2419
+v + 4-Layer (corr-fixed)               0.6651     0.6503                    0.2280             0.5145
+v + Cross Loss                         0.0710     0.0483                    0.0991             0.0728
+v + High-Noise Cross Loss              0.0648     0.1018                    0.1344             0.1003
+v + Cross-Asset Whitening              0.7464     0.7974                    0.2848             0.6096

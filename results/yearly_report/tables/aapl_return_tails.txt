@@ -1,0 +1,14 @@
+# aapl_return_tails
+Log y-axis. Where the blue curve stops is the widest event that method ever produced.
+========================================================================
+
+AAPL tails (log y-axis)
+
+series                           min       max       q01       q99
+REAL                         -0.1377    0.1132   -0.0509    0.0497
+TimeDiff(Baseline)           -0.0151    0.0144   -0.0089    0.0095
+TimeDiff(v-prediction)       -0.0609    0.0604   -0.0407    0.0433
+DVA                          -0.0638    0.0972   -0.0286    0.0445
+CN-Diff                      -0.0230    0.0143   -0.0150    0.0125
+NS-Diff                      -0.0273    0.0478   -0.0176    0.0186
+ARMD                         -0.0113    0.0221   -0.0061    0.0089

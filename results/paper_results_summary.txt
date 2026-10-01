@@ -1,0 +1,286 @@
+====================================================================================================
+PAPER RESULTS SUMMARY
+Primary evaluation window: 2018-01-02 ~ 2024-12-31
+====================================================================================================
+
+1. BEST STYLIZED FACTS MODEL
+----------------------------------------------------------------------------------------------------
+   v + Whiten + VolScale + HeavyTail   SF Score = 0.4414
+
+2. BEST CROSS-ASSET MODEL
+----------------------------------------------------------------------------------------------------
+   v + Cross-Asset Whitening   Cross-Asset Score = 0.6096
+
+3. BEST OVERALL MODEL
+----------------------------------------------------------------------------------------------------
+   v + 4-Layer (corr-fixed)   Overall = 0.4759
+   注意：排名不可只看 Overall Score，必須同時檢視第 9 節的 trade-off 分析。
+
+4. STRONGEST STYLIZED FACT
+----------------------------------------------------------------------------------------------------
+   ARMD: Negative Skewness (0.4151)
+   CN-Diff: Negative Skewness (0.3853)
+   Baseline (TimeDiff walk-forward): Negative Skewness (0.5938)
+   TimeDiff (v-prediction): Negative Skewness (0.5408)
+   [NULL] GARCH+Sigma+t: Negative Skewness (0.4894)
+   [NULL] Gaussian(Sigma): Negative Skewness (0.5296)
+   NS-Diff: Negative Skewness (0.4574)
+   v + Whiten + VolScale: Negative Skewness (0.5191)
+   v + Whiten + VolScale + HeavyTail: Negative Skewness (0.4935)
+   v + 4-Layer (corr-fixed): Negative Skewness (0.4913)
+   v + Cross Loss: Negative Skewness (0.5035)
+   v + High-Noise Cross Loss: Negative Skewness (0.3170)
+   v + Cross-Asset Whitening: Negative Skewness (0.5339)
+
+5. WEAKEST STYLIZED FACT
+----------------------------------------------------------------------------------------------------
+   ARMD: Jump Behaviour (0.0045)
+   CN-Diff: Jump Behaviour (0.0052)
+   Baseline (TimeDiff walk-forward): Jump Behaviour (0.0062)
+   TimeDiff (v-prediction): Heavy Tail (Hill alpha) (0.0713)
+   [NULL] GARCH+Sigma+t: Jump Behaviour (0.3842)
+   [NULL] Gaussian(Sigma): Heavy Tail (Hill alpha) (0.0676)
+   NS-Diff: Jump Behaviour (0.0443)
+   v + Whiten + VolScale: Heavy Tail (Hill alpha) (0.1705)
+   v + Whiten + VolScale + HeavyTail: Leverage Effect (0.3721)
+   v + 4-Layer (corr-fixed): Leverage Effect (0.3693)
+   v + Cross Loss: Heavy Tail (Hill alpha) (0.0939)
+   v + High-Noise Cross Loss: Jump Behaviour (0.1947)
+   v + Cross-Asset Whitening: Heavy Tail (Hill alpha) (0.0643)
+
+6. STRONGEST CROSS-ASSET PROPERTY
+----------------------------------------------------------------------------------------------------
+   ARMD: Tail Dep. Score (copula) (0.2979)
+   CN-Diff: PCA Score (0.4086)
+   Baseline (TimeDiff walk-forward): Corr Score (0.4822)
+   TimeDiff (v-prediction): Tail Dep. Score (copula) (0.0495)
+   [NULL] GARCH+Sigma+t: Corr Score (0.3881)
+   [NULL] Gaussian(Sigma): PCA Score (0.7163)
+   NS-Diff: PCA Score (0.4974)
+   v + Whiten + VolScale: Corr Score (0.3523)
+   v + Whiten + VolScale + HeavyTail: Corr Score (0.3098)
+   v + 4-Layer (corr-fixed): Corr Score (0.6651)
+   v + Cross Loss: Tail Dep. Score (copula) (0.0991)
+   v + High-Noise Cross Loss: Tail Dep. Score (copula) (0.1344)
+   v + Cross-Asset Whitening: PCA Score (0.7974)
+
+7. WEAKEST CROSS-ASSET PROPERTY
+----------------------------------------------------------------------------------------------------
+   ARMD: PCA Score (0.1551)
+   CN-Diff: Tail Dep. Score (copula) (0.2523)
+   Baseline (TimeDiff walk-forward): Tail Dep. Score (copula) (0.1927)
+   TimeDiff (v-prediction): PCA Score (0.0110)
+   [NULL] GARCH+Sigma+t: Tail Dep. Score (copula) (0.1677)
+   [NULL] Gaussian(Sigma): Tail Dep. Score (copula) (0.3118)
+   NS-Diff: Tail Dep. Score (copula) (0.1992)
+   v + Whiten + VolScale: Tail Dep. Score (copula) (0.1472)
+   v + Whiten + VolScale + HeavyTail: Tail Dep. Score (copula) (0.1436)
+   v + 4-Layer (corr-fixed): Tail Dep. Score (copula) (0.2280)
+   v + Cross Loss: PCA Score (0.0483)
+   v + High-Noise Cross Loss: Corr Score (0.0648)
+   v + Cross-Asset Whitening: Tail Dep. Score (copula) (0.2848)
+
+8. DO THE MODELS PRESERVE ASSET-SPECIFIC CHARACTERISTICS?
+----------------------------------------------------------------------------------------------------
+   ARMD:
+     跨股票離散度最大的 metric = Negative Skewness
+       Mean=0.4151 Std=0.2520 Min=0.0684(AAPL) Max=0.7468(VZ)
+     Std > 0.15（平均分數可能被少數股票主導）的 metric: Heavy Tail (Hill alpha), Negative Skewness, Volatility Clustering
+   CN-Diff:
+     跨股票離散度最大的 metric = Heavy Tail (Hill alpha)
+       Mean=0.2348 Std=0.2844 Min=0.0191(WMT) Max=0.9955(AAPL)
+     Std > 0.15（平均分數可能被少數股票主導）的 metric: Heavy Tail (Hill alpha), Negative Skewness
+   Baseline (TimeDiff walk-forward):
+     跨股票離散度最大的 metric = Negative Skewness
+       Mean=0.5938 Std=0.2591 Min=0.2546(INTC) Max=0.9209(CRM)
+     Std > 0.15（平均分數可能被少數股票主導）的 metric: Negative Skewness, Volatility Clustering
+   TimeDiff (v-prediction):
+     跨股票離散度最大的 metric = Negative Skewness
+       Mean=0.5408 Std=0.2019 Min=0.3035(INTC) Max=0.8519(CRM)
+     Std > 0.15（平均分數可能被少數股票主導）的 metric: Negative Skewness
+   [NULL] GARCH+Sigma+t:
+     跨股票離散度最大的 metric = Heavy Tail (Hill alpha)
+       Mean=0.4297 Std=0.1695 Min=0.1651(IBM) Max=0.6875(MSFT)
+     Std > 0.15（平均分數可能被少數股票主導）的 metric: Heavy Tail (Hill alpha), Negative Skewness
+   [NULL] Gaussian(Sigma):
+     跨股票離散度最大的 metric = Negative Skewness
+       Mean=0.5296 Std=0.2079 Min=0.2964(INTC) Max=0.8541(VZ)
+     Std > 0.15（平均分數可能被少數股票主導）的 metric: Negative Skewness
+   NS-Diff:
+     跨股票離散度最大的 metric = Heavy Tail (Hill alpha)
+       Mean=0.2498 Std=0.2464 Min=0.0270(INTC) Max=0.7026(MSFT)
+     Std > 0.15（平均分數可能被少數股票主導）的 metric: Heavy Tail (Hill alpha), Negative Skewness, Volatility Clustering
+   v + Whiten + VolScale:
+     跨股票離散度最大的 metric = Negative Skewness
+       Mean=0.5191 Std=0.2039 Min=0.2726(IBM) Max=0.8219(CRM)
+     Std > 0.15（平均分數可能被少數股票主導）的 metric: Heavy Tail (Hill alpha), Negative Skewness, Volatility Clustering
+   v + Whiten + VolScale + HeavyTail:
+     跨股票離散度最大的 metric = Heavy Tail (Hill alpha)
+       Mean=0.4908 Std=0.1563 Min=0.1802(IBM) Max=0.6888(AAPL)
+     Std > 0.15（平均分數可能被少數股票主導）的 metric: Heavy Tail (Hill alpha), Negative Skewness
+   v + 4-Layer (corr-fixed):
+     跨股票離散度最大的 metric = Heavy Tail (Hill alpha)
+       Mean=0.4782 Std=0.1557 Min=0.1829(IBM) Max=0.6822(AAPL)
+     Std > 0.15（平均分數可能被少數股票主導）的 metric: Heavy Tail (Hill alpha), Negative Skewness
+   v + Cross Loss:
+     跨股票離散度最大的 metric = Negative Skewness
+       Mean=0.5035 Std=0.2331 Min=0.2591(MSFT) Max=0.8522(CRM)
+     Std > 0.15（平均分數可能被少數股票主導）的 metric: Heavy Tail (Hill alpha), Negative Skewness
+   v + High-Noise Cross Loss:
+     跨股票離散度最大的 metric = Heavy Tail (Hill alpha)
+       Mean=0.2106 Std=0.1967 Min=0.0289(NKE) Max=0.6011(MSFT)
+     Std > 0.15（平均分數可能被少數股票主導）的 metric: Heavy Tail (Hill alpha), Negative Skewness
+   v + Cross-Asset Whitening:
+     跨股票離散度最大的 metric = Negative Skewness
+       Mean=0.5339 Std=0.2032 Min=0.2807(IBM) Max=0.8298(CRM)
+     Std > 0.15（平均分數可能被少數股票主導）的 metric: Negative Skewness
+
+9. DO THE MODELS PRESERVE CROSS-ASSET DEPENDENCE?
+----------------------------------------------------------------------------------------------------
+   ARMD:
+     Corr MAE = 0.1607  ->  Score 0.1890
+     PC1 EVR  real 0.4658  vs  syn 0.3209  (市場因子強度低估)
+     Tail dep. (copula) distance = 0.1048  ->  Score 0.2979
+     [suppl.] absolute-threshold 曝險數 syn=0.0 vs real=88.0
+   CN-Diff:
+     Corr MAE = 0.1264  ->  Score 0.2696
+     PC1 EVR  real 0.4658  vs  syn 0.4540  (市場因子強度低估)
+     Tail dep. (copula) distance = 0.1192  ->  Score 0.2523
+     [suppl.] absolute-threshold 曝險數 syn=0.1 vs real=88.0
+   Baseline (TimeDiff walk-forward):
+     Corr MAE = 0.0787  ->  Score 0.4822
+     PC1 EVR  real 0.4658  vs  syn 0.4391  (市場因子強度低估)
+     Tail dep. (copula) distance = 0.1441  ->  Score 0.1927
+     [suppl.] absolute-threshold 曝險數 syn=0.3 vs real=88.0
+   TimeDiff (v-prediction):
+     Corr MAE = 0.3986  ->  Score 0.0160
+     PC1 EVR  real 0.4658  vs  syn 0.1124  (市場因子強度低估)
+     Tail dep. (copula) distance = 0.2602  ->  Score 0.0495
+     [suppl.] absolute-threshold 曝險數 syn=93.8 vs real=88.0
+   [NULL] GARCH+Sigma+t:
+     Corr MAE = 0.0924  ->  Score 0.3881
+     PC1 EVR  real 0.4658  vs  syn 0.3835  (市場因子強度低估)
+     Tail dep. (copula) distance = 0.1557  ->  Score 0.1677
+     [suppl.] absolute-threshold 曝險數 syn=82.7 vs real=88.0
+   [NULL] Gaussian(Sigma):
+     Corr MAE = 0.0341  ->  Score 0.7032
+     PC1 EVR  real 0.4658  vs  syn 0.4878  (市場因子強度高估)
+     Tail dep. (copula) distance = 0.1019  ->  Score 0.3118
+     [suppl.] absolute-threshold 曝險數 syn=93.7 vs real=88.0
+   NS-Diff:
+     Corr MAE = 0.0674  ->  Score 0.4973
+     PC1 EVR  real 0.4658  vs  syn 0.4217  (市場因子強度低估)
+     Tail dep. (copula) distance = 0.1396  ->  Score 0.1992
+     [suppl.] absolute-threshold 曝險數 syn=2.6 vs real=88.0
+   v + Whiten + VolScale:
+     Corr MAE = 0.1011  ->  Score 0.3523
+     PC1 EVR  real 0.4658  vs  syn 0.3744  (市場因子強度低估)
+     Tail dep. (copula) distance = 0.1666  ->  Score 0.1472
+     [suppl.] absolute-threshold 曝險數 syn=91.2 vs real=88.0
+   v + Whiten + VolScale + HeavyTail:
+     Corr MAE = 0.1135  ->  Score 0.3098
+     PC1 EVR  real 0.4658  vs  syn 0.3631  (市場因子強度低估)
+     Tail dep. (copula) distance = 0.1686  ->  Score 0.1436
+     [suppl.] absolute-threshold 曝險數 syn=75.6 vs real=88.0
+   v + 4-Layer (corr-fixed):
+     Corr MAE = 0.0395  ->  Score 0.6651
+     PC1 EVR  real 0.4658  vs  syn 0.4390  (市場因子強度低估)
+     Tail dep. (copula) distance = 0.1288  ->  Score 0.2280
+     [suppl.] absolute-threshold 曝險數 syn=75.4 vs real=88.0
+   v + Cross Loss:
+     Corr MAE = 0.2554  ->  Score 0.0710
+     PC1 EVR  real 0.4658  vs  syn 0.2343  (市場因子強度低估)
+     Tail dep. (copula) distance = 0.2004  ->  Score 0.0991
+     [suppl.] absolute-threshold 曝險數 syn=129.6 vs real=88.0
+   v + High-Noise Cross Loss:
+     Corr MAE = 0.2828  ->  Score 0.0648
+     PC1 EVR  real 0.4658  vs  syn 0.3032  (市場因子強度低估)
+     Tail dep. (copula) distance = 0.1740  ->  Score 0.1344
+     [suppl.] absolute-threshold 曝險數 syn=174.1 vs real=88.0
+   v + Cross-Asset Whitening:
+     Corr MAE = 0.0283  ->  Score 0.7464
+     PC1 EVR  real 0.4658  vs  syn 0.4749  (市場因子強度高估)
+     Tail dep. (copula) distance = 0.1097  ->  Score 0.2848
+     [suppl.] absolute-threshold 曝險數 syn=96.9 vs real=88.0
+
+10. TRADE-OFF ANALYSIS（不可只依 Overall Score 排名）
+----------------------------------------------------------------------------------------------------
+   ARMD: SF=0.2917  CA=0.2140  (CA − SF = -0.0777)
+     -> 該模型在 univariate 分布/動態 明顯優於 cross-asset 結構，兩者不可互相抵銷解讀。
+   Baseline (TimeDiff walk-forward): SF=0.2383  CA=0.3754  (CA − SF = +0.1371)
+     -> 該模型在 cross-asset 結構 明顯優於 univariate 分布/動態，兩者不可互相抵銷解讀。
+   CN-Diff: SF=0.1642  CA=0.3102  (CA − SF = +0.1460)
+     -> 該模型在 cross-asset 結構 明顯優於 univariate 分布/動態，兩者不可互相抵銷解讀。
+   NS-Diff: SF=0.2802  CA=0.3980  (CA − SF = +0.1178)
+     -> 該模型在 cross-asset 結構 明顯優於 univariate 分布/動態，兩者不可互相抵銷解讀。
+   TimeDiff (v-prediction): SF=0.3208  CA=0.0255  (CA − SF = -0.2953)
+     -> 該模型在 univariate 分布/動態 明顯優於 cross-asset 結構，兩者不可互相抵銷解讀。
+   [NULL] GARCH+Sigma+t: SF=0.4238  CA=0.3044  (CA − SF = -0.1194)
+     -> 該模型在 univariate 分布/動態 明顯優於 cross-asset 結構，兩者不可互相抵銷解讀。
+   [NULL] Gaussian(Sigma): SF=0.3142  CA=0.5771  (CA − SF = +0.2629)
+     -> 該模型在 cross-asset 結構 明顯優於 univariate 分布/動態，兩者不可互相抵銷解讀。
+   v + 4-Layer (corr-fixed): SF=0.4374  CA=0.5145  (CA − SF = +0.0771)
+     -> 該模型在 cross-asset 結構 明顯優於 univariate 分布/動態，兩者不可互相抵銷解讀。
+   v + Cross Loss: SF=0.3235  CA=0.0728  (CA − SF = -0.2507)
+     -> 該模型在 univariate 分布/動態 明顯優於 cross-asset 結構，兩者不可互相抵銷解讀。
+   v + Cross-Asset Whitening: SF=0.3137  CA=0.6096  (CA − SF = +0.2958)
+     -> 該模型在 cross-asset 結構 明顯優於 univariate 分布/動態，兩者不可互相抵銷解讀。
+   v + High-Noise Cross Loss: SF=0.2430  CA=0.1003  (CA − SF = -0.1427)
+     -> 該模型在 univariate 分布/動態 明顯優於 cross-asset 結構，兩者不可互相抵銷解讀。
+   v + Whiten + VolScale: SF=0.3398  CA=0.2712  (CA − SF = -0.0686)
+     -> 該模型在 univariate 分布/動態 明顯優於 cross-asset 結構，兩者不可互相抵銷解讀。
+   v + Whiten + VolScale + HeavyTail: SF=0.4414  CA=0.2419  (CA − SF = -0.1995)
+     -> 該模型在 univariate 分布/動態 明顯優於 cross-asset 結構，兩者不可互相抵銷解讀。
+
+11. REGIME ROBUSTNESS（2020 / 2022 僅供分析，不參與排名）
+----------------------------------------------------------------------------------------------------
+                           Method                Time    T  Paths  Stylized Facts  Cross-Asset  Overall              Role                                         Low-power metrics
+                             ARMD 2018-2024 (Primary) 1761      1        0.291734     0.214012 0.252873 PRIMARY (ranking)                                           Leverage Effect
+                             ARMD         2020 Crisis  253      1        0.412610     0.208787 0.310699   robustness only                        Negative Skewness, Leverage Effect
+                             ARMD           2022 Bear  251      1        0.399281     0.413536 0.406409   robustness only Negative Skewness, Volatility Clustering, Leverage Effect
+ Baseline (TimeDiff walk-forward) 2018-2024 (Primary) 1761     50        0.238290     0.375437 0.306864 PRIMARY (ranking)                                           Leverage Effect
+ Baseline (TimeDiff walk-forward)         2020 Crisis  253     50        0.342942     0.540718 0.441830   robustness only                        Negative Skewness, Leverage Effect
+ Baseline (TimeDiff walk-forward)           2022 Bear  251     50        0.342451     0.159336 0.250894   robustness only Negative Skewness, Volatility Clustering, Leverage Effect
+                          CN-Diff 2018-2024 (Primary) 1761      1        0.164176     0.310156 0.237166 PRIMARY (ranking)                                           Leverage Effect
+                          CN-Diff         2020 Crisis  253      1        0.215884     0.362165 0.289024   robustness only                        Negative Skewness, Leverage Effect
+                          CN-Diff           2022 Bear  251      1        0.252844     0.218059 0.235451   robustness only Negative Skewness, Volatility Clustering, Leverage Effect
+                          NS-Diff 2018-2024 (Primary) 1761      1        0.280214     0.397974 0.339094 PRIMARY (ranking)                                           Leverage Effect
+                          NS-Diff         2020 Crisis  253      1        0.342469     0.227072 0.284771   robustness only                        Negative Skewness, Leverage Effect
+                          NS-Diff           2022 Bear  251      1        0.393532     0.408887 0.401210   robustness only Negative Skewness, Volatility Clustering, Leverage Effect
+          TimeDiff (v-prediction) 2018-2024 (Primary) 1761     50        0.320778     0.025526 0.173152 PRIMARY (ranking)                                           Leverage Effect
+          TimeDiff (v-prediction)         2020 Crisis  253     50        0.336948     0.068070 0.202509   robustness only                        Negative Skewness, Leverage Effect
+          TimeDiff (v-prediction)           2022 Bear  251     50        0.473118     0.102029 0.287574   robustness only Negative Skewness, Volatility Clustering, Leverage Effect
+             [NULL] GARCH+Sigma+t 2018-2024 (Primary) 1761     50        0.423789     0.304399 0.364094 PRIMARY (ranking)                                           Leverage Effect
+             [NULL] GARCH+Sigma+t         2020 Crisis  253     50        0.410891     0.209560 0.310225   robustness only                        Negative Skewness, Leverage Effect
+             [NULL] GARCH+Sigma+t           2022 Bear  251     50        0.482146     0.290418 0.386282   robustness only Negative Skewness, Volatility Clustering, Leverage Effect
+           [NULL] Gaussian(Sigma) 2018-2024 (Primary) 1761     50        0.314245     0.577106 0.445675 PRIMARY (ranking)                                           Leverage Effect
+           [NULL] Gaussian(Sigma)         2020 Crisis  253     50        0.324506     0.395310 0.359908   robustness only                        Negative Skewness, Leverage Effect
+           [NULL] Gaussian(Sigma)           2022 Bear  251     50        0.482456     0.482628 0.482542   robustness only Negative Skewness, Volatility Clustering, Leverage Effect
+         v + 4-Layer (corr-fixed) 2018-2024 (Primary) 1761     50        0.437351     0.514465 0.475908 PRIMARY (ranking)                                           Leverage Effect
+         v + 4-Layer (corr-fixed)         2020 Crisis  253     50        0.415431     0.305233 0.360332   robustness only                        Negative Skewness, Leverage Effect
+         v + 4-Layer (corr-fixed)           2022 Bear  251     50        0.489693     0.465463 0.477578   robustness only Negative Skewness, Volatility Clustering, Leverage Effect
+                   v + Cross Loss 2018-2024 (Primary) 1761     50        0.323513     0.072793 0.198153 PRIMARY (ranking)                                           Leverage Effect
+                   v + Cross Loss         2020 Crisis  253     50        0.398910     0.320001 0.359456   robustness only                        Negative Skewness, Leverage Effect
+                   v + Cross Loss           2022 Bear  251     50        0.465231     0.130603 0.297917   robustness only Negative Skewness, Volatility Clustering, Leverage Effect
+        v + Cross-Asset Whitening 2018-2024 (Primary) 1761     50        0.313743     0.609551 0.461647 PRIMARY (ranking)                                           Leverage Effect
+        v + Cross-Asset Whitening         2020 Crisis  253     50        0.330475     0.365529 0.348002   robustness only                        Negative Skewness, Leverage Effect
+        v + Cross-Asset Whitening           2022 Bear  251     50        0.480987     0.505291 0.493139   robustness only Negative Skewness, Volatility Clustering, Leverage Effect
+        v + High-Noise Cross Loss 2018-2024 (Primary) 1761     50        0.243004     0.100342 0.171673 PRIMARY (ranking)                                           Leverage Effect
+        v + High-Noise Cross Loss         2020 Crisis  253     50        0.407343     0.189920 0.298632   robustness only                        Negative Skewness, Leverage Effect
+        v + High-Noise Cross Loss           2022 Bear  251     50        0.426893     0.155409 0.291151   robustness only Negative Skewness, Volatility Clustering, Leverage Effect
+            v + Whiten + VolScale 2018-2024 (Primary) 1761     50        0.339796     0.271185 0.305490 PRIMARY (ranking)                                           Leverage Effect
+            v + Whiten + VolScale         2020 Crisis  253     50        0.365831     0.195357 0.280594   robustness only                        Negative Skewness, Leverage Effect
+            v + Whiten + VolScale           2022 Bear  251     50        0.476710     0.277097 0.376903   robustness only Negative Skewness, Volatility Clustering, Leverage Effect
+v + Whiten + VolScale + HeavyTail 2018-2024 (Primary) 1761     50        0.441404     0.241905 0.341654 PRIMARY (ranking)                                           Leverage Effect
+v + Whiten + VolScale + HeavyTail         2020 Crisis  253     50        0.416877     0.186977 0.301927   robustness only                        Negative Skewness, Leverage Effect
+v + Whiten + VolScale + HeavyTail           2022 Bear  251     50        0.490876     0.266478 0.378677   robustness only Negative Skewness, Volatility Clustering, Leverage Effect
+
+12. MAIN LIMITATION
+----------------------------------------------------------------------------------------------------
+   最主要的限制是變異數收縮：生成序列的標準差顯著低於真實序列，
+   使得在真實資料定義的絕對門檻下，模型幾乎不產生極端事件。
+   這同時壓低了 Jump 分數與 absolute-threshold tail dependence 的可估性。
+   其次，walk-forward 每 21 日重新錨定真實 condition，因此本評估不能推論
+   模型的長期自主模擬能力。
+
+====================================================================================================

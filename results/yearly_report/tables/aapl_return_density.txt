@@ -1,0 +1,14 @@
+# aapl_return_density
+Grey = Real, Blue = method. Linear y-axis; narrower curve = amplitude too small.
+========================================================================
+
+AAPL daily log-return density (2018-01-02 ~ 2024-12-30, T=1760)
+
+series                           std     skew   exKurt
+REAL                         0.01924   -0.217     5.26
+TimeDiff(Baseline)           0.00404   -0.124     0.02
+TimeDiff(v-prediction)       0.01805   -0.014     0.15
+DVA                          0.01035    2.092    21.59
+CN-Diff                      0.00436   -0.614     2.31
+NS-Diff                      0.00720    0.227     3.21
+ARMD                         0.00255    0.587     6.58

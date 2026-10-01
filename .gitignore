@@ -7,3 +7,11 @@
 /outputs/spx/
 __pycache__/
 .pytest_cache/
+
+# Local datasets and generated experiment artifacts
+/datasets/
+/outputs/
+/RL/path/
+/checkpoints/*
+!/checkpoints/.gitkeep
+.DS_Store
