@@ -234,7 +234,8 @@ class Diffusion_Worker(nn.Module):
             x0_hat = self._to_x0(model_out, x_k, t)
             return_loss, volatility_loss = condition_consistency_losses(
                 x0_hat, cond_ts['market'], self.args.condition_feature_scaler,
-                self.args.condition_label_scaler)
+                self.args.condition_label_scaler,
+                close_indices=getattr(self.args, 'condition_close_indices', (0,)))
             weighted = self.lambda_condition * (return_loss + volatility_loss)
             loss = loss + weighted
             self.last_loss_components.update(
