@@ -1,0 +1,310 @@
+{
+  "files": [
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/JOINT_CONDITION_SAMPLING.md",
+      "repository": "TimeDiff",
+      "original_path": "JOINT_CONDITION_SAMPLING.md",
+      "backup": "original_sources/TimeDiff/JOINT_CONDITION_SAMPLING.md",
+      "old_sha256": "d1f02ed65368c6aabf13144f7c3391a4ae78d95ced5a083e67c601338a69a1fe",
+      "new_sha256": "a8b62d3cadfe385109612ae9919c55a1c7e3fa5eb7f001569c04b8366775737f",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/sample_joint_dow10.py",
+      "repository": "TimeDiff",
+      "original_path": "sample_joint_dow10.py",
+      "backup": "original_sources/TimeDiff/sample_joint_dow10.py",
+      "old_sha256": "1eeee3f4cfbfc4acf3cf72c4df72d07c2fd961de263f9d36ae78c03375dcbe2b",
+      "new_sha256": "97ebcac577c1ba6ed8ac8671832ee4e22904100cf21847a4cb7123d926d80957",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/PIPELINE.md",
+      "repository": "TimeDiff",
+      "original_path": "PIPELINE.md",
+      "backup": "original_sources/TimeDiff/PIPELINE.md",
+      "old_sha256": "c116126adfe226ca82a4903a8bd9a316d51e8c37cd392b94e2af830c48510ee8",
+      "new_sha256": "40466800a7b96a62e9ff06186374caa267922c4175eccc7c14fcc751bf1bcf73",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/generate_dow10.py",
+      "repository": "TimeDiff",
+      "original_path": "generate_dow10.py",
+      "backup": "original_sources/TimeDiff/generate_dow10.py",
+      "old_sha256": "5105e5c6dea1dc87e007bd1424a165cf2e2781adccb1c4d2fc58503d90a48730",
+      "new_sha256": "fa0a81462f706699a2694bb21c2a29f3c4bb86ceb17079af20291d7699805d17",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/evaluation_framework.ipynb",
+      "repository": "TimeDiff",
+      "original_path": "evaluation_framework.ipynb",
+      "backup": "original_sources/TimeDiff/evaluation_framework.ipynb",
+      "old_sha256": "60af1166f859034b4905b852be251acd9c598d8aa6fa0d936b0c9b7ca4ad585a",
+      "new_sha256": "3cf2d0cd90b472865f5014504269cf3f4b0ea0326d7098f35be298eafd42fcef",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/exp_wf_collapse_probe.py",
+      "repository": "TimeDiff",
+      "original_path": "exp_wf_collapse_probe.py",
+      "backup": "original_sources/TimeDiff/exp_wf_collapse_probe.py",
+      "old_sha256": "00b4b891384a101ef15eb7c8fd4fbc2f8f54fefabff65be6ec194559a3137363",
+      "new_sha256": "fcee820340bfb8ef599863ddff7721acba1430b213e00c724e2cd15e25260bc4",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/run_walk_forward.sh",
+      "repository": "TimeDiff",
+      "original_path": "run_walk_forward.sh",
+      "backup": "original_sources/TimeDiff/run_walk_forward.sh",
+      "old_sha256": "236295975844425c56741c0cd65fba2367f9187a5c7aef016528fda0439afc30",
+      "new_sha256": "c7482f8a45c4607cbc5df81e4aad2ea80a6d22956b07cc6fdcdf10bc807a53a0",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/README.md",
+      "repository": "TimeDiff",
+      "original_path": "README.md",
+      "backup": "original_sources/TimeDiff/README.md",
+      "old_sha256": "712f7ed68bb121a5248e0f520a88d74f4c20122652b5237b7781eb45edf69e32",
+      "new_sha256": "58cbc04ebf80b12f341eb3567850b130dc14062884779c6c8a7276e228545542",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/evaluation_framework_design.md",
+      "repository": "TimeDiff",
+      "original_path": "evaluation_framework_design.md",
+      "backup": "original_sources/TimeDiff/evaluation_framework_design.md",
+      "old_sha256": "c1967424430495dcf5180e5bb27ad79df6cb7b8feaa9afc83c1060b185995fe9",
+      "new_sha256": "77d2ef0b20f44d628b3df833a7a51de27b449e8dca36562fe4281259cfa14e35",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/dow10_cond_experiment.py",
+      "repository": "TimeDiff",
+      "original_path": "dow10_cond_experiment.py",
+      "backup": "original_sources/TimeDiff/dow10_cond_experiment.py",
+      "old_sha256": "c99bfd09e2d34fe5cdd30cf9fad4ea30cb6ccf9e02595a80191a3bd266a9f8a2",
+      "new_sha256": "9087c41ba6017a72589b6d3e444ec93bcde7dc42974a64c6f93dc88d05084ff1",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/walk_forward_dow10.py",
+      "repository": "TimeDiff",
+      "original_path": "walk_forward_dow10.py",
+      "backup": "original_sources/TimeDiff/walk_forward_dow10.py",
+      "old_sha256": "4b92f5a08d91935534176f288199ef85533bb77bf4455574c26c44b7e0115631",
+      "new_sha256": "e774bbc7b3e9c19c1bd6fe008d39b6840cf450dad1a628b4bd1f6992d16adbf6",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/scripts/plot_samples_vs_real.py",
+      "repository": "TimeDiff",
+      "original_path": "scripts/plot_samples_vs_real.py",
+      "backup": "original_sources/TimeDiff/scripts/plot_samples_vs_real.py",
+      "old_sha256": "6df05020e5e1ee44d6849791d22e9589ace15b77d36093c2f1427cb9d7314c35",
+      "new_sha256": "0e771ec18ac4be29f8bc527f70ab4484b5a2fdf0193eb22954de76d8e8cf2adb",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/scripts/migrate_outputs_layout.py",
+      "repository": "TimeDiff",
+      "original_path": "scripts/migrate_outputs_layout.py",
+      "backup": "original_sources/TimeDiff/scripts/migrate_outputs_layout.py",
+      "old_sha256": "13f0f63d76340a9ba06a273dabcaf8b77745038492ab37f83c48733fded3e5ce",
+      "new_sha256": "f0b4be4ffedf7fbd89905129ebec3ec9ccbf490bc3a67854597e3e7a152fd493",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/evaluation/config.py",
+      "repository": "TimeDiff",
+      "original_path": "evaluation/config.py",
+      "backup": "original_sources/TimeDiff/evaluation/config.py",
+      "old_sha256": "1cb615df2aeaf9e0b38987c55a9b968be71d6d8066424114594f7a9ebd45a417",
+      "new_sha256": "f019656b9e52147d3e6c7a2c9d9a40ed9e9f751de975a4955f5fda226d7e174d",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/evaluation/loaders.py",
+      "repository": "TimeDiff",
+      "original_path": "evaluation/loaders.py",
+      "backup": "original_sources/TimeDiff/evaluation/loaders.py",
+      "old_sha256": "f7fe15969be810dfad74049e17744348cec1867b56d221a9d177e084537eafb5",
+      "new_sha256": "38a2b6a81f9bca3493f90abdd8dd72bf338ed534d259734954553875f5f99daf",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/evaluation/prepare_model_output.py",
+      "repository": "TimeDiff",
+      "original_path": "evaluation/prepare_model_output.py",
+      "backup": "original_sources/TimeDiff/evaluation/prepare_model_output.py",
+      "old_sha256": "19b6e16062615d107b94380a517b4918089eafe7752a93ac769f6778560a6792",
+      "new_sha256": "df1f844c3b2d3f68281019d674412d634c52e85fb3881ef4448a931a23bb7fe8",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/README.md",
+      "repository": "TimeDiff",
+      "original_path": "outputs/dow10_joint_20261017/README.md",
+      "backup": "original_sources/TimeDiff/outputs/dow10_joint_20261017/README.md",
+      "old_sha256": "2247d6f4c82b036fc0210737be8be7a3ee5065cbb4e1e1b6457d42b5d9e14c0e",
+      "new_sha256": "f8bfb133097f9103a90d804572e487ed5f4495a929d98d3f955a1a629f42f8f3",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/audit_batch.py",
+      "repository": "TimeDiff",
+      "original_path": "outputs/dow10_joint_20261017/audit_batch.py",
+      "backup": "original_sources/TimeDiff/outputs/dow10_joint_20261017/audit_batch.py",
+      "old_sha256": "d4b4375653c24f8fa68d1120d07401919a899f0e6672e38e0b2abda3ac43d744",
+      "new_sha256": "ba067b6461c38abc6a5d109e9f4d36f8d904b0ce1c55d0d0ee8dc02831515588",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/diagnostic_review.ipynb",
+      "repository": "TimeDiff",
+      "original_path": "outputs/dow10_joint_diagnosis_20261017/diagnostic_review.ipynb",
+      "backup": "original_sources/TimeDiff/outputs/dow10_joint_diagnosis_20261017/diagnostic_review.ipynb",
+      "old_sha256": "a9871a3f2d736771082aff657ce6ea15a6c0628dbc47d352e74aa5e734c4692e",
+      "new_sha256": "d6d1e698db86471ab05a7121f8fce74dcb7f14d0b9484fb1c8268b0ee5c56c31",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/diagnose.py",
+      "repository": "TimeDiff",
+      "original_path": "outputs/dow10_joint_diagnosis_20261017/diagnose.py",
+      "backup": "original_sources/TimeDiff/outputs/dow10_joint_diagnosis_20261017/diagnose.py",
+      "old_sha256": "0b6ca04301d9191a21e1664fb2a4625310cf26bc1b6ae17ee832a2eb371bde0a",
+      "new_sha256": "f07871550978722d6bd0315e9b313fd7ada464b2c9d5722d02ad7efe0ad56e95",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/probes.py",
+      "repository": "TimeDiff",
+      "original_path": "outputs/dow10_joint_diagnosis_20261017/probes.py",
+      "backup": "original_sources/TimeDiff/outputs/dow10_joint_diagnosis_20261017/probes.py",
+      "old_sha256": "d08eae6cc00ba17dd39f581fa2d6f0aa9782abd6867f2c27407f6ada75c14896",
+      "new_sha256": "e0147794a3feaa2158919517a8819cf311b835fa2594e06714944055cb45686c",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/build_notebook.py",
+      "repository": "TimeDiff",
+      "original_path": "outputs/dow10_joint_diagnosis_20261017/build_notebook.py",
+      "backup": "original_sources/TimeDiff/outputs/dow10_joint_diagnosis_20261017/build_notebook.py",
+      "old_sha256": "9f0a3f87f2d39bece74f978c47ed3ae5faee4fb81d24b5d0a49592e2d07802c5",
+      "new_sha256": "201b665561bcbf8341ce1d4d69c3ac7fc837fe00f4d0693f014dbb7ef5e6cf74",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/pr30_vs_pr10/pr10_comparison.ipynb",
+      "repository": "TimeDiff",
+      "original_path": "outputs/dow10_joint_pr10_20261018/pr10_comparison.ipynb",
+      "backup": "original_sources/TimeDiff/outputs/dow10_joint_pr10_20261018/pr10_comparison.ipynb",
+      "old_sha256": "847189b533d12a79ab6a2808439c7846c88e7cf0ae557cf419c13f78e2c8f97f",
+      "new_sha256": "ee0a5309b0c46da7c88b3897a5acd3838b2e749c6991b9ec8a7029d5b9b46052",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/pr30_vs_pr10/README.md",
+      "repository": "TimeDiff",
+      "original_path": "outputs/dow10_joint_pr10_20261018/README.md",
+      "backup": "original_sources/TimeDiff/outputs/dow10_joint_pr10_20261018/README.md",
+      "old_sha256": "4cdf2111f6a79c1b2c6e05057bc0f90573070ea20afa1ce4914a89b072e4ef15",
+      "new_sha256": "784e45e42cd60a386ae81292ce0593fb5b011195745ff52ea341373c3b7c1608",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/pr30_vs_pr10/build_notebook.py",
+      "repository": "TimeDiff",
+      "original_path": "outputs/dow10_joint_pr10_20261018/build_notebook.py",
+      "backup": "original_sources/TimeDiff/outputs/dow10_joint_pr10_20261018/build_notebook.py",
+      "old_sha256": "c0fffa2e567de5f6c17f4ab2fa3ffffa4af4a00cb736893aae90f7f5bcfe8237",
+      "new_sha256": "2a390add54e785faa13ecbe8316587652759861e351120e181f31a991ff58125",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/pr30_vs_pr10/analyze.py",
+      "repository": "TimeDiff",
+      "original_path": "outputs/dow10_joint_pr10_20261018/analyze.py",
+      "backup": "original_sources/TimeDiff/outputs/dow10_joint_pr10_20261018/analyze.py",
+      "old_sha256": "0db014de267d026ffee5d86d8222eb61e2f973ab91fb965a52e066046ec7bdfd",
+      "new_sha256": "c8286e489ca4b4d85b9336bcad74ceb7bc57bf6ecc1667291bf3056c8aaa4189",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/finrl/experiments/train_scenario_mix_logged.py",
+      "repository": "FinRL_Exp",
+      "original_path": "finrl/experiments/train_scenario_mix_logged.py",
+      "backup": "original_sources/FinRL_Exp/finrl/experiments/train_scenario_mix_logged.py",
+      "old_sha256": "f8732389af271acf4f84b8686a62e968a64de0ba46dc7f1ba6307442d97298e9",
+      "new_sha256": "59a21122bb4176c5c104afaf20913604b3549f9d05a94485afb23afaee9bff28",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/finrl/experiments/train_scenario_mix.py",
+      "repository": "FinRL_Exp",
+      "original_path": "finrl/experiments/train_scenario_mix.py",
+      "backup": "original_sources/FinRL_Exp/finrl/experiments/train_scenario_mix.py",
+      "old_sha256": "ed2c6308fbfcb76c411659781798165688a54f9df3e8c1394cb9c5f0ca6ffbb4",
+      "new_sha256": "e6674aaa6fde9d25d930ea8de820cc4d18faaa8f0b17d5e2e9709ee152e6af4c",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/finrl/experiments/README_scenario_mix.md",
+      "repository": "FinRL_Exp",
+      "original_path": "finrl/experiments/README_scenario_mix.md",
+      "backup": "original_sources/FinRL_Exp/finrl/experiments/README_scenario_mix.md",
+      "old_sha256": "5719a48d060c6f5b76c53bae8ecbf9e1a0af2da874c1f18022ae65b4b8a3c468",
+      "new_sha256": "996f4fd81f2afdacc518371a03b80b46086a2831259460796186627410d96ce6",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/finrl/experiments/scenario_mix.py",
+      "repository": "FinRL_Exp",
+      "original_path": "finrl/experiments/scenario_mix.py",
+      "backup": "original_sources/FinRL_Exp/finrl/experiments/scenario_mix.py",
+      "old_sha256": "b9459ec00e90f15630961fdd54638bd03ffaaf2ca40290a113743b379d11dca1",
+      "new_sha256": "65eb6e06b5ce06f5bf4fed9666b8119e6ab859d5c21abdfd4cf0d56de0c51822",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/analysis/scenario_mix/scenario_mix_v1_summary.ipynb",
+      "repository": "FinRL_Exp",
+      "original_path": "analysis/scenario_mix_v1_summary.ipynb",
+      "backup": "original_sources/FinRL_Exp/analysis/scenario_mix_v1_summary.ipynb",
+      "old_sha256": "6b6df81e68d3d3518039685f51a46a9715b94be958aa0e979fe5cb8946861917",
+      "new_sha256": "f1cf5e4a792d59c4f6b92f3b3c828616c40ff0bea432dd29e5da6136abaf928e",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/analysis/scenario_mix/README.md",
+      "repository": "FinRL_Exp",
+      "original_path": "analysis/scenario_mix/README.md",
+      "backup": "original_sources/FinRL_Exp/analysis/scenario_mix/README.md",
+      "old_sha256": "6fa3e2fce009c1181a4f7c0ca7e3952c24a800ae48e21eccdff577669e408588",
+      "new_sha256": "3de70fcd38df22414b22195fb1e50aa5966451060390578d0f4ebcb2865f5b27",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/analysis/scenario_mix/scenario_mix_v1_summary.ipynb",
+      "repository": "FinRL_Exp",
+      "original_path": "analysis/scenario_mix/scenario_mix_v1_summary.ipynb",
+      "backup": "original_sources/FinRL_Exp/analysis/scenario_mix/scenario_mix_v1_summary.ipynb",
+      "old_sha256": "6b6df81e68d3d3518039685f51a46a9715b94be958aa0e979fe5cb8946861917",
+      "new_sha256": "f1cf5e4a792d59c4f6b92f3b3c828616c40ff0bea432dd29e5da6136abaf928e",
+      "reason": "Output-layout relocation and read-path compatibility"
+    },
+    {
+      "current_absolute": "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/results/scenario_mix/README.md",
+      "repository": "FinRL_Exp",
+      "original_path": "results/scenario_mix/README.md",
+      "backup": "original_sources/FinRL_Exp/results/scenario_mix/README.md",
+      "old_sha256": "b256091d47d165fa4327aca4c5788153478161558085dc2b93a68749b172a05c",
+      "new_sha256": "56997497c5871ca42458fd6873be29bc5b45b9b137e86d09caa82904c0a7dcf2",
+      "reason": "Output-layout relocation and read-path compatibility"
+    }
+  ]
+}

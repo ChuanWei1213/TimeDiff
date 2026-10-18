@@ -4,6 +4,10 @@
 操作與驗證方式見 [SPX_EXPERIMENT.md](SPX_EXPERIMENT.md)，入口為 `spx_experiment.py`。
 SPX 預設停用 future mixup；分布對照見 [實驗 notebook](notebooks/spx_no_mixup_comparison.ipynb)。
 
+所有產物的分類與現況見 [outputs 索引](outputs/README.md)；機器可讀版本為
+[catalog.yaml](outputs/catalog.yaml)。Dow 10 依 `walk_forward`、`conditional` 與
+`single_shot` 分開，PR30／PR10 批次共用模型的關係也記錄在索引中。
+
 以 conditional diffusion 生成 Dow 10 個股的多變量日報酬序列，並以一套 τ 校準的
 stylized-facts 框架評估生成品質。
 
@@ -17,7 +21,7 @@ stylized-facts 框架評估生成品質。
 preprocess     walk_forward     evaluation.run_all
                _dow10.py                ↓
                     ↓              results/
-        outputs/<tag>/paths/
+        outputs/dow10/walk_forward/timediff/<tag>/paths/
 ```
 
 ---
@@ -59,7 +63,7 @@ python walk_forward_dow10.py --tag my_model \
   --parameterization v
 ```
 
-約 20–30 分鐘（28 期 × 600 步）。產出 `outputs/my_model/`：
+約 20–30 分鐘（28 期 × 600 步）。產出 `outputs/dow10/walk_forward/timediff/my_model/`：
 
 | 路徑 | 內容 |
 |---|---|
@@ -78,12 +82,15 @@ python walk_forward_dow10.py --tag my_model --generate_only \
   --n_paths 500 --gen_seed 2025 --long_format --parameterization v
 ```
 
-> ⚠️ 這會**覆蓋** `outputs/my_model/paths/`。若要保留原有路徑，先建新目錄並把 `ckpt`
+> ⚠️ 這會**覆蓋** `outputs/dow10/walk_forward/timediff/my_model/paths/`。若要保留原有路徑，先建新目錄並把 `ckpt`
 > 做成 symlink，再用 `--out_dir` 指過去（`RL/path/` 的 500 條就是這樣生的）。
 
 ### 1.4 匯入外部模型的輸出
 
 第三方模型（nsdiff / cndiff / armd / dva…）的資料格式各異，用轉檔器統一：
+
+預設寫入 `outputs/dow10/walk_forward/external/<tag>/paths/returns/`。
+既有統計模型 tag 會維持在 `statistical/` 分類。
 
 ```bash
 # 先 dry-run 確認格式判斷正確
@@ -164,7 +171,7 @@ STRIDE    = 63     # 重訓間隔
 
 | 設定 | 預設 | 說明 |
 |---|---|---|
-| `MODELS_WHITELIST` | — | **要評估哪些模型**，填 `outputs/` 底下的目錄名 |
+| `MODELS_WHITELIST` | — | **要評估哪些模型**，填模型 tag；搬移後 tag 不變 |
 | `MODEL_DISPLAY_NAMES` | — | 表格中顯示的名稱 |
 | `PRIMARY_EVAL_START/END` | 2018-01-02 / 2024-12-31 | 主表排名唯一依據 |
 | `ROBUSTNESS_WINDOWS` | 2020 Crisis, 2022 Bear | 只作 regime 分析，不參與排名 |
@@ -174,8 +181,11 @@ STRIDE    = 63     # 重訓間隔
 | `ACF_MAX_LAG` | 20 | VC / LE 曲線的 lag 上限 |
 | `JUMP_Q` | 0.95 | Jump 門檻的機率水平（由真實資料定義） |
 
-**加入新模型只要兩步**：資料放進 `outputs/<tag>/paths/returns/` → 把 `<tag>` 加進
+**加入新模型只要兩步**：資料放進 `outputs/dow10/walk_forward/<分類>/<tag>/paths/returns/` → 把 `<tag>` 加進
 `MODELS_WHITELIST`。τ 與模型無關，**加入新模型不會改變既有模型的分數**。
+
+分類為 `timediff`、`statistical`、`external`；評估工具會掃描三類。
+單次生成則放在 `outputs/dow10/single_shot/<tag>/`。
 
 ### 2.4 修改模型本體
 
@@ -294,7 +304,9 @@ python exp_wf_collapse_probe.py --tag <tag> --parameterization v --cycles 0 13 2
 
 ## 4. 目前的模型
 
-`outputs/` 底下可直接評估的（`paths/returns/` 已就緒）：
+下表為既有模型清單；目前檔案位於 `outputs/dow10/walk_forward/` 的各分類中。
+2026-10-18 搬移檢查發現部分舊 CSV 原本已有長度／日期不一致，未修改資料；
+可讀性與期間覆蓋請以 [outputs 索引](outputs/README.md) 為準。
 
 | tag | 說明 |
 |---|---|

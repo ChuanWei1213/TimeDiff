@@ -16,7 +16,7 @@ walk-forward 協定（每 63 日重訓、1260 日訓練窗、28 期）從未測�
                          condition 加統計量）都無效，要先換目標函數。
   seed_corr 明顯下降   → 前提改變，stylized loss 值得重試。
 
-不修改任何既有檔案；只讀 outputs/<tag>/ckpt/cycle_XX.pth。
+不修改任何既有檔案；只讀 outputs/dow10/walk_forward/<分類>/<tag>/ckpt/cycle_XX.pth。
 
 用法
 ----
@@ -208,9 +208,10 @@ def main():
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--parameterization", default="x_start",
                     choices=["x_start", "noise", "v"])
-    ap.add_argument("--save", default="./outputs/wf_collapse_probe")
+    ap.add_argument("--save", default="./outputs/dow10/walk_forward/analyses/wf_collapse_probe")
     a = ap.parse_args()
-    out_dir = a.out_dir or os.path.join("./outputs", a.tag)
+    from output_layout import walkforward_path, resolve_output_path
+    out_dir = str(resolve_output_path(a.out_dir)) if a.out_dir else str(walkforward_path(a.tag))
     os.makedirs(a.save, exist_ok=True)
     rng = np.random.RandomState(a.seed)
 

@@ -1,0 +1,78 @@
+{
+  "status": "complete",
+  "n_paths": 2000,
+  "data_sha256": "7c52d084e8bfb689d5138c97429d0b63c0707120ab9f32d330d6adb1cfcfbedc",
+  "checkpoint_sha256": "35a7a8453df92ed3e7da4b891942114b1010ba01becfd4837bd86370635ca5d6",
+  "old_batch_manifest_sha256": "ee10916d1f4eabcf18c02862a9fa66d4ea4689f45eb45f2a11e1b37160b29ff0",
+  "reconstruction": {
+    "max_abs_return_change": 4.5615086374795055e-08,
+    "max_abs_volatility_change": 2.0751477916580718e-07,
+    "max_abs_pair_correlation_change": 7.1906824020417925e-06,
+    "high_low_clip_changes_close_statistics": false,
+    "tail_membership_changes": 0
+  },
+  "correlation_decomposition": {
+    "population": 0.33542993538598975,
+    "expected_mixture": 0.35939113755240715,
+    "selected_real": 0.36181141943240114,
+    "generated": 0.1864028898039239,
+    "mix_effect": 0.023961202166417395,
+    "finite_draw_effect": 0.0024202818799939907,
+    "generation_gap": -0.17540852962847725,
+    "n_asset_pairs_with_negative_gap": 45,
+    "idiosyncratic_variance_ratio": 2.189671081924607,
+    "common_variance_ratio": 1.2360455254501341,
+    "offdiag_covariance_ratio": 1.0694376605746168
+  },
+  "tail": {
+    "cutoff": -0.0018410959144873973,
+    "target_count": 1060,
+    "actual_count": 907,
+    "lost_tail": 240,
+    "entered_tail": 87,
+    "net_loss": 153,
+    "lost_tail_target_within_1pp_cutoff": 166,
+    "lost_tail_target_within_2pp_cutoff": 216,
+    "return_error_mean": 0.0011901397402320872,
+    "return_error_std": 0.019843601876326604,
+    "tail_share_after_removing_global_mean_error_descriptive_only": 0.466,
+    "within_draw_return_std_mean": 0.017250238558757597
+  },
+  "loss_log": {
+    "n_logged_steps": 41,
+    "median_weighted_condition_over_diffusion": 0.010649757505514723,
+    "best_step": 3500,
+    "last_step": 10000
+  },
+  "validation_selection": {
+    "n_windows": 483,
+    "n_scored": 128,
+    "first_scored_target": "2018-01-02",
+    "last_scored_target_end": "2018-08-02",
+    "all_last_target_end": "2019-12-31"
+  },
+  "summary": {
+    "return": 0.0034357073229915936,
+    "volatility": 0.16094111601319655,
+    "corr": 0.18640288980392386,
+    "mean_asset_variance": 0.00040572539251255475,
+    "mean_offdiag_covariance": 8.86408711739e-05,
+    "common_variance": 0.00012034932330776547,
+    "idiosyncratic_variance": 0.00028537606920478925,
+    "mean_asset_volatility": 0.30385091619666693,
+    "high_invalid": 0.21684761904761904,
+    "low_invalid": 0.2112595238095238,
+    "n_paths": 2000,
+    "target_tail": 0.53,
+    "actual_tail": 0.4535,
+    "return_mae": 0.015777221486075077,
+    "return_bias": 0.0011901397402320872,
+    "volatility_mae": 0.022234468534714013,
+    "volatility_bias": 0.017560525420458706
+  },
+  "limits": [
+    "Covariance decomposition is descriptive, not a trained-loss ablation.",
+    "No PPO, no new training and no production changes.",
+    "Overlapping historical windows are dependent; no IID confidence intervals are claimed."
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "status": "passed",
+  "notebooks": [
+    {
+      "notebook": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/diagnostic_review.ipynb",
+      "mode": "socket_free_sequential_ipython",
+      "training_run": false,
+      "generation_run": false,
+      "ppo_run": false,
+      "cells": [
+        {
+          "index": 2,
+          "seconds": 2.629,
+          "rich_outputs": 0,
+          "status": "passed"
+        },
+        {
+          "index": 4,
+          "seconds": 0.352,
+          "rich_outputs": 1,
+          "status": "passed"
+        },
+        {
+          "index": 7,
+          "seconds": 0.216,
+          "rich_outputs": 1,
+          "status": "passed"
+        },
+        {
+          "index": 10,
+          "seconds": 0.215,
+          "rich_outputs": 1,
+          "status": "passed"
+        },
+        {
+          "index": 13,
+          "seconds": 0.009,
+          "rich_outputs": 1,
+          "status": "passed"
+        },
+        {
+          "index": 15,
+          "seconds": 0.236,
+          "rich_outputs": 1,
+          "status": "passed"
+        },
+        {
+          "index": 18,
+          "seconds": 0.005,
+          "rich_outputs": 1,
+          "status": "passed"
+        }
+      ],
+      "status": "passed",
+      "limitations": [
+        "No live Jupyter kernel, frontend interactions, or widget behavior tested.",
+        "Existing optional missing-input branches remain as authored.",
+        "Writes are redirected; original notebook outputs are not replaced."
+      ],
+      "seconds": 3.661,
+      "redirected_outputs": {
+        "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/correlation_diagnosis.png": "/private/tmp/output-reorg-smoke/diagnostic/generated/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/correlation_diagnosis.png",
+        "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/high_low_diagnosis.png": "/private/tmp/output-reorg-smoke/diagnostic/generated/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/high_low_diagnosis.png",
+        "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/tail_diagnosis.png": "/private/tmp/output-reorg-smoke/diagnostic/generated/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/tail_diagnosis.png",
+        "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/reverse_chain_diagnosis.png": "/private/tmp/output-reorg-smoke/diagnostic/generated/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/reverse_chain_diagnosis.png"
+      }
+    },
+    {
+      "notebook": "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/analysis/scenario_mix/scenario_mix_v1_summary.ipynb",
+      "mode": "socket_free_sequential_ipython",
+      "training_run": false,
+      "generation_run": false,
+      "ppo_run": false,
+      "cells": [
+        {
+          "index": 2,
+          "seconds": 16.083,
+          "rich_outputs": 1,
+          "status": "passed"
+        },
+        {
+          "index": 4,
+          "seconds": 0.034,
+          "rich_outputs": 2,
+          "status": "passed"
+        },
+        {
+          "index": 7,
+          "seconds": 0.001,
+          "rich_outputs": 1,
+          "status": "passed"
+        },
+        {
+          "index": 9,
+          "seconds": 0.067,
+          "rich_outputs": 3,
+          "status": "passed"
+        },
+        {
+          "index": 11,
+          "seconds": 0.191,
+          "rich_outputs": 1,
+          "status": "passed"
+        },
+        {
+          "index": 13,
+          "seconds": 0.477,
+          "rich_outputs": 1,
+          "status": "passed"
+        },
+        {
+          "index": 15,
+          "seconds": 0.538,
+          "rich_outputs": 0,
+          "status": "passed"
+        },
+        {
+          "index": 17,
+          "seconds": 0.971,
+          "rich_outputs": 0,
+          "status": "passed"
+        },
+        {
+          "index": 19,
+          "seconds": 0.009,
+          "rich_outputs": 1,
+          "status": "passed"
+        },
+        {
+          "index": 21,
+          "seconds": 0.075,
+          "rich_outputs": 9,
+          "status": "passed"
+        },
+        {
+          "index": 23,
+          "seconds": 0.557,
+          "rich_outputs": 1,
+          "status": "passed"
+        },
+        {
+          "index": 25,
+          "seconds": 0.106,
+          "rich_outputs": 1,
+          "status": "passed"
+        },
+        {
+          "index": 27,
+          "seconds": 0.017,
+          "rich_outputs": 1,
+          "status": "passed"
+        }
+      ],
+      "status": "passed",
+      "limitations": [
+        "No live Jupyter kernel, frontend interactions, or widget behavior tested.",
+        "Existing optional missing-input branches remain as authored.",
+        "Writes are redirected; original notebook outputs are not replaced."
+      ],
+      "seconds": 19.126,
+      "redirected_outputs": {
+        "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/analysis/scenario_mix_v1_export/crash_exposure_comparison.csv": "/private/tmp/output-reorg-smoke/finrl/generated/FinRL_Exp/analysis/scenario_mix_v1_export/crash_exposure_comparison.csv",
+        "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/analysis/scenario_mix_v1_export/calibration.png": "/private/tmp/output-reorg-smoke/finrl/generated/FinRL_Exp/analysis/scenario_mix_v1_export/calibration.png",
+        "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/analysis/scenario_mix_v1_export/calibration_grid.csv": "/private/tmp/output-reorg-smoke/finrl/generated/FinRL_Exp/analysis/scenario_mix_v1_export/calibration_grid.csv",
+        "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/analysis/scenario_mix_v1_export/rl_paths_vs_real.csv": "/private/tmp/output-reorg-smoke/finrl/generated/FinRL_Exp/analysis/scenario_mix_v1_export/rl_paths_vs_real.csv",
+        "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/analysis/scenario_mix_v1_export/rl_paths_distributions.png": "/private/tmp/output-reorg-smoke/finrl/generated/FinRL_Exp/analysis/scenario_mix_v1_export/rl_paths_distributions.png",
+        "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/analysis/scenario_mix_v1_export/rl_paths_examples.png": "/private/tmp/output-reorg-smoke/finrl/generated/FinRL_Exp/analysis/scenario_mix_v1_export/rl_paths_examples.png",
+        "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/analysis/scenario_mix_v1_export/rl_paths_vs_closest_real.png": "/private/tmp/output-reorg-smoke/finrl/generated/FinRL_Exp/analysis/scenario_mix_v1_export/rl_paths_vs_closest_real.png",
+        "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/analysis/scenario_mix_v1_export/finrl_by_group.csv": "/private/tmp/output-reorg-smoke/finrl/generated/FinRL_Exp/analysis/scenario_mix_v1_export/finrl_by_group.csv",
+        "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/analysis/scenario_mix_v1_export/finrl_stock_weight_by_run.csv": "/private/tmp/output-reorg-smoke/finrl/generated/FinRL_Exp/analysis/scenario_mix_v1_export/finrl_stock_weight_by_run.csv",
+        "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/analysis/scenario_mix_v1_export/finrl_value_and_weight.png": "/private/tmp/output-reorg-smoke/finrl/generated/FinRL_Exp/analysis/scenario_mix_v1_export/finrl_value_and_weight.png",
+        "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/analysis/scenario_mix_v1_export/finrl_covid.png": "/private/tmp/output-reorg-smoke/finrl/generated/FinRL_Exp/analysis/scenario_mix_v1_export/finrl_covid.png",
+        "/Users/chuanwei/Files/Projects/nycu_fintech/FinRL_Exp/analysis/scenario_mix_v1_export/finrl_validation.png": "/private/tmp/output-reorg-smoke/finrl/generated/FinRL_Exp/analysis/scenario_mix_v1_export/finrl_validation.png"
+      }
+    },
+    {
+      "notebook": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/pr30_vs_pr10/pr10_comparison.ipynb",
+      "mode": "socket_free_sequential_ipython",
+      "training_run": false,
+      "generation_run": false,
+      "ppo_run": false,
+      "cells": [
+        {
+          "index": 2,
+          "seconds": 2.754,
+          "rich_outputs": 0,
+          "status": "passed"
+        },
+        {
+          "index": 4,
+          "seconds": 0.583,
+          "rich_outputs": 2,
+          "status": "passed"
+        },
+        {
+          "index": 7,
+          "seconds": 0.302,
+          "rich_outputs": 2,
+          "status": "passed"
+        },
+        {
+          "index": 10,
+          "seconds": 0.006,
+          "rich_outputs": 3,
+          "status": "passed"
+        }
+      ],
+      "status": "passed",
+      "limitations": [
+        "No live Jupyter kernel, frontend interactions, or widget behavior tested.",
+        "Existing optional missing-input branches remain as authored.",
+        "Writes are redirected; original notebook outputs are not replaced."
+      ],
+      "seconds": 3.645,
+      "redirected_outputs": {
+        "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/pr30_vs_pr10/tail_comparison.png": "/private/tmp/output-reorg-smoke/pr10/generated/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/pr30_vs_pr10/tail_comparison.png",
+        "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/pr30_vs_pr10/structure_comparison.png": "/private/tmp/output-reorg-smoke/pr10/generated/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/analyses/pr30_vs_pr10/structure_comparison.png"
+      }
+    }
+  ],
+  "code_cells": 24,
+  "original_notebooks_not_overwritten": true
+}

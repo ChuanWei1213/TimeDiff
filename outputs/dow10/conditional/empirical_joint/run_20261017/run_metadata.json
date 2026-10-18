@@ -1,0 +1,35 @@
+{
+  "scope": "Retrain conditional TimeDiff, sample paired empirical conditions and diagnose paths; no PPO.",
+  "training": {
+    "target_start": "2005-01-02",
+    "train_end": "2017-12-31",
+    "val_end": "2019-12-31",
+    "steps": 10000,
+    "ar_steps": 500,
+    "eval_every": 250,
+    "val_batches": 4,
+    "batch_size": 32,
+    "channels": 64,
+    "lambda_condition": 0.1,
+    "seed": 2024,
+    "device": "cpu",
+    "omp_threads": 4
+  },
+  "versions": {
+    "python": "3.11.4",
+    "torch": "2.5.1",
+    "numpy": "1.26.4",
+    "pandas": "2.2.1",
+    "pytest": "8.4.1"
+  },
+  "existing_inputs_sha256": {
+    "datasets/dow10/prices_2004.csv": "7c52d084e8bfb689d5138c97429d0b63c0707120ab9f32d330d6adb1cfcfbedc",
+    "outputs/dow10_cond/rl_paths/paths.npz": "da21274c1662c8c9c023248610516197f35fd611f08cda5311ab197408958edd"
+  },
+  "validation": {
+    "result": "30 passed in 6.25s",
+    "command": ".venv-spx/bin/python -m pytest tests/test_joint_conditions.py tests/test_spx.py -q -o cache_dir=/private/tmp/timediff-joint-pytest-cache",
+    "note": "An earlier run finished all assertions but failed during sandbox-restricted pytest cache cleanup; the subsequent runs completed successfully."
+  },
+  "comparison_caveat": "This is a newly trained checkpoint, not a reconstruction of the missing original checkpoint. The notebook records original PyTorch 2.9.1; this local run uses 2.5.1."
+}

@@ -1,0 +1,11 @@
+{
+  "old_config_resolves_to": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/fixed_scenarios/legacy/rl_paths/paths.npz",
+  "paths_loaded": 6039,
+  "shape": [
+    6039,
+    21,
+    10
+  ],
+  "anchor_continuity_checked": true,
+  "ppo_run": false
+}

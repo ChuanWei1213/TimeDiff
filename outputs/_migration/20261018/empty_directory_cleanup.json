@@ -1,0 +1,28 @@
+{
+  "status": "all_legacy_directories_absent",
+  "verified_at_utc": "2026-10-18T10:35:34.374417+00:00",
+  "checked_directories": [
+    "outputs/armd",
+    "outputs/cndiff",
+    "outputs/dow10_cond",
+    "outputs/dow10_joint_20261017",
+    "outputs/dow10_joint_diagnosis_20261017",
+    "outputs/dow10_joint_pr10_20261018",
+    "outputs/dow10_stock_tail_design_20261018",
+    "outputs/dow10_wf_v2",
+    "outputs/dow10_wf_vpred",
+    "outputs/dva",
+    "outputs/garch_null",
+    "outputs/gauss_sigma",
+    "outputs/nsdiff",
+    "outputs/v_3layer",
+    "outputs/v_4layer",
+    "outputs/v_4layer_fix",
+    "outputs/v_cross",
+    "outputs/v_cross_ga",
+    "outputs/v_whiten"
+  ],
+  "remaining_directories": [],
+  "verification_only": true,
+  "files_deleted_by_this_check": 0
+}

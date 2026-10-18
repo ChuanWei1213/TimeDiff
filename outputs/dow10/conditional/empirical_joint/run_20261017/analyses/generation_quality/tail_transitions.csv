@@ -1,0 +1,5 @@
+target_tail,generated_tail,n_paths
+True,True,820
+True,False,240
+False,True,87
+False,False,853

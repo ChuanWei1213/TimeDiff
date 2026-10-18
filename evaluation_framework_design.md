@@ -559,7 +559,7 @@ Overall = 0.5 · SF_Score + 0.5 · CrossAsset_Score
 
 | 檔案 | 函式 | 說明 |
 |---|---|---|
-| `loaders.py` | `discover_models()` | 掃描 `outputs/*/`，依檔案樣式分類 Family A/B/C，回傳 `MODELS` |
+| `loaders.py` | `discover_models()` | 掃描 `outputs/dow10/walk_forward/{timediff,statistical,external}/` 與 `outputs/dow10/single_shot/`（相容舊平面目錄），依檔案樣式分類 Family A/B/C，回傳 `MODELS` |
 | | `load_real(start, end)` | 讀 `dow10_wf_returns.csv`，回傳 (T,10) rclose |
 | | `load_synthetic(model, start, end)` | 統一 preprocessing layer：Family A 補 date、Family B 篩日期、Family C 排除 |
 | | `assert_alignment(real, syn)` | 日期、ticker、長度三重檢查 |
@@ -599,7 +599,7 @@ evaluation notebook 不呼叫它（避免動到生成流程的相依）。
    supplementary analysis（不刪除）。Main metrics = Correlation Matrix Distance、
    PCA / Eigenvalue Structure Distance、Copula-based Tail Dependence Distance。
 4. **模型範圍：** 論文最終只會有兩個版本 —— baseline 與 fine-tune 完成的模型。
-   既有 32 個單次 2024 生成目錄暫不納入。目前 baseline = `outputs/dow10_wf_v2`
+   既有 32 個單次 2024 生成目錄暫不納入。目前 baseline = `outputs/dow10/walk_forward/timediff/dow10_wf_v2`
    （28 cycles、50 paths、vol_scale 1.0、gen_seed 1）。
 
 ---

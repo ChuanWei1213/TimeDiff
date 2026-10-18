@@ -1,0 +1,143 @@
+{
+  "status": "generated_and_diagnosed",
+  "sampling": {
+    "sampler": "paired_empirical_full_plus_lower_tail",
+    "train_start": "2010-01-01",
+    "train_end": "2017-12-31",
+    "history_days": 63,
+    "target_days": 21,
+    "n_population": 1993,
+    "n_tail_population": 598,
+    "tail_quantile": 0.3,
+    "tail_return_cutoff": -0.0018410959144874346,
+    "tail_rule": "target_return <= training quantile (linear interpolation)",
+    "requested_full_weight": 0.7,
+    "actual_full_weight": 0.7,
+    "n_draws": 500,
+    "n_full_draws": 350,
+    "n_tail_draws": 150,
+    "plan_seed": 20261017,
+    "population_tail_share": 0.3000501756146513,
+    "expected_sampled_tail_share": 0.510035122930256,
+    "sampled_tail_share": 0.53,
+    "n_unique_windows": 415,
+    "sampling_unit": "paired original history and its own following return/volatility",
+    "replacement": true,
+    "caveats": [
+      "Overlapping windows are dependent; unique windows are not independent events.",
+      "The full pool also contains tail windows; source_pool is not is_tail.",
+      "Past-only context may predate train_start; every target day is inside training.",
+      "Future conditions and source labels must never enter the PPO observation."
+    ]
+  },
+  "realized_tail_share": 0.4535,
+  "target_tail_share": 0.53,
+  "return_vol_correlation": {
+    "training_population": -0.3551528062461102,
+    "sampled_conditions": -0.4021152670687672,
+    "generated_paths": -0.40632905103077466
+  },
+  "condition_errors": [
+    {
+      "group": "all",
+      "n_paths": 2000,
+      "return_bias": 0.0011901397402320853,
+      "return_mae": 0.015777221486075094,
+      "volatility_bias": 0.017560525420458713,
+      "volatility_mae": 0.02223446853471401,
+      "standardized_condition_mse": 0.13333240216895212,
+      "hit_1pp_return_2pp_vol": 0.2035,
+      "hit_2pp_return_5pp_vol": 0.6365
+    },
+    {
+      "group": "target_tail",
+      "n_paths": 1060,
+      "return_bias": 0.0011442280133127061,
+      "return_mae": 0.01598585714087343,
+      "volatility_bias": 0.016407861147689367,
+      "volatility_mae": 0.021916217812125532,
+      "standardized_condition_mse": 0.13591330743981636,
+      "hit_1pp_return_2pp_vol": 0.2009433962264151,
+      "hit_2pp_return_5pp_vol": 0.6471698113207547
+    },
+    {
+      "group": "target_non_tail",
+      "n_paths": 940,
+      "return_bias": 0.001241912538673088,
+      "return_mae": 0.015541951492366332,
+      "volatility_bias": 0.018860338323794357,
+      "volatility_mae": 0.02259334700912229,
+      "standardized_condition_mse": 0.13042201962946692,
+      "hit_1pp_return_2pp_vol": 0.20638297872340425,
+      "hit_2pp_return_5pp_vol": 0.624468085106383
+    }
+  ],
+  "diversity": {
+    "n_paths": 2000,
+    "n_unique_close_paths": 2000,
+    "exact_duplicate_close_path_fraction": 0.0,
+    "n_conditions_with_replicates": 415,
+    "n_conditions_all_close_paths_identical": 0,
+    "mean_pairwise_normalized_rmse": 1.4428181899661545,
+    "median_pairwise_centered_rmse": 1.402872928550183,
+    "median_pairwise_portfolio_return_correlation": 0.46862662910273545,
+    "original_future_copy_count_at_1e_minus_7": 0,
+    "limitations": [
+      "Nonzero differences alone do not establish realistic diversity.",
+      "Small R/sigma dispersion is expected under fixed conditions; inspect path-shape differences.",
+      "Near-copy check covers only the paired original future, not every generator-training window.",
+      "Overlapping windows and repeated conditions are dependent."
+    ]
+  },
+  "joint_binned_total_variation": {
+    "sampled_vs_expected_mixture": 0.0834087399543888,
+    "generated_vs_sampled_conditions": 0.20200000000000015
+  },
+  "high_clip_fraction": 0.21684761904761904,
+  "low_clip_fraction": 0.2112595238095238,
+  "path_comparison": {
+    "max_drawdown": {
+      "generated_mean": -0.04187953596622917,
+      "paired_real_mean": -0.03788435350207435
+    },
+    "mean_asset_correlation": {
+      "generated_mean": 0.18640288980392386,
+      "paired_real_mean": 0.3618114194324011
+    },
+    "max_abs_asset_daily_log_return": {
+      "generated_mean": 0.07005751403421163,
+      "paired_real_mean": 0.07875955238953912
+    },
+    "portfolio_squared_return_lag1_correlation": {
+      "generated_mean": -0.030770180402351514,
+      "paired_real_mean": -0.022662369720832246
+    }
+  },
+  "joint_bin_edges": [
+    [
+      null,
+      -0.034762700200214734,
+      -0.0018410959144874346,
+      0.0149696368159977,
+      0.03435900528125498,
+      0.05776670191454733,
+      null
+    ],
+    [
+      null,
+      0.07705477667103419,
+      0.10253876547863769,
+      0.12415612121588016,
+      0.15179863537634095,
+      0.21285960278290667,
+      null
+    ]
+  ],
+  "caveats": [
+    "This is an in-training-support generation diagnostic, not out-of-sample validation or PPO evidence.",
+    "No paths were rejected or retuned based on realized conditions.",
+    "The original +/-2pp return and +/-5pp volatility tolerance is descriptive, not an acceptance standard.",
+    "Multiple generated paths per draw do not increase the number of independently sampled conditions.",
+    "Lag-1 squared-return correlation within a 21-day path is noisy; it is descriptive only."
+  ]
+}

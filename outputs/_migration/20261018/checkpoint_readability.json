@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "checkpoint": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/conditional/empirical_joint/run_20261017/train/model.pt",
+  "legacy_path_resolved": true,
+  "state_dict_loaded_strictly": true,
+  "best_step": 3500,
+  "inference_run": false,
+  "training_run": false,
+  "ppo_run": false
+}

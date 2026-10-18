@@ -1,0 +1,2 @@
+# From the TimeDiff directory. Output directory must not already exist.
+MPLCONFIGDIR=/private/tmp/timediff-pr10-mpl .venv-spx/bin/python sample_joint_dow10.py generate --data datasets/dow10/prices_2004.csv --checkpoint outputs/dow10_joint_20261017/train/model.pt --out outputs/dow10_joint_pr10_20261018/batch --full-weight 0.70 --tail-quantile 0.10 --n-draws 500 --paths-per-condition 4 --plan-seed 20261017 --diffusion-seed 20261018 --batch-size 32 --threads 4 --device cpu

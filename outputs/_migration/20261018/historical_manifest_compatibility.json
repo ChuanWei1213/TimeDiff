@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "batch": "full70_tail30_pr30",
+      "artifact_checks": 14,
+      "source_checks": 10,
+      "old_metadata_paths_resolve": true
+    },
+    {
+      "batch": "full70_tail30_pr10",
+      "artifact_checks": 14,
+      "source_checks": 10,
+      "old_metadata_paths_resolve": true
+    }
+  ]
+}

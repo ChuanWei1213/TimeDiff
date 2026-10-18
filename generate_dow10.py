@@ -49,7 +49,7 @@ PRED_LEN  = 21     # 每次生成天數
 N_ROLLS   = 12     # 12 × 21 = 252 ≈ 2024 全年
 
 DATA_DIR  = "./datasets/prediction/data_finance"
-OUT_DIR   = "./outputs/dow10_2024"
+OUT_DIR   = "./outputs/dow10/single_shot/dow10_2024"
 
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -474,7 +474,7 @@ def main():
 
     random.seed(42); np.random.seed(42); torch.manual_seed(42)
 
-    OUT_DIR = cli.out_dir if cli.out_dir else f"./outputs/{cli.tag}_2024"
+    OUT_DIR = cli.out_dir if cli.out_dir else f"./outputs/dow10/single_shot/{cli.tag}_2024"
     os.makedirs(OUT_DIR, exist_ok=True)
 
     print("=" * 60)

@@ -1,0 +1,447 @@
+schema_version: 1
+updated_on: '2026-10-18'
+path_base: TimeDiff/outputs；除特別註明外，path/dataset/metadata/manifest 均相對此目錄。
+purpose: 實驗產物索引；不將讀取成功解讀為生成品質合格或可直接用於 PPO。
+experiments:
+- id: dow10_wf_v2
+  universe: dow10
+  protocol: walk_forward
+  family: timediff
+  path: dow10/walk_forward/timediff/dow10_wf_v2
+  legacy_path: dow10_wf_v2
+  preserved_files: 18
+  saved_returns_csv_files: 10
+  saved_checkpoints: 0
+  read_status: preexisting_data_issue
+  csv_row_counts:
+  - 1318
+  - 1319
+  issue: /Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/walk_forward/timediff/dow10_wf_v2/paths/returns/path_07_returns.csv
+    的日期與其他路徑不一致
+  issue_predates_relocation: true
+- id: dow10_wf_vpred
+  universe: dow10
+  protocol: walk_forward
+  family: timediff
+  path: dow10/walk_forward/timediff/dow10_wf_vpred
+  legacy_path: dow10_wf_vpred
+  preserved_files: 75
+  saved_returns_csv_files: 5
+  saved_checkpoints: 28
+  read_status: preexisting_data_issue
+  csv_row_counts:
+  - 1332
+  - 1333
+  issue: /Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/walk_forward/timediff/dow10_wf_vpred/paths/returns/path_11_returns.csv
+    的日期與其他路徑不一致
+  issue_predates_relocation: true
+- id: v_cross
+  universe: dow10
+  protocol: walk_forward
+  family: timediff
+  path: dow10/walk_forward/timediff/v_cross
+  legacy_path: v_cross
+  preserved_files: 23
+  saved_returns_csv_files: 18
+  saved_checkpoints: 0
+  read_status: preexisting_data_issue
+  csv_row_counts:
+  - 667
+  - 668
+  issue: /Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/walk_forward/timediff/v_cross/paths/returns/path_03_returns.csv
+    的日期與其他路徑不一致
+  issue_predates_relocation: true
+- id: v_cross_ga
+  universe: dow10
+  protocol: walk_forward
+  family: timediff
+  path: dow10/walk_forward/timediff/v_cross_ga
+  legacy_path: v_cross_ga
+  preserved_files: 16
+  saved_returns_csv_files: 11
+  saved_checkpoints: 0
+  read_status: preexisting_data_issue
+  csv_row_counts:
+  - 668
+  - 669
+  - 670
+  issue: /Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/walk_forward/timediff/v_cross_ga/paths/returns/path_06_returns.csv
+    的日期與其他路徑不一致
+  issue_predates_relocation: true
+- id: v_whiten
+  universe: dow10
+  protocol: walk_forward
+  family: timediff
+  path: dow10/walk_forward/timediff/v_whiten
+  legacy_path: v_whiten
+  preserved_files: 28
+  saved_returns_csv_files: 23
+  saved_checkpoints: 0
+  read_status: preexisting_data_issue
+  csv_row_counts:
+  - 399
+  - 798
+  issue: /Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/walk_forward/timediff/v_whiten/paths/returns/path_03_returns.csv
+    的日期與其他路徑不一致
+  issue_predates_relocation: true
+- id: v_3layer
+  universe: dow10
+  protocol: walk_forward
+  family: timediff
+  path: dow10/walk_forward/timediff/v_3layer
+  legacy_path: v_3layer
+  preserved_files: 17
+  saved_returns_csv_files: 12
+  saved_checkpoints: 0
+  read_status: preexisting_data_issue
+  csv_row_counts:
+  - 798
+  - 799
+  issue: /Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/walk_forward/timediff/v_3layer/paths/returns/path_08_returns.csv
+    的日期與其他路徑不一致
+  issue_predates_relocation: true
+- id: v_4layer
+  universe: dow10
+  protocol: walk_forward
+  family: timediff
+  path: dow10/walk_forward/timediff/v_4layer
+  legacy_path: v_4layer
+  preserved_files: 17
+  saved_returns_csv_files: 12
+  saved_checkpoints: 0
+  read_status: preexisting_data_issue
+  csv_row_counts:
+  - 797
+  - 798
+  issue: /Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/walk_forward/timediff/v_4layer/paths/returns/path_16_returns.csv
+    的日期與其他路徑不一致
+  issue_predates_relocation: true
+- id: v_4layer_fix
+  universe: dow10
+  protocol: walk_forward
+  family: timediff
+  path: dow10/walk_forward/timediff/v_4layer_fix
+  legacy_path: v_4layer_fix
+  preserved_files: 18
+  saved_returns_csv_files: 13
+  saved_checkpoints: 0
+  read_status: preexisting_data_issue
+  csv_row_counts:
+  - 797
+  - 798
+  issue: /Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/walk_forward/timediff/v_4layer_fix/paths/returns/path_13_returns.csv
+    的日期與其他路徑不一致
+  issue_predates_relocation: true
+- id: gauss_sigma
+  universe: dow10
+  protocol: walk_forward
+  family: statistical
+  path: dow10/walk_forward/statistical/gauss_sigma
+  legacy_path: gauss_sigma
+  preserved_files: 10
+  saved_returns_csv_files: 10
+  saved_checkpoints: 0
+  read_status: loaded
+  csv_row_counts:
+  - 799
+  loaded_shape_paths_days_assets:
+  - 10
+  - 799
+  - 10
+  first_date: '2018-01-02'
+  last_date: '2021-03-05'
+  primary_window_days_expected: 1761
+  primary_window_complete: false
+- id: garch_null
+  universe: dow10
+  protocol: walk_forward
+  family: statistical
+  path: dow10/walk_forward/statistical/garch_null
+  legacy_path: garch_null
+  preserved_files: 32
+  saved_returns_csv_files: 32
+  saved_checkpoints: 0
+  read_status: preexisting_data_issue
+  csv_row_counts:
+  - 1711
+  - 1712
+  - 1713
+  - 1714
+  issue: /Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/walk_forward/statistical/garch_null/paths/returns/path_05_returns.csv
+    的日期與其他路徑不一致
+  issue_predates_relocation: true
+- id: armd
+  universe: dow10
+  protocol: walk_forward
+  family: external
+  path: dow10/walk_forward/external/armd
+  legacy_path: armd
+  preserved_files: 1
+  saved_returns_csv_files: 0
+  saved_checkpoints: 0
+  read_status: no_standardized_returns
+  issue: 原始檔案已保存；缺少 evaluation loader 可辨識的標準化 returns 檔，未在本次轉檔。
+- id: cndiff
+  universe: dow10
+  protocol: walk_forward
+  family: external
+  path: dow10/walk_forward/external/cndiff
+  legacy_path: cndiff
+  preserved_files: 2
+  saved_returns_csv_files: 1
+  saved_checkpoints: 0
+  read_status: loaded
+  csv_row_counts:
+  - 1761
+  loaded_shape_paths_days_assets:
+  - 1
+  - 1761
+  - 10
+  first_date: '2018-01-02'
+  last_date: '2024-12-31'
+  primary_window_days_expected: 1761
+  primary_window_complete: true
+- id: nsdiff
+  universe: dow10
+  protocol: walk_forward
+  family: external
+  path: dow10/walk_forward/external/nsdiff
+  legacy_path: nsdiff
+  preserved_files: 2
+  saved_returns_csv_files: 1
+  saved_checkpoints: 0
+  read_status: loaded
+  csv_row_counts:
+  - 1761
+  loaded_shape_paths_days_assets:
+  - 1
+  - 1761
+  - 10
+  first_date: '2018-01-02'
+  last_date: '2024-12-31'
+  primary_window_days_expected: 1761
+  primary_window_complete: true
+- id: dva
+  universe: dow10
+  protocol: walk_forward
+  family: external
+  path: dow10/walk_forward/external/dva
+  legacy_path: dva
+  preserved_files: 1
+  saved_returns_csv_files: 0
+  saved_checkpoints: 0
+  read_status: no_standardized_returns
+  issue: 原始檔案已保存；缺少 evaluation loader 可辨識的標準化 returns 檔，未在本次轉檔。
+- id: fixed_scenarios_legacy
+  universe: dow10
+  protocol: conditional
+  family: fixed_scenarios
+  path: dow10/conditional/fixed_scenarios/legacy
+  legacy_path: dow10_cond
+  dataset: dow10/conditional/fixed_scenarios/legacy/rl_paths/paths.npz
+  n_paths: 6039
+  shape_paths_days_assets:
+  - 6039
+  - 21
+  - 10
+  conditions_return_ann_vol:
+  - - -0.1
+    - 0.5
+  - - -0.23
+    - 1.0
+  - - -0.36
+    - 1.4
+  checkpoint_available: false
+  read_status: loaded
+  existing_consumer: FinRL_Exp Scenario Mix 歷史實驗；舊設定路徑由 resolve_synthetic_path 解析。
+  source_notebook_relative_to_workspace: FinRL_Exp/analysis/scenario_mix/scenario_mix_v1_summary.ipynb
+- id: empirical_joint_run_20261017
+  universe: dow10
+  protocol: conditional
+  family: empirical_joint
+  path: dow10/conditional/empirical_joint/run_20261017
+  checkpoint: dow10/conditional/empirical_joint/run_20261017/train/model.pt
+  metadata: dow10/conditional/empirical_joint/run_20261017/train/metadata.json
+  training_target_start: '2005-01-02'
+  training_target_end: '2017-12-31'
+  validation_target_end: '2019-12-31'
+  best_step: 3500
+  history_days: 63
+  target_days: 21
+  condition: 'equal-weight daily-rebalanced portfolio: [cum_return_21d, ann_vol_ddof1]'
+  batches:
+  - full70_tail30_pr30
+  - full70_tail30_pr10
+  ppo_run: false
+- id: full70_tail30_pr30
+  universe: dow10
+  protocol: conditional
+  family: empirical_joint
+  path: dow10/conditional/empirical_joint/run_20261017/batches/full70_tail30_pr30
+  dataset: dow10/conditional/empirical_joint/run_20261017/batches/full70_tail30_pr30/paths.npz
+  manifest: dow10/conditional/empirical_joint/run_20261017/batches/full70_tail30_pr30/generation.json
+  model_ref: empirical_joint_run_20261017
+  n_paths: 2000
+  shape_paths_days_assets:
+  - 2000
+  - 21
+  - 10
+  condition_pool_start: '2010-01-01'
+  condition_pool_end: '2017-12-31'
+  full_weight: 0.7
+  tail_weight: 0.3
+  tail_quantile: 0.3
+  tail_return_cutoff: -0.0018410959144874346
+  sampling_unit: paired original history and its own following return/volatility
+  replacement: true
+  n_population: 1993
+  n_tail_population: 598
+  n_draws: 500
+  paths_per_condition: 4
+  plan_seed: 20261017
+  diffusion_seed: 20261018
+  sha256: e8ca7fbbbc65f1147464ffe0b0c0fcfd8a1e9cc06c78fb895d944177d47dd267
+  read_status: loaded
+  status: generated_and_diagnosed
+  ppo_run: false
+- id: full70_tail30_pr10
+  universe: dow10
+  protocol: conditional
+  family: empirical_joint
+  path: dow10/conditional/empirical_joint/run_20261017/batches/full70_tail30_pr10
+  dataset: dow10/conditional/empirical_joint/run_20261017/batches/full70_tail30_pr10/paths.npz
+  manifest: dow10/conditional/empirical_joint/run_20261017/batches/full70_tail30_pr10/generation.json
+  model_ref: empirical_joint_run_20261017
+  n_paths: 2000
+  shape_paths_days_assets:
+  - 2000
+  - 21
+  - 10
+  condition_pool_start: '2010-01-01'
+  condition_pool_end: '2017-12-31'
+  full_weight: 0.7
+  tail_weight: 0.3
+  tail_quantile: 0.1
+  tail_return_cutoff: -0.034762700200214734
+  sampling_unit: paired original history and its own following return/volatility
+  replacement: true
+  n_population: 1993
+  n_tail_population: 200
+  n_draws: 500
+  paths_per_condition: 4
+  plan_seed: 20261017
+  diffusion_seed: 20261018
+  sha256: 8a986ae468e10875a60ca68b71aad9bcb86d102747e7221757f830eb13385ba5
+  read_status: loaded
+  status: generated_and_diagnosed
+  ppo_run: false
+supporting_artifacts:
+- id: pr30_plan
+  kind: sampling_plan
+  path: dow10/conditional/empirical_joint/run_20261017/plans/full70_tail30_pr30
+- id: pr10_plan
+  kind: sampling_plan
+  path: dow10/conditional/empirical_joint/run_20261017/batches/full70_tail30_pr10/sampling_plan.csv
+  note: 原 PR10 計畫存在批次內，未複製出第二份。
+- id: generation_quality
+  kind: analysis
+  path: dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality
+  notebook: diagnostic_review.ipynb
+- id: pr30_vs_pr10
+  kind: analysis
+  path: dow10/conditional/empirical_joint/run_20261017/analyses/pr30_vs_pr10
+  notebook: pr10_comparison.ipynb
+- id: random_stock_pr30
+  kind: design_only
+  path: dow10/conditional/empirical_joint/run_20261017/designs/random_stock_pr30
+  generated_dataset: false
+- id: walk_forward_p0p1
+  kind: historical_report
+  path: dow10/walk_forward/analyses/p0p1_results.txt
+other_collections:
+- id: spx
+  path: spx
+  relocated: false
+  subdirectories:
+  - condition_lambda_0p1
+  - crash_20260929
+  - initial
+  - initial_samples
+  - no_mixup
+  - no_mixup_comparison
+  - no_mixup_samples
+  - three_way_comparison
+new_output_convention:
+  native_walk_forward: dow10/walk_forward/timediff/<tag>
+  statistical_walk_forward: dow10/walk_forward/statistical/<tag>
+  external_walk_forward: dow10/walk_forward/external/<tag>
+  single_shot: dow10/single_shot/<tag>
+  conditional: dow10/conditional/<method>/run_<YYYYMMDD>/{train,plans,batches,analyses,designs}
+legacy_path_map:
+  dow10_wf_v2: dow10/walk_forward/timediff/dow10_wf_v2
+  dow10_wf_vpred: dow10/walk_forward/timediff/dow10_wf_vpred
+  v_cross: dow10/walk_forward/timediff/v_cross
+  v_cross_ga: dow10/walk_forward/timediff/v_cross_ga
+  v_whiten: dow10/walk_forward/timediff/v_whiten
+  v_3layer: dow10/walk_forward/timediff/v_3layer
+  v_4layer: dow10/walk_forward/timediff/v_4layer
+  v_4layer_fix: dow10/walk_forward/timediff/v_4layer_fix
+  gauss_sigma: dow10/walk_forward/statistical/gauss_sigma
+  garch_null: dow10/walk_forward/statistical/garch_null
+  armd: dow10/walk_forward/external/armd
+  cndiff: dow10/walk_forward/external/cndiff
+  nsdiff: dow10/walk_forward/external/nsdiff
+  dva: dow10/walk_forward/external/dva
+  dow10_cond: dow10/conditional/fixed_scenarios/legacy
+  dow10_joint_20261017/batch: dow10/conditional/empirical_joint/run_20261017/batches/full70_tail30_pr30
+  dow10_joint_20261017/condition_plan: dow10/conditional/empirical_joint/run_20261017/plans/full70_tail30_pr30
+  dow10_joint_20261017: dow10/conditional/empirical_joint/run_20261017
+  dow10_joint_pr10_20261018/batch: dow10/conditional/empirical_joint/run_20261017/batches/full70_tail30_pr10
+  dow10_joint_pr10_20261018: dow10/conditional/empirical_joint/run_20261017/analyses/pr30_vs_pr10
+  dow10_joint_diagnosis_20261017: dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality
+  dow10_stock_tail_design_20261018: dow10/conditional/empirical_joint/run_20261017/designs/random_stock_pr30
+  p0p1_results.txt: dow10/walk_forward/analyses/p0p1_results.txt
+migration:
+  audit_path: _migration/20261018
+  original_files: 455
+  original_bytes: 228897463
+  original_manifests_preserved: true
+  saved_notebook_outputs_preserved: true
+  original_source_backups: _migration/20261018/original_sources
+  readability_report: _migration/20261018/readability_audit.json
+  training_run: false
+  generation_run: false
+  ppo_run: false
+  empty_directory_note: 19 個舊空目錄已清理；提交前查核均不存在，搬移當下的原始紀錄保留於 relocation.json。
+  initially_retained_empty_legacy_directories:
+  - armd
+  - cndiff
+  - dow10_cond
+  - dow10_joint_20261017
+  - dow10_joint_diagnosis_20261017
+  - dow10_joint_pr10_20261018
+  - dow10_stock_tail_design_20261018
+  - dow10_wf_v2
+  - dow10_wf_vpred
+  - dva
+  - garch_null
+  - gauss_sigma
+  - nsdiff
+  - v_3layer
+  - v_4layer
+  - v_4layer_fix
+  - v_cross
+  - v_cross_ga
+  - v_whiten
+  remaining_empty_legacy_directories: []
+  empty_directory_cleanup_report: _migration/20261018/empty_directory_cleanup.json
+version_control:
+  tracked_collections:
+  - dow10/walk_forward
+  - dow10/conditional/fixed_scenarios/legacy/rl_paths/paths.npz
+  - dow10/conditional/empirical_joint/run_20261017
+  - _migration/20261018
+  local_only_collections:
+  - spx
+  runtime_caches_tracked: false
+  note: 完整搬移稽核仍包含本機 SPX 產物與原始 Python 快取。

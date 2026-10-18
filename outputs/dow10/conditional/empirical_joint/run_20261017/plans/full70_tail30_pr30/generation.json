@@ -1,0 +1,70 @@
+{
+  "format_version": 1,
+  "status": "condition_plan_only",
+  "ppo_run": false,
+  "started_utc": "2026-10-17T12:57:15.569987+00:00",
+  "cli": {
+    "command": "plan",
+    "data": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/datasets/dow10/prices_2004.csv",
+    "out": "outputs/dow10_joint_20261017/condition_plan",
+    "train_start": "2010-01-01",
+    "train_end": "2017-12-31",
+    "n_draws": 500,
+    "paths_per_condition": 4,
+    "full_weight": 0.7,
+    "tail_quantile": 0.3,
+    "plan_seed": 20261017
+  },
+  "sampling": {
+    "sampler": "paired_empirical_full_plus_lower_tail",
+    "train_start": "2010-01-01",
+    "train_end": "2017-12-31",
+    "history_days": 63,
+    "target_days": 21,
+    "n_population": 1993,
+    "n_tail_population": 598,
+    "tail_quantile": 0.3,
+    "tail_return_cutoff": -0.0018410959144874346,
+    "tail_rule": "target_return <= training quantile (linear interpolation)",
+    "requested_full_weight": 0.7,
+    "actual_full_weight": 0.7,
+    "n_draws": 500,
+    "n_full_draws": 350,
+    "n_tail_draws": 150,
+    "plan_seed": 20261017,
+    "population_tail_share": 0.3000501756146513,
+    "expected_sampled_tail_share": 0.510035122930256,
+    "sampled_tail_share": 0.53,
+    "n_unique_windows": 415,
+    "sampling_unit": "paired original history and its own following return/volatility",
+    "replacement": true,
+    "caveats": [
+      "Overlapping windows are dependent; unique windows are not independent events.",
+      "The full pool also contains tail windows; source_pool is not is_tail.",
+      "Past-only context may predate train_start; every target day is inside training.",
+      "Future conditions and source labels must never enter the PPO observation."
+    ]
+  },
+  "paths_per_condition": 4,
+  "n_planned_paths": 2000,
+  "data": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/datasets/dow10/prices_2004.csv",
+  "data_sha256": "7c52d084e8bfb689d5138c97429d0b63c0707120ab9f32d330d6adb1cfcfbedc",
+  "code_commit": "7ce9b55b1e54b8956b0660a467ae30cf40514852",
+  "source_sha256": {
+    "sample_joint_dow10.py": "1e490f0c27b9fea02047c9c21213b7edd5c8123d58f76e72e32daeeef1df109c",
+    "data_provider/joint_conditions.py": "2ed659ac4f73ae3705241726f5878d5857f8036a7b220c1691e8ba4229ba8eec",
+    "data_provider/dow10_cond.py": "b94ef39945355a57f7882695f44cf67fb7253b11e8776451ba3ec5e77c901445",
+    "evaluation/joint_condition_diagnostics.py": "53166272b4d694139910b485f73761f46d89187cd56938d3dd2db0fae43578aa",
+    "dow10_cond_experiment.py": "c99bfd09e2d34fe5cdd30cf9fad4ea30cb6ccf9e02595a80191a3bd266a9f8a2",
+    "models_diffusion/DDPM.py": "b4fd159ed4ef923c9f101365e962f19532b2fba75cb0340d0cc7595f2121d342",
+    "models_diffusion/DDPM_modules/DDPM_CNNNet.py": "02b6f9d9e66c195165b243780fd12bb892b33777d7e666830e606f9d74c28940",
+    "models_diffusion/diffusion_worker.py": "f9feea4d84ee01419a9254668173267cce1a21c2d9f1d2cd4f7dcbd857fa8902",
+    "models_diffusion/samplers/dpm_sampler.py": "a5523b39f987b717415c38cf7530c3712652613b51399418b873362ba3a0b828",
+    "models_diffusion/samplers/dpm_solver.py": "7b42534cde7eb502c345cd2fc22ab5fb35e40351507786ce58c8ff8715a4a100"
+  },
+  "versions": {
+    "python": "3.11.4",
+    "numpy": "1.26.4",
+    "pandas": "2.2.1"
+  }
+}

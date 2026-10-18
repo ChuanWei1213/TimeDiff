@@ -1,0 +1,19 @@
+{
+  "status": "complete",
+  "n_draws": 96,
+  "n_unique_windows": 92,
+  "subset": "first 96 draws of the previously shuffled frozen 500-draw plan",
+  "n_paths_per_solver_run": 384,
+  "paths_per_condition": 4,
+  "model_sha256": "35a7a8453df92ed3e7da4b891942114b1010ba01becfd4837bd86370635ca5d6",
+  "data_sha256": "7c52d084e8bfb689d5138c97429d0b63c0707120ab9f32d330d6adb1cfcfbedc",
+  "validation_mse_first128": 0.12410609424114227,
+  "checkpoint_recorded_validation_mse": 0.14921281562965305,
+  "training_performed": false,
+  "ppo_performed": false,
+  "caveats": [
+    "Solver comparison is a paired inference intervention on a small fixed subset, not a new production batch.",
+    "Noised-real-future denoising has access to true-future signal via x_t and is not a generation evaluation.",
+    "Full validation audit is of the selected checkpoint only; other training checkpoints were not saved."
+  ]
+}

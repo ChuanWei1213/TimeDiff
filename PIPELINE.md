@@ -13,7 +13,7 @@
 [2] 訓練 + 生成（同一支腳本包辦）
     python walk_forward_dow10.py --tag <tag> --max_steps N --n_paths P --save_ckpt
         ↓
-    outputs/<tag>/
+    outputs/dow10/walk_forward/timediff/<tag>/
         paths/returns/path_XX_returns.csv    ← evaluation 唯一會讀的東西
         paths/price/path_XXX.csv             OHLC 長格式（給下游 RL/回測用）
         cycles/                              每期生成結果 + meta（--resume 用）
@@ -24,7 +24,7 @@
     python -m evaluation.prepare_model_output --tag <tag> --input <csv> \
            --kind price|return --layout long|wide [--value-col X] [--dry-run]
         ↓
-    outputs/<tag>/paths/returns/path_XX_returns.csv   （轉成同一格式）
+    outputs/dow10/walk_forward/external/<tag>/paths/returns/path_XX_returns.csv
 
 [4] 評估
     # 先把 tag 加進 evaluation/config.py 的 MODELS_WHITELIST
@@ -41,12 +41,16 @@
 ```
 
 **你的理解正確**：`walk_forward_dow10.py` 訓練 → `python -m evaluation.run_all` 出指標。
-中間唯一的橋樑是 `outputs/<tag>/paths/returns/*.csv`。
+中間唯一的橋樑是 `outputs/dow10/walk_forward/<分類>/<tag>/paths/returns/*.csv`。
+分類為 `timediff`、`statistical`、`external`，模型 tag 維持不變。
+條件式實驗另放在 `outputs/dow10/conditional/`；完整位置與可讀性見
+[outputs 索引](outputs/README.md)。路徑與舊實驗別名集中在 `output_layout.py`。
 
 ## 2. walk_forward_dow10.py 的相依鏈
 
 ```
 walk_forward_dow10.py
+├── output_layout.py                        輸出分類與舊路徑解析
 ├── exp/exp_main.py                          訓練迴圈
 │   └── models_diffusion/DDPM.py             模型主體（condition 的組成處）
 │       ├── DDPM_modules/DDPM_CNNNet.py      denoiser（CNN UNet）

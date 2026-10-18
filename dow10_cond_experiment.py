@@ -8,11 +8,11 @@ no future mixup, condition-consistency loss), with num_vars = 30.
         --data datasets/dow10/prices.csv
     python3 dow10_cond_experiment.py train --data datasets/dow10/prices.csv \
         --target-start 2009-04-01 --train-end 2017-12-31 --val-end 2019-12-31 \
-        --lambda-condition 0.1 --out outputs/dow10_cond/train
+        --lambda-condition 0.1 --out outputs/dow10/conditional/fixed_scenarios/legacy/train
     python3 dow10_cond_experiment.py generate --mode diagnostic \
-        --checkpoint outputs/dow10_cond/train/model.pt --out outputs/dow10_cond/diagnostic
+        --checkpoint outputs/dow10/conditional/fixed_scenarios/legacy/train/model.pt --out outputs/dow10/conditional/fixed_scenarios/legacy/diagnostic
     python3 dow10_cond_experiment.py generate --mode rl \
-        --checkpoint outputs/dow10_cond/train/model.pt --out outputs/dow10_cond/rl_paths
+        --checkpoint outputs/dow10/conditional/fixed_scenarios/legacy/train/model.pt --out outputs/dow10/conditional/fixed_scenarios/legacy/rl_paths
 """
 import argparse
 import hashlib
@@ -24,6 +24,7 @@ from types import SimpleNamespace
 
 import numpy as np
 import pandas as pd
+from output_layout import resolve_output_path
 
 ROOT = Path(__file__).resolve().parent
 DEFAULT_DATA = ROOT / "datasets/dow10/prices.csv"
@@ -365,6 +366,10 @@ def main():
         q.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
         q.add_argument("--no-progress", action="store_true")
     cli = p.parse_args()
+    if hasattr(cli, "out"):
+        cli.out = resolve_output_path(cli.out)
+    if hasattr(cli, "checkpoint"):
+        cli.checkpoint = resolve_output_path(cli.checkpoint)
     if cli.cmd == "download":
         from data_provider.dow10_cond import download_dow10
         download_dow10(cli.data, cli.start, cli.end)

@@ -93,7 +93,8 @@ W_SF = 0.5
 W_CA = 0.5
 
 # ── 模型清單 ────────────────────────────────────────────────
-# None = 自動掃描 outputs/。要限定論文用的模型時填入 tag 清單。
+# None = 掃描 outputs/dow10/walk_forward/{timediff,statistical,external}/。
+# tag 保持不變，分類與路徑由 output_layout.py 管理。
 MODELS_WHITELIST = ["dow10_wf_v2","dow10_wf_vpred","v_cross","v_cross_ga","v_whiten","v_3layer","v_4layer","v_4layer_fix","gauss_sigma","garch_null","cndiff","nsdiff","armd"]
 MODEL_DISPLAY_NAMES = {
     "dow10_wf_v2": "Baseline (TimeDiff walk-forward)",

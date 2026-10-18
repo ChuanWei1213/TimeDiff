@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "recorded_mse": 0.14921281562965305,
+  "replayed_first128_mse": 0.1492128074169159,
+  "total_windows": 483,
+  "definition": "Original DataLoader and seed 1729; first 128 reproduce checkpoint selection, extended unchanged to all 483.",
+  "note": "The manual-tensor batching run in probes/validation_comparison.csv uses a different RNG stream and is not used to reproduce the recorded score."
+}

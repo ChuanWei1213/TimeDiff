@@ -1,0 +1,210 @@
+{
+  "status": "design_analysis_only",
+  "training_or_generation_run": false,
+  "n_windows": 1993,
+  "train_start": "2010-01-01",
+  "train_end": "2017-12-31",
+  "history_days": 63,
+  "target_days": 21,
+  "portfolio_pr30": -0.0018410959144874346,
+  "data_sha256": "7c52d084e8bfb689d5138c97429d0b63c0707120ab9f32d330d6adb1cfcfbedc",
+  "stock_selection": "uniform over 10 tickers; uniform with replacement within the chosen stock PR30 windows",
+  "interpretation": "Exact empirical expectations, not a random batch and not model-generated outcomes. Effective support is 1/sum(p^2), not independent sample size.",
+  "scheme_comparison": [
+    {
+      "scheme": "完整母體",
+      "portfolio_pr30_share": 0.30005017561465086,
+      "portfolio_negative_share": 0.3146011038635219,
+      "portfolio_return_mean": 0.014201094150461611,
+      "portfolio_volatility_mean": 0.1368441808283407,
+      "mean_number_assets_in_own_tail": 3.000501756146547,
+      "at_least_5_assets_in_tail_share": 0.22930255895634688,
+      "portfolio_positive_share": 0.6853988961364869,
+      "window_selection_effective_support": 1992.9999999999998
+    },
+    {
+      "scheme": "組合 PR30 尾部池",
+      "portfolio_pr30_share": 0.9999999999999996,
+      "portfolio_negative_share": 0.9999999999999996,
+      "portfolio_return_mean": -0.028093025281566004,
+      "portfolio_volatility_mean": 0.1642018406223633,
+      "mean_number_assets_in_own_tail": 5.856187290969914,
+      "at_least_5_assets_in_tail_share": 0.7240802675585281,
+      "portfolio_positive_share": 0.0,
+      "window_selection_effective_support": 597.9999999999999
+    },
+    {
+      "scheme": "隨機單股 PR30 尾部池",
+      "portfolio_pr30_share": 0.5856187290969896,
+      "portfolio_negative_share": 0.6033444816053508,
+      "portfolio_return_mean": -0.011255310887727759,
+      "portfolio_volatility_mean": 0.15449084538100205,
+      "mean_number_assets_in_own_tail": 4.9,
+      "at_least_5_assets_in_tail_share": 0.509866220735786,
+      "portfolio_positive_share": 0.3966555183946502,
+      "window_selection_effective_support": 1220.408163265306
+    },
+    {
+      "scheme": "70/30 組合尾部混合",
+      "portfolio_pr30_share": 0.5100351229302539,
+      "portfolio_negative_share": 0.5202207727044639,
+      "portfolio_return_mean": 0.0015128583208533272,
+      "portfolio_volatility_mean": 0.14505147876654756,
+      "mean_number_assets_in_own_tail": 3.8572074165934884,
+      "at_least_5_assets_in_tail_share": 0.3777358715370008,
+      "portfolio_positive_share": 0.4797792272955369,
+      "window_selection_effective_support": 1647.1757307718894
+    },
+    {
+      "scheme": "70/30 隨機單股尾部混合",
+      "portfolio_pr30_share": 0.38572074165935266,
+      "portfolio_negative_share": 0.4012241171860706,
+      "portfolio_return_mean": 0.006564172639004806,
+      "portfolio_volatility_mean": 0.14213818019413935,
+      "mean_number_assets_in_own_tail": 3.5703512293025446,
+      "at_least_5_assets_in_tail_share": 0.3134716574901789,
+      "portfolio_positive_share": 0.5987758828139302,
+      "window_selection_effective_support": 1885.5689223668282
+    }
+  ],
+  "asset_thresholds": [
+    {
+      "ticker": "AAPL",
+      "return_pr30": -0.015574982482732798,
+      "n_tail_windows": 598,
+      "portfolio_tail_share_when_selected": 0.5953177257525084,
+      "negative_return_given_own_tail_share": 1.0
+    },
+    {
+      "ticker": "AMGN",
+      "return_pr30": -0.017368290786740355,
+      "n_tail_windows": 598,
+      "portfolio_tail_share_when_selected": 0.5434782608695652,
+      "negative_return_given_own_tail_share": 1.0
+    },
+    {
+      "ticker": "CRM",
+      "return_pr30": -0.021514232633525466,
+      "n_tail_windows": 598,
+      "portfolio_tail_share_when_selected": 0.5301003344481605,
+      "negative_return_given_own_tail_share": 1.0
+    },
+    {
+      "ticker": "CSCO",
+      "return_pr30": -0.020583487568538186,
+      "n_tail_windows": 598,
+      "portfolio_tail_share_when_selected": 0.6204013377926422,
+      "negative_return_given_own_tail_share": 1.0
+    },
+    {
+      "ticker": "IBM",
+      "return_pr30": -0.01886315281643528,
+      "n_tail_windows": 598,
+      "portfolio_tail_share_when_selected": 0.6220735785953178,
+      "negative_return_given_own_tail_share": 1.0
+    },
+    {
+      "ticker": "INTC",
+      "return_pr30": -0.01971757439327149,
+      "n_tail_windows": 598,
+      "portfolio_tail_share_when_selected": 0.6605351170568562,
+      "negative_return_given_own_tail_share": 1.0
+    },
+    {
+      "ticker": "MSFT",
+      "return_pr30": -0.012083932715116126,
+      "n_tail_windows": 598,
+      "portfolio_tail_share_when_selected": 0.6755852842809364,
+      "negative_return_given_own_tail_share": 1.0
+    },
+    {
+      "ticker": "NKE",
+      "return_pr30": -0.012451421951422756,
+      "n_tail_windows": 598,
+      "portfolio_tail_share_when_selected": 0.6070234113712375,
+      "negative_return_given_own_tail_share": 1.0
+    },
+    {
+      "ticker": "VZ",
+      "return_pr30": -0.0156273665649831,
+      "n_tail_windows": 598,
+      "portfolio_tail_share_when_selected": 0.5033444816053512,
+      "negative_return_given_own_tail_share": 1.0
+    },
+    {
+      "ticker": "WMT",
+      "return_pr30": -0.013293379583816588,
+      "n_tail_windows": 598,
+      "portfolio_tail_share_when_selected": 0.4983277591973244,
+      "negative_return_given_own_tail_share": 1.0
+    }
+  ],
+  "tail_cooccurrence": [
+    {
+      "k_tail_stocks": 0,
+      "n_windows": 224,
+      "new_tail_pool_probability": 0.0,
+      "new_mixture_probability": 0.0786753637732062
+    },
+    {
+      "k_tail_stocks": 1,
+      "n_windows": 411,
+      "new_tail_pool_probability": 0.06872909698996654,
+      "new_mixture_probability": 0.164973972448721
+    },
+    {
+      "k_tail_stocks": 2,
+      "n_windows": 371,
+      "new_tail_pool_probability": 0.12408026755852841,
+      "new_mixture_probability": 0.16753015151693126
+    },
+    {
+      "k_tail_stocks": 3,
+      "n_windows": 342,
+      "new_tail_pool_probability": 0.17157190635451505,
+      "new_mixture_probability": 0.17159199338151757
+    },
+    {
+      "k_tail_stocks": 4,
+      "n_windows": 188,
+      "new_tail_pool_probability": 0.125752508361204,
+      "new_mixture_probability": 0.10375686138944498
+    },
+    {
+      "k_tail_stocks": 5,
+      "n_windows": 134,
+      "new_tail_pool_probability": 0.11204013377926422,
+      "new_mixture_probability": 0.08067676667667939
+    },
+    {
+      "k_tail_stocks": 6,
+      "n_windows": 96,
+      "new_tail_pool_probability": 0.0963210702341137,
+      "new_mixture_probability": 0.06261433411589393
+    },
+    {
+      "k_tail_stocks": 7,
+      "n_windows": 87,
+      "new_tail_pool_probability": 0.10183946488294311,
+      "new_mixture_probability": 0.061108788787512136
+    },
+    {
+      "k_tail_stocks": 8,
+      "n_windows": 83,
+      "new_tail_pool_probability": 0.11103678929765888,
+      "new_mixture_probability": 0.06246306890169105
+    },
+    {
+      "k_tail_stocks": 9,
+      "n_windows": 40,
+      "new_tail_pool_probability": 0.06020066889632107,
+      "new_mixture_probability": 0.03210937277125457
+    },
+    {
+      "k_tail_stocks": 10,
+      "n_windows": 17,
+      "new_tail_pool_probability": 0.028428093645484948,
+      "new_mixture_probability": 0.01449932623714774
+    }
+  ]
+}

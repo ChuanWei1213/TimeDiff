@@ -16,6 +16,7 @@ import numpy as np
 import pandas as pd
 
 from . import config as C
+from output_layout import model_directories
 
 
 # ===========================================================
@@ -39,7 +40,7 @@ def load_real(start=None, end=None):
 # 模型掃描
 # ===========================================================
 def discover_models(outputs_dir=None, verbose=True):
-    """掃描 outputs/，依檔案樣式把每個目錄分類成一個 protocol family。
+    """掃描分類後的模型目錄（並相容舊扁平目錄），依檔案辨識 protocol。
 
     回傳 list[dict]，每個 dict 描述一個候選模型：
         tag, protocol, n_paths, date_range, files, eligible_for_primary, reason
@@ -47,7 +48,8 @@ def discover_models(outputs_dir=None, verbose=True):
     outputs_dir = outputs_dir or C.OUTPUTS_DIR
     found = []
 
-    for d in sorted(glob.glob(os.path.join(outputs_dir, "*"))):
+    for directory in model_directories(outputs_dir):
+        d = str(directory)
         if not os.path.isdir(d):
             continue
         tag = os.path.basename(d)

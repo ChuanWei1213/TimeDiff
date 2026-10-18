@@ -16,11 +16,28 @@ __pycache__/
 /datasets/dow10/*
 !/datasets/dow10/prices_2004.csv
 !/datasets/dow10/prices_2004_2025.csv
-!/outputs/dow10_cond/
-/outputs/dow10_cond/*
-!/outputs/dow10_cond/rl_paths/
-/outputs/dow10_cond/rl_paths/*
-!/outputs/dow10_cond/rl_paths/paths.npz
+!/outputs/README.md
+!/outputs/catalog.yaml
+!/outputs/dow10/
+/outputs/dow10/*
+# Preserve the reviewed walk-forward outputs in their new locations.
+!/outputs/dow10/walk_forward/
+!/outputs/dow10/conditional/
+/outputs/dow10/conditional/*
+!/outputs/dow10/conditional/empirical_joint/
+/outputs/dow10/conditional/empirical_joint/*
+!/outputs/dow10/conditional/empirical_joint/run_20261017/
+!/outputs/dow10/conditional/fixed_scenarios/
+/outputs/dow10/conditional/fixed_scenarios/*
+!/outputs/dow10/conditional/fixed_scenarios/legacy/
+/outputs/dow10/conditional/fixed_scenarios/legacy/*
+!/outputs/dow10/conditional/fixed_scenarios/legacy/rl_paths/
+/outputs/dow10/conditional/fixed_scenarios/legacy/rl_paths/*
+!/outputs/dow10/conditional/fixed_scenarios/legacy/rl_paths/paths.npz
+# Keep the relocation inventory, verification reports, and original source snapshots.
+!/outputs/_migration/
+/outputs/_migration/*
+!/outputs/_migration/20261018/
 /RL/path/
 /checkpoints/*
 !/checkpoints/.gitkeep

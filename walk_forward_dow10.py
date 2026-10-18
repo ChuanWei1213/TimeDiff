@@ -59,6 +59,7 @@ import pickle
 import random
 import argparse
 import warnings
+from output_layout import walkforward_path, resolve_output_path
 
 import numpy as np
 import pandas as pd
@@ -1135,7 +1136,7 @@ def main():
     if cli.generate_only:
         cli.resume = False        # 目的就是重新取樣，不能沿用舊的生成結果
 
-    out_dir = cli.out_dir or f"./outputs/{cli.tag}"
+    out_dir = str(resolve_output_path(cli.out_dir)) if cli.out_dir else str(walkforward_path(cli.tag))
     os.makedirs(out_dir, exist_ok=True)
     os.makedirs(os.path.join(out_dir, "cycles"), exist_ok=True)
 

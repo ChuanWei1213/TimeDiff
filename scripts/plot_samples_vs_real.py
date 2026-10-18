@@ -1,9 +1,9 @@
 """Visual check: random TimeDiff RL paths vs real history.
 
     python scripts/plot_samples_vs_real.py \
-        --paths outputs/dow10_cond/rl_paths/paths.npz \
+        --paths outputs/dow10/conditional/fixed_scenarios/legacy/rl_paths/paths.npz \
         --data datasets/dow10/prices_2004.csv \
-        --out outputs/dow10_cond/figures
+        --out outputs/dow10/conditional/fixed_scenarios/legacy/figures
 
 Figures (equal-weight 10-stock portfolio unless noted, start of window = 1):
   1_examples.png       per scenario, 4 random episodes: 50 real days + 21 generated days,

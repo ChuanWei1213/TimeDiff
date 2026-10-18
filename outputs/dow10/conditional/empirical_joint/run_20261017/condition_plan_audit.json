@@ -1,0 +1,10 @@
+{
+  "n_windows_independently_recomputed": 1993,
+  "n_draw_pairings_verified": 500,
+  "max_return_error": 1.9567680809018384e-15,
+  "max_volatility_error": 9.020562075079397e-16,
+  "full_pool_count": 350,
+  "tail_pool_count": 150,
+  "tail_rate": 0.53,
+  "n_unique_windows": 415
+}

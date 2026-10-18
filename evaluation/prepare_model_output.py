@@ -1,7 +1,7 @@
 """把任意模型的輸出轉成 evaluation framework 的標準格式。
 
 標準格式（wide，log return of close）：
-    outputs/<tag>/paths/returns/path_XX_returns.csv
+    outputs/dow10/walk_forward/external/<tag>/paths/returns/path_XX_returns.csv
     date,AAPL_rclose,AMGN_rclose,...,WMT_rclose      # 10 欄 + date
     2018-01-02,...                                    # 1,761 列，日期須與真實交易日完全一致
 
@@ -37,6 +37,7 @@ price -> return 用 log(C_t / C_{t-1})。若價格序列的第一天就是 evalu
 """
 import os
 import glob
+from output_layout import walkforward_path
 import argparse
 
 import numpy as np
@@ -175,7 +176,7 @@ def validate(w, real_dates, tag, path_id):
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--tag", required=True, help="模型代號，會建立 outputs/<tag>/")
+    ap.add_argument("--tag", required=True, help="模型代號，預設寫入 outputs/dow10/walk_forward/external/<tag>/；既有 tag 維持原分類")
     ap.add_argument("--input", required=True, help="輸入檔（可用 glob，如 'run_*.csv'）")
     ap.add_argument("--kind", choices=["return", "price"], required=True)
     ap.add_argument("--layout", choices=["long", "wide"], required=True)
@@ -215,7 +216,7 @@ def main(argv=None):
         print("(--dry-run，未寫檔)")
         return frames
 
-    out_dir = os.path.join(C.OUTPUTS_DIR, a.tag, "paths", "returns")
+    out_dir = str(walkforward_path(a.tag, group="external", outputs_root=C.OUTPUTS_DIR) / "paths/returns")
     os.makedirs(out_dir, exist_ok=True)
     for i, w in enumerate(frames):
         out = w.copy()

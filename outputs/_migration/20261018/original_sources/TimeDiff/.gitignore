@@ -1,0 +1,27 @@
+# Backup of the previous Git repository
+/.git-old/
+
+# Local SPX experiment artifacts
+/.venv-spx/
+/datasets/spx/
+/outputs/spx/
+__pycache__/
+.pytest_cache/
+
+# Local datasets and generated experiment artifacts
+/datasets/*
+/outputs/*
+# Inputs of the FinRL scenario-mix experiment (FinRL_Exp reads them via ../TimeDiff/...)
+!/datasets/dow10/
+/datasets/dow10/*
+!/datasets/dow10/prices_2004.csv
+!/datasets/dow10/prices_2004_2025.csv
+!/outputs/dow10_cond/
+/outputs/dow10_cond/*
+!/outputs/dow10_cond/rl_paths/
+/outputs/dow10_cond/rl_paths/*
+!/outputs/dow10_cond/rl_paths/paths.npz
+/RL/path/
+/checkpoints/*
+!/checkpoints/.gitkeep
+.DS_Store

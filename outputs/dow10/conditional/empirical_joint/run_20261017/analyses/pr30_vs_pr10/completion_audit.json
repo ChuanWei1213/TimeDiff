@@ -1,0 +1,28 @@
+{
+  "status": "complete",
+  "ppo_run": false,
+  "model_training_run": false,
+  "baseline_and_source_hash_checks": "passed",
+  "notebook_code_cells": 4,
+  "notebook_figures": 3,
+  "notebook_execution": "sequential fresh IPython",
+  "visual_review": "Two comparison figures, generated distribution and conditional path examples inspected; legend overlap repaired.",
+  "full_component_bitwise_equal_paths": 1400,
+  "artifacts_sha256": {
+    "README.md": "4cdf2111f6a79c1b2c6e05057bc0f90573070ea20afa1ce4914a89b072e4ef15",
+    "analyze.py": "0db014de267d026ffee5d86d8222eb61e2f973ab91fb965a52e066046ec7bdfd",
+    "build_notebook.py": "c0fffa2e567de5f6c17f4ab2fa3ffffa4af4a00cb736893aae90f7f5bcfe8237",
+    "cohort_comparison.csv": "8ccc33c2d6239cb1326503242785110b973d6a841e0cebeb0164ac6c1b53b66c",
+    "comparison.json": "e087cdc42d98b09b4f26b0d64eee9382b41f66edf68ad3fde14571b7022d410c",
+    "coverage_comparison.csv": "81aa3564458b1a49e661db572860356948d56c10f8d7e84fd0e30f25436163e7",
+    "generation_command.txt": "61624108013a55c3eea4c1b1cfbe12aa90f0d812999900f5beb829431fa61f16",
+    "pairwise_correlation.csv": "3e4b2af641920ce5b241bf338aea0f353ca0fde58b6e7ebe3f8ae31a4fafa816",
+    "pr10_comparison.ipynb": "847189b533d12a79ab6a2808439c7846c88e7cf0ae557cf419c13f78e2c8f97f",
+    "reconstruction_audit.csv": "8c3118938d964077fc09a843343b592775909d5116d309bc6d8f1c7fcfc4a60c",
+    "structure_comparison.png": "1b402fe689220d9d62b5f062f1c05b75b68d1e115cfce61a8ac98a577d2c8c00",
+    "summary_comparison.csv": "192a63432e3ba360f2d5b250ba2f16a7edf09e41cee38fc030557ae6cf6910c5",
+    "tail_comparison.csv": "6dcd5adaecf72895d27442171550cdf1a5b67272562364c2ae24b19b69d7faaf",
+    "tail_comparison.png": "2a08e2968df1088862be9645682d09e5f620a8d9137fc963db717d83933e7d18"
+  },
+  "git_status": "?? JOINT_CONDITION_SAMPLING.md\n?? data_provider/joint_conditions.py\n?? evaluation/joint_condition_diagnostics.py\n?? sample_joint_dow10.py\n?? tests/test_joint_conditions.py\n"
+}

@@ -1,0 +1,137 @@
+=== DOW10 Stylized Facts Report ===
+tag: dow10_wf_v2
+period: 2018-01-02 ~ 2024-12-31
+n_days: 1761
+n_cycles: 28
+stride: 63
+train_len: 1260
+select_split: 1008/252
+max_steps: 2000
+vol_scale: 1.0
+n_paths: 50
+gen_seed: 1
+note: 本報表為 path 0；各路徑摘要見 wf_paths_summary.csv
+strategy: Walk-Forward retrain, real-cond blocks, chained prices (no reset)
+====================================================================
+
+====================================================================
+  AAPL
+====================================================================
+Metric                             Real  Synthetic     Delta%  Result
+--------------------------------------------------------------------
+Heavy Tails (Hill)               3.2228     5.2790    +63.8%  FAIL
+Negative Skewness               -0.2159    -0.1243    +42.4%  FAIL
+Jump Diffusion (RJ)              0.0572     0.0000   -100.0%  FAIL
+Volatility Clustering            0.2915     0.2171    -25.5%  PASS
+Leverage Effect                 -0.0676     0.0973   +243.9%  FAIL
+
+====================================================================
+  AMGN
+====================================================================
+Metric                             Real  Synthetic     Delta%  Result
+--------------------------------------------------------------------
+Heavy Tails (Hill)               2.6791     5.9180   +120.9%  FAIL
+Negative Skewness                0.2878     0.2331    -19.0%  PASS
+Jump Diffusion (RJ)              0.0998     0.0000   -100.0%  FAIL
+Volatility Clustering            0.2513     0.3542    +41.0%  FAIL
+Leverage Effect                 -0.0342     0.2026   +691.6%  FAIL
+
+====================================================================
+  CRM
+====================================================================
+Metric                             Real  Synthetic     Delta%  Result
+--------------------------------------------------------------------
+Heavy Tails (Hill)               2.8968     5.2754    +82.1%  FAIL
+Negative Skewness               -0.2108    -0.2659    -26.1%  PASS
+Jump Diffusion (RJ)              0.1188     0.0000   -100.0%  FAIL
+Volatility Clustering            0.0906     0.2657   +193.2%  FAIL
+Leverage Effect                 -0.0563    -0.0645    -14.5%  PASS
+
+====================================================================
+  CSCO
+====================================================================
+Metric                             Real  Synthetic     Delta%  Result
+--------------------------------------------------------------------
+Heavy Tails (Hill)               2.6038     4.0672    +56.2%  FAIL
+Negative Skewness               -0.7991     0.0798   +110.0%  FAIL
+Jump Diffusion (RJ)              0.0474     0.0000   -100.0%  FAIL
+Volatility Clustering            0.3125     0.4440    +42.1%  FAIL
+Leverage Effect                 -0.0982     0.2956   +401.1%  FAIL
+
+====================================================================
+  IBM
+====================================================================
+Metric                             Real  Synthetic     Delta%  Result
+--------------------------------------------------------------------
+Heavy Tails (Hill)               2.3246     4.7883   +106.0%  FAIL
+Negative Skewness               -0.7478    -0.0680    +90.9%  FAIL
+Jump Diffusion (RJ)              0.1463     0.0000   -100.0%  FAIL
+Volatility Clustering            0.1490     0.2538    +70.4%  FAIL
+Leverage Effect                 -0.0913     0.0927   +201.5%  FAIL
+
+====================================================================
+  INTC
+====================================================================
+Metric                             Real  Synthetic     Delta%  Result
+--------------------------------------------------------------------
+Heavy Tails (Hill)               2.9430     6.0452   +105.4%  FAIL
+Negative Skewness               -1.3673     0.1283   +109.4%  FAIL
+Jump Diffusion (RJ)              0.0877     0.0000   -100.0%  FAIL
+Volatility Clustering            0.2046     0.2414    +18.0%  PASS
+Leverage Effect                 -0.0510     0.1602   +414.0%  FAIL
+
+====================================================================
+  MSFT
+====================================================================
+Metric                             Real  Synthetic     Delta%  Result
+--------------------------------------------------------------------
+Heavy Tails (Hill)               3.7493     5.9701    +59.2%  FAIL
+Negative Skewness               -0.2663    -0.3009    -13.0%  PASS
+Jump Diffusion (RJ)              0.0000     0.0000       N/A  PASS
+Volatility Clustering            0.5088     0.2413    -52.6%  FAIL
+Leverage Effect                 -0.0997     0.0357   +135.8%  FAIL
+
+====================================================================
+  NKE
+====================================================================
+Metric                             Real  Synthetic     Delta%  Result
+--------------------------------------------------------------------
+Heavy Tails (Hill)               2.2639     4.4675    +97.3%  FAIL
+Negative Skewness               -0.7299     0.3334   +145.7%  FAIL
+Jump Diffusion (RJ)              0.1785     0.0000   -100.0%  FAIL
+Volatility Clustering            0.0718     0.4714   +556.6%  FAIL
+Leverage Effect                 -0.0383     0.3113   +912.4%  FAIL
+
+====================================================================
+  VZ
+====================================================================
+Metric                             Real  Synthetic     Delta%  Result
+--------------------------------------------------------------------
+Heavy Tails (Hill)               3.3250     4.8637    +46.3%  FAIL
+Negative Skewness               -0.0695     0.1678   +341.4%  FAIL
+Jump Diffusion (RJ)              0.0872     0.0000   -100.0%  FAIL
+Volatility Clustering            0.1854     0.1826     -1.5%  PASS
+Leverage Effect                 -0.0742     0.1292   +274.1%  FAIL
+
+====================================================================
+  WMT
+====================================================================
+Metric                             Real  Synthetic     Delta%  Result
+--------------------------------------------------------------------
+Heavy Tails (Hill)               2.1931     5.6535   +157.8%  FAIL
+Negative Skewness               -0.3339    -0.0676    +79.7%  FAIL
+Jump Diffusion (RJ)              0.1102     0.0000   -100.0%  FAIL
+Volatility Clustering            0.2644     0.2923    +10.5%  PASS
+Leverage Effect                 -0.0895     0.1747   +295.2%  FAIL
+
+====================================================================
+  Average (All Tickers)
+====================================================================
+Metric                             Real  Synthetic     Delta%  Result
+--------------------------------------------------------------------
+Heavy Tails (Hill)               2.8201     5.2328    +85.6%  FAIL
+Negative Skewness               -0.4453     0.0116   +102.6%  FAIL
+Jump Diffusion (RJ)              0.0933     0.0000   -100.0%  FAIL
+Volatility Clustering            0.2330     0.2964    +27.2%  PASS
+Leverage Effect                 -0.0700     0.1435   +304.9%  FAIL
+====================================================================

@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "n_paths": 2000,
+  "n_draws": 500,
+  "n_artifact_hashes_verified": 14,
+  "n_original_input_hashes_unchanged": 2,
+  "history_and_future_pairing_verified": true,
+  "n_conditions_independently_recomputed": 500,
+  "max_return_error_from_saved_prices": 4.561508797074065e-08,
+  "max_volatility_error_from_saved_prices": 2.0751477944336294e-07,
+  "n_unique_close_paths": 2000,
+  "target_tail_share": 0.53,
+  "realized_tail_share": 0.4535,
+  "scope": "Saved data integrity, pairing and independent numerical consistency; no PPO/out-of-sample claim."
+}

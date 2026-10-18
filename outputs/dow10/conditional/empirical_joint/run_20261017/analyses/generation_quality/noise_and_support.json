@@ -1,0 +1,62 @@
+{
+  "replicate_covariance": [
+    {
+      "component": "full_paths",
+      "corr": 0.18640288980392386,
+      "mean_asset_variance": 0.00040572539251255475,
+      "mean_offdiag_covariance": 8.86408711739e-05,
+      "common_variance": 0.00012034932330776547,
+      "idiosyncratic_variance": 0.00028537606920478925
+    },
+    {
+      "component": "four_replica_mean",
+      "corr": 0.3822956034693019,
+      "mean_asset_variance": 0.00016141788757935733,
+      "mean_offdiag_covariance": 7.649429678775734e-05,
+      "common_variance": 8.498665586691734e-05,
+      "idiosyncratic_variance": 7.643123171244001e-05
+    },
+    {
+      "component": "replica_residual",
+      "corr": 0.04909899873862649,
+      "mean_asset_variance": 0.0002443075049331974,
+      "mean_offdiag_covariance": 1.2146574386142673e-05,
+      "common_variance": 3.536266744084815e-05,
+      "idiosyncratic_variance": 0.00020894483749234926
+    }
+  ],
+  "support": [
+    {
+      "feature": "high",
+      "n_asset_days": 420000,
+      "n_invalid": 91076,
+      "invalid_fraction": 0.21684761904761904,
+      "fraction_invalid_with_valid_four_replica_mean": 0.7802384821467785,
+      "invalid_abs_median": 0.00462316838093102,
+      "invalid_abs_q90": 0.013289401307702065,
+      "invalid_abs_q99": 0.02393950941041112,
+      "fraction_invalid_abs_le_1e_minus_6": 8.783872809521718e-05,
+      "paired_real_invalid_abs_max": 3.3306690738754696e-16,
+      "paired_real_zero_fraction": 0.0136,
+      "generated_final_zero_fraction": 0.21684761904761904
+    },
+    {
+      "feature": "low",
+      "n_asset_days": 420000,
+      "n_invalid": 88729,
+      "invalid_fraction": 0.2112595238095238,
+      "fraction_invalid_with_valid_four_replica_mean": 0.7974393941101556,
+      "invalid_abs_median": 0.004730383399873972,
+      "invalid_abs_q90": 0.013643738813698288,
+      "invalid_abs_q99": 0.025522310063242914,
+      "fraction_invalid_abs_le_1e_minus_6": 0.00012397299642732365,
+      "paired_real_invalid_abs_max": 2.220446049250313e-16,
+      "paired_real_zero_fraction": 0.014752380952380953,
+      "generated_final_zero_fraction": 0.2112595238095238
+    }
+  ],
+  "limits": [
+    "Four-replica averages are finite Monte Carlo estimates, not the exact conditional expectation.",
+    "The residual decomposition is algebraic and does not identify which training change would cure it."
+  ]
+}

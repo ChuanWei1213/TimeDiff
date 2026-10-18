@@ -14,7 +14,7 @@ set -e
 cd "$(dirname "$0")"
 
 TAG="dow10_wf"
-OUT_DIR="./outputs/${TAG}"
+OUT_DIR="./outputs/dow10/walk_forward/timediff/${TAG}"
 
 # ---- 訓練預算（先小規模跑通，再放大）----
 MAX_STEPS=2000        # 選模階段 step 上限，同時是兩階段 LR/annealing 基準

@@ -1,0 +1,1354 @@
+{
+  "status": "passed_with_preexisting_data_issues",
+  "original_files": 455,
+  "byte_identical_files": 445,
+  "source_or_doc_updates_with_original_backup": [
+    "outputs/dow10/conditional/empirical_joint/run_20261017/README.md",
+    "outputs/dow10/conditional/empirical_joint/run_20261017/audit_batch.py",
+    "outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/build_notebook.py",
+    "outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/diagnose.py",
+    "outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/diagnostic_review.ipynb",
+    "outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/probes.py",
+    "outputs/dow10/conditional/empirical_joint/run_20261017/analyses/pr30_vs_pr10/README.md",
+    "outputs/dow10/conditional/empirical_joint/run_20261017/analyses/pr30_vs_pr10/analyze.py",
+    "outputs/dow10/conditional/empirical_joint/run_20261017/analyses/pr30_vs_pr10/build_notebook.py",
+    "outputs/dow10/conditional/empirical_joint/run_20261017/analyses/pr30_vs_pr10/pr10_comparison.ipynb"
+  ],
+  "notebook_saved_outputs_preserved": true,
+  "npz_archives_loaded": 10,
+  "npz_arrays": [
+    {
+      "path": "outputs/dow10/conditional/fixed_scenarios/legacy/rl_paths/paths.npz",
+      "arrays": {
+        "tickers": [
+          10
+        ],
+        "anchor_dates": [
+          6039
+        ],
+        "scenario": [
+          6039
+        ],
+        "target": [
+          6039,
+          2
+        ],
+        "close": [
+          6039,
+          21,
+          10
+        ],
+        "high": [
+          6039,
+          21,
+          10
+        ],
+        "low": [
+          6039,
+          21,
+          10
+        ],
+        "realized": [
+          6039,
+          2
+        ],
+        "hit": [
+          6039
+        ],
+        "raw_features": [
+          6039,
+          21,
+          30
+        ]
+      }
+    },
+    {
+      "path": "outputs/dow10/conditional/empirical_joint/run_20261017/batches/full70_tail30_pr30/paths.npz",
+      "arrays": {
+        "tickers": [
+          10
+        ],
+        "anchor_dates": [
+          2000
+        ],
+        "scenario": [
+          2000
+        ],
+        "source_pool": [
+          2000
+        ],
+        "window_id": [
+          2000
+        ],
+        "draw_id": [
+          2000
+        ],
+        "replicate_id": [
+          2000
+        ],
+        "target": [
+          2000,
+          2
+        ],
+        "realized": [
+          2000,
+          2
+        ],
+        "close": [
+          2000,
+          21,
+          10
+        ],
+        "high": [
+          2000,
+          21,
+          10
+        ],
+        "low": [
+          2000,
+          21,
+          10
+        ],
+        "raw_features": [
+          2000,
+          21,
+          30
+        ],
+        "anchor_close": [
+          2000,
+          10
+        ],
+        "history_features": [
+          500,
+          63,
+          30
+        ],
+        "history_draw_ids": [
+          500
+        ],
+        "paired_real_future": [
+          500,
+          21,
+          30
+        ]
+      }
+    },
+    {
+      "path": "outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/probes/full_validation.npz",
+      "arrays": {
+        "raw_features": [
+          483,
+          21,
+          30
+        ],
+        "targets": [
+          483,
+          2
+        ],
+        "window_ids": [
+          483
+        ]
+      }
+    },
+    {
+      "path": "outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/probes/seed_20261018_steps_100.npz",
+      "arrays": {
+        "raw_features": [
+          384,
+          21,
+          30
+        ],
+        "targets": [
+          384,
+          2
+        ],
+        "draw_ids": [
+          384
+        ]
+      }
+    },
+    {
+      "path": "outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/probes/seed_20261018_steps_20.npz",
+      "arrays": {
+        "raw_features": [
+          384,
+          21,
+          30
+        ],
+        "targets": [
+          384,
+          2
+        ],
+        "draw_ids": [
+          384
+        ]
+      }
+    },
+    {
+      "path": "outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/probes/seed_20261018_steps_50.npz",
+      "arrays": {
+        "raw_features": [
+          384,
+          21,
+          30
+        ],
+        "targets": [
+          384,
+          2
+        ],
+        "draw_ids": [
+          384
+        ]
+      }
+    },
+    {
+      "path": "outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/probes/seed_20261019_steps_100.npz",
+      "arrays": {
+        "raw_features": [
+          384,
+          21,
+          30
+        ],
+        "targets": [
+          384,
+          2
+        ],
+        "draw_ids": [
+          384
+        ]
+      }
+    },
+    {
+      "path": "outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/probes/seed_20261019_steps_20.npz",
+      "arrays": {
+        "raw_features": [
+          384,
+          21,
+          30
+        ],
+        "targets": [
+          384,
+          2
+        ],
+        "draw_ids": [
+          384
+        ]
+      }
+    },
+    {
+      "path": "outputs/dow10/conditional/empirical_joint/run_20261017/analyses/generation_quality/validation_exact.npz",
+      "arrays": {
+        "raw_features": [
+          483,
+          21,
+          30
+        ],
+        "targets": [
+          483,
+          2
+        ],
+        "window_ids": [
+          483
+        ]
+      }
+    },
+    {
+      "path": "outputs/dow10/conditional/empirical_joint/run_20261017/batches/full70_tail30_pr10/paths.npz",
+      "arrays": {
+        "tickers": [
+          10
+        ],
+        "anchor_dates": [
+          2000
+        ],
+        "scenario": [
+          2000
+        ],
+        "source_pool": [
+          2000
+        ],
+        "window_id": [
+          2000
+        ],
+        "draw_id": [
+          2000
+        ],
+        "replicate_id": [
+          2000
+        ],
+        "target": [
+          2000,
+          2
+        ],
+        "realized": [
+          2000,
+          2
+        ],
+        "close": [
+          2000,
+          21,
+          10
+        ],
+        "high": [
+          2000,
+          21,
+          10
+        ],
+        "low": [
+          2000,
+          21,
+          10
+        ],
+        "raw_features": [
+          2000,
+          21,
+          30
+        ],
+        "anchor_close": [
+          2000,
+          10
+        ],
+        "history_features": [
+          500,
+          63,
+          30
+        ],
+        "history_draw_ids": [
+          500
+        ],
+        "paired_real_future": [
+          500,
+          21,
+          30
+        ]
+      }
+    }
+  ],
+  "conditional_batches": [
+    {
+      "batch": "fixed_scenarios",
+      "n_paths": 6039,
+      "shape": [
+        6039,
+        21,
+        10
+      ],
+      "sha256": "da21274c1662c8c9c023248610516197f35fd611f08cda5311ab197408958edd"
+    },
+    {
+      "batch": "PR30",
+      "n_paths": 2000,
+      "shape": [
+        2000,
+        21,
+        10
+      ],
+      "sha256": "e8ca7fbbbc65f1147464ffe0b0c0fcfd8a1e9cc06c78fb895d944177d47dd267"
+    },
+    {
+      "batch": "PR10",
+      "n_paths": 2000,
+      "shape": [
+        2000,
+        21,
+        10
+      ],
+      "sha256": "8a986ae468e10875a60ca68b71aad9bcb86d102747e7221757f830eb13385ba5"
+    }
+  ],
+  "discovered_models": 12,
+  "loaded_models": [
+    {
+      "tag": "cndiff",
+      "status": "loaded",
+      "n_files": 1,
+      "shape": [
+        1,
+        1761,
+        10
+      ],
+      "files": [
+        {
+          "file": "path_00_returns.csv",
+          "rows": 1761,
+          "first_date": "2018-01-02",
+          "last_date": "2024-12-31"
+        }
+      ]
+    },
+    {
+      "tag": "nsdiff",
+      "status": "loaded",
+      "n_files": 1,
+      "shape": [
+        1,
+        1761,
+        10
+      ],
+      "files": [
+        {
+          "file": "path_00_returns.csv",
+          "rows": 1761,
+          "first_date": "2018-01-02",
+          "last_date": "2024-12-31"
+        }
+      ]
+    },
+    {
+      "tag": "gauss_sigma",
+      "status": "loaded",
+      "n_files": 10,
+      "shape": [
+        10,
+        799,
+        10
+      ],
+      "files": [
+        {
+          "file": "path_00_returns.csv",
+          "rows": 799,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-05"
+        },
+        {
+          "file": "path_02_returns.csv",
+          "rows": 799,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-05"
+        },
+        {
+          "file": "path_04_returns.csv",
+          "rows": 799,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-05"
+        },
+        {
+          "file": "path_18_returns.csv",
+          "rows": 799,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-05"
+        },
+        {
+          "file": "path_19_returns.csv",
+          "rows": 799,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-05"
+        },
+        {
+          "file": "path_27_returns.csv",
+          "rows": 799,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-05"
+        },
+        {
+          "file": "path_35_returns.csv",
+          "rows": 799,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-05"
+        },
+        {
+          "file": "path_44_returns.csv",
+          "rows": 799,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-05"
+        },
+        {
+          "file": "path_45_returns.csv",
+          "rows": 799,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-05"
+        },
+        {
+          "file": "path_48_returns.csv",
+          "rows": 799,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-05"
+        }
+      ]
+    }
+  ],
+  "preexisting_issues": [
+    {
+      "tag": "garch_null",
+      "status": "preexisting_data_issue",
+      "error": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/walk_forward/statistical/garch_null/paths/returns/path_05_returns.csv 的日期與其他路徑不一致",
+      "files": [
+        {
+          "file": "path_02_returns.csv",
+          "rows": 1714,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-2"
+        },
+        {
+          "file": "path_05_returns.csv",
+          "rows": 1712,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-21"
+        },
+        {
+          "file": "path_07_returns.csv",
+          "rows": 1711,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-18"
+        },
+        {
+          "file": "path_08_returns.csv",
+          "rows": 1714,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-23"
+        },
+        {
+          "file": "path_09_returns.csv",
+          "rows": 1712,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-21"
+        },
+        {
+          "file": "path_11_returns.csv",
+          "rows": 1714,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-23"
+        },
+        {
+          "file": "path_12_returns.csv",
+          "rows": 1712,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-21"
+        },
+        {
+          "file": "path_13_returns.csv",
+          "rows": 1713,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-22"
+        },
+        {
+          "file": "path_15_returns.csv",
+          "rows": 1714,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-23"
+        },
+        {
+          "file": "path_17_returns.csv",
+          "rows": 1712,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-21"
+        },
+        {
+          "file": "path_19_returns.csv",
+          "rows": 1712,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-21"
+        },
+        {
+          "file": "path_20_returns.csv",
+          "rows": 1713,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-22"
+        },
+        {
+          "file": "path_21_returns.csv",
+          "rows": 1713,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-22"
+        },
+        {
+          "file": "path_22_returns.csv",
+          "rows": 1712,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-21"
+        },
+        {
+          "file": "path_25_returns.csv",
+          "rows": 1713,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-22"
+        },
+        {
+          "file": "path_26_returns.csv",
+          "rows": 1713,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-22"
+        },
+        {
+          "file": "path_29_returns.csv",
+          "rows": 1712,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-21"
+        },
+        {
+          "file": "path_30_returns.csv",
+          "rows": 1713,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-22"
+        },
+        {
+          "file": "path_31_returns.csv",
+          "rows": 1712,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-21"
+        },
+        {
+          "file": "path_32_returns.csv",
+          "rows": 1713,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-22"
+        },
+        {
+          "file": "path_33_returns.csv",
+          "rows": 1712,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-21"
+        },
+        {
+          "file": "path_35_returns.csv",
+          "rows": 1713,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-22"
+        },
+        {
+          "file": "path_37_returns.csv",
+          "rows": 1713,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-22"
+        },
+        {
+          "file": "path_38_returns.csv",
+          "rows": 1712,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-21"
+        },
+        {
+          "file": "path_39_returns.csv",
+          "rows": 1713,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-22"
+        },
+        {
+          "file": "path_40_returns.csv",
+          "rows": 1713,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-22"
+        },
+        {
+          "file": "path_41_returns.csv",
+          "rows": 1713,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-22"
+        },
+        {
+          "file": "path_44_returns.csv",
+          "rows": 1712,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-21"
+        },
+        {
+          "file": "path_45_returns.csv",
+          "rows": 1713,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-22"
+        },
+        {
+          "file": "path_46_returns.csv",
+          "rows": 1713,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-22"
+        },
+        {
+          "file": "path_48_returns.csv",
+          "rows": 1712,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-21"
+        },
+        {
+          "file": "path_49_returns.csv",
+          "rows": 1713,
+          "first_date": "2018-01-02",
+          "last_date": "2024-10-22"
+        }
+      ]
+    },
+    {
+      "tag": "dow10_wf_v2",
+      "status": "preexisting_data_issue",
+      "error": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/walk_forward/timediff/dow10_wf_v2/paths/returns/path_07_returns.csv 的日期與其他路徑不一致",
+      "files": [
+        {
+          "file": "path_00_returns.csv",
+          "rows": 1318,
+          "first_date": "2018-01-02",
+          "last_date": "2023-03-28"
+        },
+        {
+          "file": "path_02_returns.csv",
+          "rows": 1318,
+          "first_date": "2018-01-02",
+          "last_date": "2023-03-28"
+        },
+        {
+          "file": "path_03_returns.csv",
+          "rows": 1318,
+          "first_date": "2018-01-02",
+          "last_date": "2023-03-28"
+        },
+        {
+          "file": "path_07_returns.csv",
+          "rows": 1319,
+          "first_date": "2018-01-02",
+          "last_date": "2023-03-29"
+        },
+        {
+          "file": "path_08_returns.csv",
+          "rows": 1318,
+          "first_date": "2018-01-02",
+          "last_date": "2023-03-28"
+        },
+        {
+          "file": "path_17_returns.csv",
+          "rows": 1318,
+          "first_date": "2018-01-02",
+          "last_date": "2023-03-28"
+        },
+        {
+          "file": "path_26_returns.csv",
+          "rows": 1318,
+          "first_date": "2018-01-02",
+          "last_date": "2023-03-28"
+        },
+        {
+          "file": "path_40_returns.csv",
+          "rows": 1318,
+          "first_date": "2018-01-02",
+          "last_date": "2023-03-28"
+        },
+        {
+          "file": "path_42_returns.csv",
+          "rows": 1318,
+          "first_date": "2018-01-02",
+          "last_date": "2023-03-28"
+        },
+        {
+          "file": "path_45_returns.csv",
+          "rows": 1318,
+          "first_date": "2018-01-02",
+          "last_date": "2023-03-28"
+        }
+      ]
+    },
+    {
+      "tag": "dow10_wf_vpred",
+      "status": "preexisting_data_issue",
+      "error": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/walk_forward/timediff/dow10_wf_vpred/paths/returns/path_11_returns.csv 的日期與其他路徑不一致",
+      "files": [
+        {
+          "file": "path_04_returns.csv",
+          "rows": 1333,
+          "first_date": "2018-01-02",
+          "last_date": "2023-04-19"
+        },
+        {
+          "file": "path_10_returns.csv",
+          "rows": 1333,
+          "first_date": "2018-01-02",
+          "last_date": "2023-04-19"
+        },
+        {
+          "file": "path_11_returns.csv",
+          "rows": 1332,
+          "first_date": "2018-01-02",
+          "last_date": "2023-04-18"
+        },
+        {
+          "file": "path_18_returns.csv",
+          "rows": 1332,
+          "first_date": "2018-01-02",
+          "last_date": "2023-04-18"
+        },
+        {
+          "file": "path_19_returns.csv",
+          "rows": 1333,
+          "first_date": "2018-01-02",
+          "last_date": "2023-04-19"
+        }
+      ]
+    },
+    {
+      "tag": "v_3layer",
+      "status": "preexisting_data_issue",
+      "error": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/walk_forward/timediff/v_3layer/paths/returns/path_08_returns.csv 的日期與其他路徑不一致",
+      "files": [
+        {
+          "file": "path_05_returns.csv",
+          "rows": 798,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-04"
+        },
+        {
+          "file": "path_08_returns.csv",
+          "rows": 799,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-05"
+        },
+        {
+          "file": "path_10_returns.csv",
+          "rows": 799,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-05"
+        },
+        {
+          "file": "path_12_returns.csv",
+          "rows": 799,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-05"
+        },
+        {
+          "file": "path_21_returns.csv",
+          "rows": 798,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-04"
+        },
+        {
+          "file": "path_22_returns.csv",
+          "rows": 798,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-04"
+        },
+        {
+          "file": "path_31_returns.csv",
+          "rows": 799,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-05"
+        },
+        {
+          "file": "path_38_returns.csv",
+          "rows": 799,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-05"
+        },
+        {
+          "file": "path_39_returns.csv",
+          "rows": 799,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-05"
+        },
+        {
+          "file": "path_42_returns.csv",
+          "rows": 799,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-05"
+        },
+        {
+          "file": "path_46_returns.csv",
+          "rows": 798,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-04"
+        },
+        {
+          "file": "path_49_returns.csv",
+          "rows": 799,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-05"
+        }
+      ]
+    },
+    {
+      "tag": "v_4layer",
+      "status": "preexisting_data_issue",
+      "error": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/walk_forward/timediff/v_4layer/paths/returns/path_16_returns.csv 的日期與其他路徑不一致",
+      "files": [
+        {
+          "file": "path_10_returns.csv",
+          "rows": 797,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-03"
+        },
+        {
+          "file": "path_16_returns.csv",
+          "rows": 798,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-04"
+        },
+        {
+          "file": "path_18_returns.csv",
+          "rows": 797,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-03"
+        },
+        {
+          "file": "path_21_returns.csv",
+          "rows": 797,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-03"
+        },
+        {
+          "file": "path_22_returns.csv",
+          "rows": 797,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-03"
+        },
+        {
+          "file": "path_28_returns.csv",
+          "rows": 798,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-04"
+        },
+        {
+          "file": "path_33_returns.csv",
+          "rows": 797,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-03"
+        },
+        {
+          "file": "path_37_returns.csv",
+          "rows": 797,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-03"
+        },
+        {
+          "file": "path_40_returns.csv",
+          "rows": 797,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-03"
+        },
+        {
+          "file": "path_41_returns.csv",
+          "rows": 798,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-04"
+        },
+        {
+          "file": "path_47_returns.csv",
+          "rows": 797,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-03"
+        },
+        {
+          "file": "path_49_returns.csv",
+          "rows": 797,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-03"
+        }
+      ]
+    },
+    {
+      "tag": "v_4layer_fix",
+      "status": "preexisting_data_issue",
+      "error": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/walk_forward/timediff/v_4layer_fix/paths/returns/path_13_returns.csv 的日期與其他路徑不一致",
+      "files": [
+        {
+          "file": "path_01_returns.csv",
+          "rows": 797,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-03"
+        },
+        {
+          "file": "path_03_returns.csv",
+          "rows": 797,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-03"
+        },
+        {
+          "file": "path_13_returns.csv",
+          "rows": 798,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-04"
+        },
+        {
+          "file": "path_14_returns.csv",
+          "rows": 797,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-03"
+        },
+        {
+          "file": "path_18_returns.csv",
+          "rows": 797,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-03"
+        },
+        {
+          "file": "path_28_returns.csv",
+          "rows": 798,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-04"
+        },
+        {
+          "file": "path_32_returns.csv",
+          "rows": 798,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-04"
+        },
+        {
+          "file": "path_34_returns.csv",
+          "rows": 798,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-04"
+        },
+        {
+          "file": "path_39_returns.csv",
+          "rows": 797,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-03"
+        },
+        {
+          "file": "path_41_returns.csv",
+          "rows": 798,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-04"
+        },
+        {
+          "file": "path_43_returns.csv",
+          "rows": 798,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-04"
+        },
+        {
+          "file": "path_44_returns.csv",
+          "rows": 797,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-03"
+        },
+        {
+          "file": "path_45_returns.csv",
+          "rows": 798,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-04"
+        }
+      ]
+    },
+    {
+      "tag": "v_cross",
+      "status": "preexisting_data_issue",
+      "error": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/walk_forward/timediff/v_cross/paths/returns/path_03_returns.csv 的日期與其他路徑不一致",
+      "files": [
+        {
+          "file": "path_01_returns.csv",
+          "rows": 668,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-26"
+        },
+        {
+          "file": "path_03_returns.csv",
+          "rows": 667,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-25"
+        },
+        {
+          "file": "path_04_returns.csv",
+          "rows": 668,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-26"
+        },
+        {
+          "file": "path_05_returns.csv",
+          "rows": 667,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-25"
+        },
+        {
+          "file": "path_09_returns.csv",
+          "rows": 668,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-26"
+        },
+        {
+          "file": "path_10_returns.csv",
+          "rows": 668,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-26"
+        },
+        {
+          "file": "path_12_returns.csv",
+          "rows": 667,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-25"
+        },
+        {
+          "file": "path_15_returns.csv",
+          "rows": 667,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-25"
+        },
+        {
+          "file": "path_21_returns.csv",
+          "rows": 667,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-25"
+        },
+        {
+          "file": "path_23_returns.csv",
+          "rows": 668,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-26"
+        },
+        {
+          "file": "path_27_returns.csv",
+          "rows": 668,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-26"
+        },
+        {
+          "file": "path_28_returns.csv",
+          "rows": 668,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-26"
+        },
+        {
+          "file": "path_36_returns.csv",
+          "rows": 668,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-26"
+        },
+        {
+          "file": "path_38_returns.csv",
+          "rows": 668,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-26"
+        },
+        {
+          "file": "path_40_returns.csv",
+          "rows": 667,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-25"
+        },
+        {
+          "file": "path_41_returns.csv",
+          "rows": 668,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-26"
+        },
+        {
+          "file": "path_44_returns.csv",
+          "rows": 667,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-25"
+        },
+        {
+          "file": "path_47_returns.csv",
+          "rows": 667,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-25"
+        }
+      ]
+    },
+    {
+      "tag": "v_cross_ga",
+      "status": "preexisting_data_issue",
+      "error": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/walk_forward/timediff/v_cross_ga/paths/returns/path_06_returns.csv 的日期與其他路徑不一致",
+      "files": [
+        {
+          "file": "path_02_returns.csv",
+          "rows": 669,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-27"
+        },
+        {
+          "file": "path_06_returns.csv",
+          "rows": 668,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-26"
+        },
+        {
+          "file": "path_09_returns.csv",
+          "rows": 669,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-27"
+        },
+        {
+          "file": "path_13_returns.csv",
+          "rows": 669,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-27"
+        },
+        {
+          "file": "path_18_returns.csv",
+          "rows": 669,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-27"
+        },
+        {
+          "file": "path_23_returns.csv",
+          "rows": 668,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-26"
+        },
+        {
+          "file": "path_30_returns.csv",
+          "rows": 669,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-27"
+        },
+        {
+          "file": "path_34_returns.csv",
+          "rows": 668,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-26"
+        },
+        {
+          "file": "path_36_returns.csv",
+          "rows": 670,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-28"
+        },
+        {
+          "file": "path_37_returns.csv",
+          "rows": 669,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-27"
+        },
+        {
+          "file": "path_44_returns.csv",
+          "rows": 668,
+          "first_date": "2018-01-02",
+          "last_date": "2020-08-26"
+        }
+      ]
+    },
+    {
+      "tag": "v_whiten",
+      "status": "preexisting_data_issue",
+      "error": "/Users/chuanwei/Files/Projects/nycu_fintech/TimeDiff/outputs/dow10/walk_forward/timediff/v_whiten/paths/returns/path_03_returns.csv 的日期與其他路徑不一致",
+      "files": [
+        {
+          "file": "path_02_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_03_returns.csv",
+          "rows": 798,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-04"
+        },
+        {
+          "file": "path_04_returns.csv",
+          "rows": 798,
+          "first_date": "2018-01-02",
+          "last_date": "2021-03-04"
+        },
+        {
+          "file": "path_05_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_08_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_09_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_10_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_14_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_16_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_22_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_25_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_26_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_27_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_28_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_29_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_32_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_33_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_37_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_38_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_42_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_44_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_46_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        },
+        {
+          "file": "path_48_returns.csv",
+          "rows": 399,
+          "first_date": "2018-01-02",
+          "last_date": "2019-08-02"
+        }
+      ]
+    }
+  ],
+  "training_run": false,
+  "generation_run": false,
+  "ppo_run": false
+}
