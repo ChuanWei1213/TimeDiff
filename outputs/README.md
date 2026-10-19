@@ -1,6 +1,6 @@
 # 實驗產物索引
 
-更新：2026-10-18。先依資料市場與實驗協定分類，再依模型、取樣方法與批次區分。
+更新：2026-10-19。先依資料市場與實驗協定分類，再依模型、取樣方法與批次區分。
 完整設定、現有檔案數與舊新路徑對照見 [catalog.yaml](catalog.yaml)。
 
 ```text
@@ -19,6 +19,7 @@ outputs/
 │           ├── plans/full70_tail30_pr30/
 │           ├── batches/full70_tail30_pr30/
 │           ├── batches/full70_tail30_pr10/
+│           ├── batches/full100_20261019/
 │           ├── analyses/generation_quality/
 │           ├── analyses/pr30_vs_pr10/
 │           └── designs/random_stock_pr30/
@@ -35,13 +36,16 @@ outputs/
 | 批次 | 生成方式 | 現存資料 | 模型／用途 |
 |---|---|---|---|
 | [舊固定情境](dow10/conditional/fixed_scenarios/legacy/rl_paths/paths.npz) | 人工指定三組報酬／波動，實際條件為 −10%／50%、−23%／100%、−36%／140% | 6,039 × 21 日 × 10 檔 | 舊 Scenario Mix 使用；原 checkpoint 本機未留存 |
-| [70% 完整＋30% PR30](dow10/conditional/empirical_joint/run_20261017/batches/full70_tail30_pr30/README.md) | 保留歷史與其後報酬、波動的聯合配對；尾部門檻 −0.1841% | 2,000 × 21 日 × 10 檔 | 共用下列模型，尚未跑 PPO |
-| [70% 完整＋30% PR10](dow10/conditional/empirical_joint/run_20261017/batches/full70_tail30_pr10/README.md) | 同一取樣方法改用 PR10；尾部門檻 −3.4763% | 2,000 × 21 日 × 10 檔 | 共用下列模型，尚未跑 PPO |
+| [70% 完整＋30% PR30](dow10/conditional/empirical_joint/run_20261017/batches/full70_tail30_pr30/README.md) | 保留歷史與其後報酬、波動的聯合配對；尾部門檻 −0.1841% | 2,000 × 21 日 × 10 檔 | PR30_B50，PPO seeds 0–9 已完成 |
+| [70% 完整＋30% PR10](dow10/conditional/empirical_joint/run_20261017/batches/full70_tail30_pr10/README.md) | 同一取樣方法改用 PR10；尾部門檻 −3.4763% | 2,000 × 21 日 × 10 檔 | PR10_B50，PPO seeds 0–9 已完成 |
+| [100% 完整分布](dow10/conditional/empirical_joint/run_20261017/batches/full100_20261019/README.md) | 500 次全由完整歷史池抽樣，保留歷史／報酬／波動配對 | 2,000 × 21 日 × 10 檔 | FULL_B50，PPO seeds 0–9 已完成 |
 
-PR30 與 PR10 共用 [run_20261017 的模型](dow10/conditional/empirical_joint/run_20261017/train/model.pt)：訓練目標期間 2005–2017、
+FULL、PR30 與 PR10 共用 [run_20261017 的模型](dow10/conditional/empirical_joint/run_20261017/train/model.pt)：訓練目標期間 2005–2017、
 2018–2019 選模，最佳 step 3,500。條件母體為 2010–2017，共 1,993 個視窗。
 每批抽 500 次，每次生成 4 條；70／30 是來源池配額，完整池也含尾部。
 原訓練紀錄見 [metadata.json](dow10/conditional/empirical_joint/run_20261017/train/metadata.json)。
+
+三批資料的 PPO 與真實資料對照、v2／v3 全面比較保存在相鄰 FinRL_Exp 專案，見 [結果索引](../../FinRL_Exp/results/scenario_mix/README.md) 與 [完整比較 notebook](../../FinRL_Exp/analysis/scenario_mix/comprehensive_20261019/comparison.ipynb)。FULL 的 1,400 條完整池路徑與 PR30／PR10 相同，配對稽核保存在該比較結果中。批次內 `generation.json` 的 `ppo_run: false` 表示生成當下尚未跑 PPO，保留原文；最新使用狀態以本索引及 catalog 為準。
 
 | 配套內容 | 位置與意義 |
 |---|---|

@@ -1,5 +1,5 @@
 schema_version: 1
-updated_on: '2026-10-18'
+updated_on: '2026-10-19'
 path_base: TimeDiff/outputs；除特別註明外，path/dataset/metadata/manifest 均相對此目錄。
 purpose: 實驗產物索引；不將讀取成功解讀為生成品質合格或可直接用於 PPO。
 experiments:
@@ -272,7 +272,9 @@ experiments:
   batches:
   - full70_tail30_pr30
   - full70_tail30_pr10
-  ppo_run: false
+  - full100_20261019
+  ppo_run: true
+  ppo_results_relative_to_workspace: FinRL_Exp/results/scenario_mix/comprehensive_20261019
 - id: full70_tail30_pr30
   universe: dow10
   protocol: conditional
@@ -303,7 +305,9 @@ experiments:
   sha256: e8ca7fbbbc65f1147464ffe0b0c0fcfd8a1e9cc06c78fb895d944177d47dd267
   read_status: loaded
   status: generated_and_diagnosed
-  ppo_run: false
+  ppo_run: true
+  ppo_group: PR30_B50
+  ppo_results_relative_to_workspace: FinRL_Exp/results/scenario_mix/joint_pr30_pr10_b50_seeds0_9_20261018_run02
 - id: full70_tail30_pr10
   universe: dow10
   protocol: conditional
@@ -334,7 +338,37 @@ experiments:
   sha256: 8a986ae468e10875a60ca68b71aad9bcb86d102747e7221757f830eb13385ba5
   read_status: loaded
   status: generated_and_diagnosed
-  ppo_run: false
+  ppo_run: true
+  ppo_group: PR10_B50
+  ppo_results_relative_to_workspace: FinRL_Exp/results/scenario_mix/joint_pr30_pr10_b50_seeds0_9_20261018_run02
+- id: full100_20261019
+  universe: dow10
+  protocol: conditional
+  family: empirical_joint
+  path: dow10/conditional/empirical_joint/run_20261017/batches/full100_20261019
+  dataset: dow10/conditional/empirical_joint/run_20261017/batches/full100_20261019/paths.npz
+  manifest: dow10/conditional/empirical_joint/run_20261017/batches/full100_20261019/generation.json
+  model_ref: empirical_joint_run_20261017
+  n_paths: 2000
+  shape_paths_days_assets: [2000, 21, 10]
+  condition_pool_start: '2010-01-01'
+  condition_pool_end: '2017-12-31'
+  full_weight: 1.0
+  tail_weight: 0.0
+  sampling_unit: paired original history and its own following return/volatility
+  replacement: true
+  n_population: 1993
+  n_draws: 500
+  paths_per_condition: 4
+  unique_windows: 430
+  plan_seed: 20261017
+  diffusion_seed: 20261018
+  sha256: e0712b52534be1ce61009c6f2a9f1f7df698b0f9404a9149a157fb705248f049
+  read_status: loaded
+  status: generated_and_diagnosed
+  ppo_run: true
+  ppo_group: FULL_B50
+  ppo_results_relative_to_workspace: FinRL_Exp/results/scenario_mix/joint_missing_controls_seeds0_9_20261019_run01
 supporting_artifacts:
 - id: pr30_plan
   kind: sampling_plan
